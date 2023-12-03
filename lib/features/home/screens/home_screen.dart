@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -21,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
           },
           icon: const Icon(
             Icons.menu_rounded,
-            size: 32,
+            size: ThemeConstants.appBarIconSize,
           ),
         ),
       ),

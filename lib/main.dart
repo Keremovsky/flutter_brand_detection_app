@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_brand_detection_app/features/home/screens/home_screen.dart';
+import 'package:flutter_brand_detection_app/router.dart';
 import 'package:flutter_brand_detection_app/themes/palette.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const ProviderScope(child: MyApp()));
+  runApp(ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final router = AppRouter().router;
+
+  MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Flutter Brand Detection App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -49,7 +51,7 @@ class MyApp extends StatelessWidget {
 
         useMaterial3: true,
       ),
-      home: const HomeScreen(),
+      routerConfig: router,
     );
   }
 }
