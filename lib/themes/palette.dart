@@ -6,4 +6,5 @@ class Palette {
   static const yellow = Color.fromRGBO(255, 255, 39, 1);
   static const red = Color.fromRGBO(255, 52, 54, 1);
   static const grey = Color.fromRGBO(102, 102, 102, 1);
+  static const white = Color.fromRGBO(248, 248, 248, 1);
 }
