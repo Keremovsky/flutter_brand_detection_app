@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart';
+import 'package:flutter_brand_detection_app/features/home/widgets/drawer.dart';
+import 'package:flutter_brand_detection_app/features/home/widgets/drawer_button.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -26,7 +28,12 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      drawer: const Drawer(),
+      drawer: const Drawer(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 25),
+          child: CustomDrawer(),
+        ),
+      ),
       body: SafeArea(
         child: Column(
           children: [],
