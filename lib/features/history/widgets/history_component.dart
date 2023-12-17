@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_brand_detection_app/core/constants/router_constants.dart';
 import 'package:flutter_brand_detection_app/features/history/widgets/history_item.dart';
+import 'package:go_router/go_router.dart';
 
 class HistoryComponent extends StatefulWidget {
   const HistoryComponent({super.key});
@@ -18,13 +20,17 @@ class _HistoryComponentState extends State<HistoryComponent> {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text(
-                "Geçmiş",
-                style: Theme.of(context).textTheme.titleLarge,
+              GestureDetector(
+                onTap: () =>
+                    context.pushNamed(RouterConstants.historyScreenName),
+                child: Text(
+                  "Geçmiş",
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
               ),
             ],
           ),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           Expanded(
             child: ListView.builder(
               scrollDirection: Axis.horizontal,

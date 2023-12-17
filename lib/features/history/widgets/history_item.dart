@@ -10,9 +10,7 @@ class HistoryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        print("bbbbbbbbbbbbbbb");
-      },
+      onTap: () {},
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 5),
         child: Material(
@@ -46,9 +44,7 @@ class HistoryItem extends StatelessWidget {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () {
-                        print("aaaaaaaa");
-                      },
+                      onTap: () {},
                       child: const Icon(Icons.more_vert_rounded, size: 24),
                     ),
                   ],

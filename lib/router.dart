@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_brand_detection_app/core/constants/router_constants.dart';
-import 'package:flutter_brand_detection_app/features/backend/screens/feedback_screen.dart';
 import 'package:flutter_brand_detection_app/features/backend/screens/result_screen.dart';
 import 'package:flutter_brand_detection_app/features/history/screens/history_screen.dart';
 import 'package:flutter_brand_detection_app/features/home/screens/home_screen.dart';
@@ -33,15 +32,6 @@ class AppRouter {
         pageBuilder: (context, state) {
           return const MaterialPage(
             child: ResultScreen(),
-          );
-        },
-      ),
-      GoRoute(
-        name: RouterConstants.feedbackScreenName,
-        path: RouterConstants.feedbackScreenPath,
-        pageBuilder: (context, state) {
-          return const MaterialPage(
-            child: FeedbackScreen(),
           );
         },
       ),

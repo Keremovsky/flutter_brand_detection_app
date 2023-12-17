@@ -3,8 +3,9 @@ import 'package:flutter_brand_detection_app/router.dart';
 import 'package:flutter_brand_detection_app/themes/palette.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   runApp(ProviderScope(child: MyApp()));
 }
 
