@@ -1,1 +1,1 @@
-class HistoryItem {}
+class HistoryItemModel {}

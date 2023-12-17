@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart';
 import 'package:flutter_brand_detection_app/features/home/widgets/drawer.dart';
-import 'package:flutter_brand_detection_app/features/home/widgets/drawer_button.dart';
+import 'package:flutter_brand_detection_app/features/history/widgets/history_component.dart';
+import 'package:flutter_brand_detection_app/features/home/widgets/image_choice_button.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,6 +16,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       key: _scaffolKey,
       appBar: AppBar(
@@ -35,8 +38,33 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       body: SafeArea(
-        child: Column(
-          children: [],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+          child: Column(
+            children: [
+              const HistoryComponent(),
+              const Spacer(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ImageChoiceButton(
+                    text: "Fotoğraf Çek",
+                    imagePath: "assets/take_photo.png",
+                    height: width * 0.65,
+                    width: width * 0.45,
+                    onTap: () {},
+                  ),
+                  ImageChoiceButton(
+                    text: "Dosyadan Seç",
+                    imagePath: "assets/take_from_file.png",
+                    height: width * 0.65,
+                    width: width * 0.45,
+                    onTap: () {},
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
