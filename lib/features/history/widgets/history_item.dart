@@ -4,8 +4,14 @@ import 'package:flutter_brand_detection_app/themes/palette.dart';
 class HistoryItem extends StatelessWidget {
   final String text;
   final String imagePath;
+  final double size;
 
-  const HistoryItem({super.key, required this.text, required this.imagePath});
+  const HistoryItem({
+    super.key,
+    required this.text,
+    required this.imagePath,
+    required this.size,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +23,7 @@ class HistoryItem extends StatelessWidget {
           color: Palette.mainColor,
           borderRadius: BorderRadius.circular(10),
           child: SizedBox(
-            width: 120,
+            width: size,
             child: Column(
               children: [
                 ClipRRect(
@@ -26,26 +32,28 @@ class HistoryItem extends StatelessWidget {
                     topRight: Radius.circular(10),
                   ),
                   child: SizedBox(
-                      height: 120,
-                      width: 120,
+                      height: size,
+                      width: size,
                       child: Image(image: AssetImage(imagePath))),
                 ),
                 const Spacer(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    const SizedBox(width: 5),
+                    SizedBox(width: size / 24),
                     Expanded(
                       child: Text(
                         text,
-                        style: Theme.of(context).textTheme.displayMedium,
+                        style: size < 110
+                            ? const TextStyle(fontSize: 14)
+                            : Theme.of(context).textTheme.displayMedium,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
                       ),
                     ),
                     GestureDetector(
                       onTap: () {},
-                      child: const Icon(Icons.more_vert_rounded, size: 24),
+                      child: Icon(Icons.more_vert_rounded, size: size / 5),
                     ),
                   ],
                 ),

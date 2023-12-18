@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_brand_detection_app/features/history/widgets/history_component.dart';
 import 'package:flutter_brand_detection_app/features/home/widgets/drawer_button.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -23,6 +24,7 @@ class CustomDrawer extends StatelessWidget {
           text: "İstekte Bulun",
           onTap: () {},
         ),
+        const HistoryComponent(size: 160, isSavedOnes: false),
       ],
     );
   }
