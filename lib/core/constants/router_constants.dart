@@ -10,4 +10,7 @@ class RouterConstants {
 
   static const feedbackScreenPath = "/feedbackScreen";
   static const feedbackScreenName = "feedbackScreen";
+
+  static const authScreenPath = "/authScreen";
+  static const authScreenName = "authScreen";
 }

@@ -33,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       drawer: const Drawer(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 25),
+          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 30),
           child: CustomDrawer(),
         ),
       ),
