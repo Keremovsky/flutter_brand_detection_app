@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_brand_detection_app/features/history/controller/history_controller.dart';
 import 'package:flutter_brand_detection_app/themes/palette.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -32,10 +31,6 @@ class DeleteAllHistoryItemsAlert extends ConsumerWidget {
               children: [
                 InkWell(
                   onTap: () {
-                    ref
-                        .read(historyControllerProvider.notifier)
-                        .deleteAllHistoryItems(context);
-
                     context.pop();
                   },
                   child: Material(

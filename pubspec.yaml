@@ -39,10 +39,6 @@ dependencies:
   go_router: ^12.1.1
   http: ^1.1.2
   image_picker: ^1.0.4
-  objectbox: ^2.3.1
-  objectbox_flutter_libs: ^2.3.1
-  objectbox_generator: ^2.3.1
-  build_runner: ^2.4.7
 
 dev_dependencies:
   flutter_test:

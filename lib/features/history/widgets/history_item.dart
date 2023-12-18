@@ -44,7 +44,7 @@ class HistoryItem extends StatelessWidget {
                     SizedBox(width: size / 24),
                     Expanded(
                       child: Text(
-                        historyModel.companyNames[0],
+                        "Ferrari",
                         style: size < 110
                             ? const TextStyle(fontSize: 14)
                             : Theme.of(context).textTheme.displayMedium,

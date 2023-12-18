@@ -1,12 +1,8 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
-import 'package:objectbox/objectbox.dart';
 
-@Entity()
 class HistoryItemModel {
-  @Id()
-  int id = 0;
+  int id;
   DateTime searchDate;
   List<int> resultIds;
   List<String> companyNames;
@@ -19,7 +15,7 @@ class HistoryItemModel {
   bool isSaved;
 
   HistoryItemModel({
-    this.id = 0,
+    required this.id,
     required this.searchDate,
     required this.resultIds,
     required this.companyNames,
