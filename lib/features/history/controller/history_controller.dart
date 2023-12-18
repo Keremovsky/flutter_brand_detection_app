@@ -14,6 +14,11 @@ final allHistoryItemsProvider = StreamProvider((ref) {
   return historyController.getAllHistoryItems();
 });
 
+final allSavedHistoryItemsProvider = StreamProvider((ref) {
+  final historyController = ref.watch(historyControllerProvider.notifier);
+  return historyController.getAllSavedHistoryItems();
+});
+
 class HistoryController extends StateNotifier<bool> {
   final HistoryRepository _historyRepository;
 
@@ -58,13 +63,33 @@ class HistoryController extends StateNotifier<bool> {
     if (control == true) {
       giveFeedback(
         context,
-        "Success! History item deleted.",
+        "Geçmiş arama silindi.",
         const Duration(seconds: 2),
       );
     } else {
       giveFeedback(
         context,
-        "An error occurred while deleting history item!",
+        "Geçmiş silinirken bir hata meydana geldi!",
+        const Duration(seconds: 2),
+      );
+    }
+    state = false;
+  }
+
+  void deleteAllHistoryItems(BuildContext context) {
+    state = true;
+    final control = _historyRepository.deleteAllHistoryItems();
+
+    if (control == true) {
+      giveFeedback(
+        context,
+        "Geçmiş aramalar başarıyla silindi!",
+        const Duration(seconds: 2),
+      );
+    } else {
+      giveFeedback(
+        context,
+        "Geçmiş silinirken bir hata meydana geldi!",
         const Duration(seconds: 2),
       );
     }
@@ -75,5 +100,11 @@ class HistoryController extends StateNotifier<bool> {
   Stream<List<HistoryItemModel>> getAllHistoryItems() {
     final allHistoryItems = _historyRepository.getAllHistoryItems();
     return allHistoryItems;
+  }
+
+  // get all saved history items stream
+  Stream<List<HistoryItemModel>> getAllSavedHistoryItems() {
+    final allSavedHistoryItems = _historyRepository.getAllSavedHistoryItems();
+    return allSavedHistoryItems;
   }
 }

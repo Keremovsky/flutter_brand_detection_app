@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart';
 
 class CustomDrawerButton extends StatelessWidget {
   final String text;
@@ -20,7 +21,7 @@ class CustomDrawerButton extends StatelessWidget {
         width: double.infinity,
         child: Row(
           children: [
-            Icon(icon, size: 35),
+            Icon(icon, size: ThemeConstants.generalIconSize),
             const SizedBox(width: 10),
             Text(
               text,

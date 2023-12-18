@@ -14,7 +14,7 @@ class AuthScreen extends StatelessWidget {
           },
           icon: const Icon(
             Icons.arrow_back,
-            size: ThemeConstants.appBarIconSize,
+            size: ThemeConstants.generalIconSize,
           ),
         ),
       ),

@@ -24,7 +24,7 @@ class CustomDrawer extends StatelessWidget {
           text: "İstekte Bulun",
           onTap: () {},
         ),
-        const HistoryComponent(size: 160, isSavedOnes: false),
+        const HistoryComponent(size: 160, isSavedOnes: true),
       ],
     );
   }

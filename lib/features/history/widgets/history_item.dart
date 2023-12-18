@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_brand_detection_app/models/history_item_model.dart';
 import 'package:flutter_brand_detection_app/themes/palette.dart';
 
 class HistoryItem extends StatelessWidget {
-  final String text;
+  final HistoryItemModel historyModel;
   final String imagePath;
   final double size;
 
   const HistoryItem({
     super.key,
-    required this.text,
+    required this.historyModel,
     required this.imagePath,
     required this.size,
   });
@@ -43,7 +44,7 @@ class HistoryItem extends StatelessWidget {
                     SizedBox(width: size / 24),
                     Expanded(
                       child: Text(
-                        text,
+                        historyModel.companyNames[0],
                         style: size < 110
                             ? const TextStyle(fontSize: 14)
                             : Theme.of(context).textTheme.displayMedium,

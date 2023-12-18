@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
           },
           icon: const Icon(
             Icons.menu_rounded,
-            size: ThemeConstants.appBarIconSize,
+            size: ThemeConstants.generalIconSize,
           ),
         ),
       ),

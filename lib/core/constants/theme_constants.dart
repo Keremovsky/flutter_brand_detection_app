@@ -1,3 +1,3 @@
 class ThemeConstants {
-  static const appBarIconSize = 32.0;
+  static const generalIconSize = 32.0;
 }
