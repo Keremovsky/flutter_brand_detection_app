@@ -5,13 +5,11 @@ import 'package:flutter_brand_detection_app/themes/palette.dart';
 class HistoryItem extends StatelessWidget {
   final HistoryItemModel historyModel;
   final String imagePath;
-  final double size;
 
   const HistoryItem({
     super.key,
     required this.historyModel,
     required this.imagePath,
-    required this.size,
   });
 
   @override
@@ -24,7 +22,7 @@ class HistoryItem extends StatelessWidget {
           color: Palette.mainColor,
           borderRadius: BorderRadius.circular(10),
           child: SizedBox(
-            width: size,
+            width: 120,
             child: Column(
               children: [
                 ClipRRect(
@@ -33,28 +31,26 @@ class HistoryItem extends StatelessWidget {
                     topRight: Radius.circular(10),
                   ),
                   child: SizedBox(
-                      height: size,
-                      width: size,
+                      height: 120,
+                      width: 120,
                       child: Image(image: AssetImage(imagePath))),
                 ),
                 const Spacer(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    SizedBox(width: size / 24),
+                    const SizedBox(width: 5),
                     Expanded(
                       child: Text(
                         "Ferrari",
-                        style: size < 110
-                            ? const TextStyle(fontSize: 14)
-                            : Theme.of(context).textTheme.displayMedium,
+                        style: Theme.of(context).textTheme.displayMedium,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
                       ),
                     ),
                     GestureDetector(
                       onTap: () {},
-                      child: Icon(Icons.more_vert_rounded, size: size / 5),
+                      child: const Icon(Icons.more_vert_rounded, size: 24),
                     ),
                   ],
                 ),

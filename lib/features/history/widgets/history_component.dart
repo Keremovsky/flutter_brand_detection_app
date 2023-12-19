@@ -7,12 +7,10 @@ import 'package:go_router/go_router.dart';
 
 class HistoryComponent extends ConsumerStatefulWidget {
   final bool isSavedOnes;
-  final double size;
 
   const HistoryComponent({
     super.key,
     required this.isSavedOnes,
-    required this.size,
   });
 
   @override
@@ -37,7 +35,7 @@ class _HistoryComponentState extends ConsumerState<HistoryComponent> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: widget.size,
+      height: 195,
       child: Column(
         children: [
           Row(
@@ -51,15 +49,13 @@ class _HistoryComponentState extends ConsumerState<HistoryComponent> {
                   }
                 },
                 child: Text(
-                  widget.isSavedOnes ? "Kaydedilenler" : "Geçmiş",
-                  style: widget.size <= 160
-                      ? Theme.of(context).textTheme.titleMedium
-                      : Theme.of(context).textTheme.titleLarge,
+                  "Geçmiş",
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
               ),
             ],
           ),
-          SizedBox(height: widget.size / 40),
+          const SizedBox(height: 5),
           Expanded(
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
@@ -68,7 +64,6 @@ class _HistoryComponentState extends ConsumerState<HistoryComponent> {
                 return HistoryItem(
                   historyModel: historyItemModel,
                   imagePath: "assets/ferrari.png",
-                  size: 3 * widget.size / 5,
                 );
               },
             ),

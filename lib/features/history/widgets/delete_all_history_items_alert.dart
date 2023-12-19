@@ -33,9 +33,12 @@ class DeleteAllHistoryItemsAlert extends ConsumerWidget {
                   onTap: () {
                     context.pop();
                   },
-                  child: Material(
-                    color: Palette.mainColor,
-                    borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(10),
+                  child: Ink(
+                    decoration: BoxDecoration(
+                      color: Palette.mainColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                     child: SizedBox(
                       height: 40,
                       width: 80,
@@ -52,9 +55,12 @@ class DeleteAllHistoryItemsAlert extends ConsumerWidget {
                   onTap: () {
                     context.pop();
                   },
-                  child: Material(
-                    color: Palette.mainColor,
-                    borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(10),
+                  child: Ink(
+                    decoration: BoxDecoration(
+                      color: Palette.mainColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                     child: SizedBox(
                       height: 40,
                       width: 80,
