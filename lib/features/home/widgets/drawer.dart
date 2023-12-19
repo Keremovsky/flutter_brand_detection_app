@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_brand_detection_app/core/constants/router_constants.dart';
 import 'package:flutter_brand_detection_app/features/home/widgets/drawer_button.dart';
+import 'package:go_router/go_router.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -11,7 +13,9 @@ class CustomDrawer extends StatelessWidget {
         CustomDrawerButton(
           icon: Icons.account_circle_rounded,
           text: "Hesabım",
-          onTap: () {},
+          onTap: () {
+            context.pushNamed(RouterConstants.loginScreenName);
+          },
         ),
         const _CustomSizedBox(),
         CustomDrawerButton(

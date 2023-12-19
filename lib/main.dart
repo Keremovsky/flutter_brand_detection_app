@@ -35,13 +35,13 @@ class MyApp extends StatelessWidget {
             fontWeight: FontWeight.normal,
           ),
           displayLarge: TextStyle(
-            fontSize: 22,
-          ),
-          displayMedium: TextStyle(
             fontSize: 20,
           ),
+          displayMedium: TextStyle(
+            fontSize: 18,
+          ),
           displaySmall: TextStyle(
-            fontSize: 12,
+            fontSize: 14,
             color: Palette.grey,
           ),
         ),
