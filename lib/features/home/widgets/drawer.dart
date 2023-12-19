@@ -31,11 +31,16 @@ class CustomDrawer extends StatelessWidget {
         ),
         const _CustomSizedBox(),
         CustomDrawerButton(
+          icon: Icons.save_outlined,
+          text: "Kaydedilenler",
+          onTap: () {},
+        ),
+        const _CustomSizedBox(),
+        CustomDrawerButton(
           icon: Icons.logout_outlined,
           text: "Çıkış Yap",
           onTap: () {},
         ),
-        // const HistoryComponent(size: 160, isSavedOnes: true),
       ],
     );
   }
