@@ -3,15 +3,17 @@ import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart'
 import 'package:flutter_brand_detection_app/features/home/widgets/drawer.dart';
 import 'package:flutter_brand_detection_app/features/history/widgets/history_component.dart';
 import 'package:flutter_brand_detection_app/features/home/widgets/image_choice_button.dart';
+import 'package:flutter_brand_detection_app/features/image_picker/controller/image_picker_controller.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends ConsumerState<HomeScreen> {
   final GlobalKey<ScaffoldState> _scaffolKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -52,14 +54,33 @@ class _HomeScreenState extends State<HomeScreen> {
                     imagePath: "assets/take_photo.png",
                     height: width * 0.65,
                     width: width * 0.45,
-                    onTap: () {},
+                    onTap: () async {
+                      final result = await ref
+                          .read(imagePickerControllerProvider.notifier)
+                          .takePicture(context);
+                      if (result == null) {
+                        print("null");
+                      } else {
+                        print(result.path);
+                      }
+                    },
                   ),
                   ImageChoiceButton(
                     text: "Dosyadan Seç",
                     imagePath: "assets/take_from_file.png",
                     height: width * 0.65,
                     width: width * 0.45,
-                    onTap: () {},
+                    onTap: () async {
+                      final result = await ref
+                          .read(imagePickerControllerProvider.notifier)
+                          .getImageGallery(context);
+
+                      if (result == null) {
+                        print("null");
+                      } else {
+                        print(result.path);
+                      }
+                    },
                   ),
                 ],
               ),

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
-void giveFeedback(BuildContext context, String text, Duration duration) {
+void giveFeedback(
+  BuildContext context,
+  String text, {
+  Duration duration = const Duration(seconds: 2),
+}) {
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       content: Text(
