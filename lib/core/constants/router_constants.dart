@@ -13,4 +13,7 @@ class RouterConstants {
 
   static const loginScreenPath = "/loginScreen";
   static const loginScreenName = "loginScreen";
+
+  static const registerScreenPath = "/registerScreen";
+  static const registerScreenName = "registerScreen";
 }
