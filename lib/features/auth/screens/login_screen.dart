@@ -21,7 +21,7 @@ class _AuthScreenState extends ConsumerState<LoginScreen> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            Navigator.of(context).pop();
+            context.pop();
           },
           icon: const Icon(
             Icons.arrow_back,
@@ -54,7 +54,7 @@ class _AuthScreenState extends ConsumerState<LoginScreen> {
                 const _CustomSizedBox(),
                 GestureDetector(
                   onTap: () {
-                    print("navigate to forgot password screen");
+                    context.pushNamed(RouterConstants.forgetPasswordScreenName);
                   },
                   child: Text(
                     "Şifremi unuttum.",

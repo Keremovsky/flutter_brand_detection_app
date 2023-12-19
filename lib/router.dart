@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_brand_detection_app/core/constants/router_constants.dart';
+import 'package:flutter_brand_detection_app/features/auth/screens/forget_password_screen.dart';
 import 'package:flutter_brand_detection_app/features/auth/screens/login_screen.dart';
 import 'package:flutter_brand_detection_app/features/auth/screens/register_screen.dart';
 import 'package:flutter_brand_detection_app/features/history/screens/history_screen.dart';
@@ -42,6 +43,15 @@ class AppRouter {
         pageBuilder: (context, state) {
           return const MaterialPage(
             child: RegisterScreen(),
+          );
+        },
+      ),
+      GoRoute(
+        name: RouterConstants.forgetPasswordScreenName,
+        path: RouterConstants.forgetPasswordScreenPath,
+        pageBuilder: (context, state) {
+          return const MaterialPage(
+            child: ForgetPasswordScreen(),
           );
         },
       ),

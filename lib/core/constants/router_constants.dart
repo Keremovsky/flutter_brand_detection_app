@@ -16,4 +16,7 @@ class RouterConstants {
 
   static const registerScreenPath = "/registerScreen";
   static const registerScreenName = "registerScreen";
+
+  static const forgetPasswordScreenPath = "/forgetPasswordScreen";
+  static const forgetPasswordScreenName = "forgetPasswordScreen";
 }
