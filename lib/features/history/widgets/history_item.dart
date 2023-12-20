@@ -31,9 +31,10 @@ class HistoryItem extends StatelessWidget {
                     topRight: Radius.circular(10),
                   ),
                   child: SizedBox(
-                      height: 120,
-                      width: 120,
-                      child: Image(image: AssetImage(imagePath))),
+                    height: 120,
+                    width: 120,
+                    child: Image(image: AssetImage(imagePath)),
+                  ),
                 ),
                 const Spacer(),
                 Row(

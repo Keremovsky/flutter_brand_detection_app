@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart';
 import 'package:flutter_brand_detection_app/features/history/widgets/delete_all_history_items_alert.dart';
+import 'package:flutter_brand_detection_app/features/history/widgets/main_history_item.dart';
+import 'package:flutter_brand_detection_app/models/history_item_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HistoryScreen extends ConsumerStatefulWidget {
@@ -11,6 +13,20 @@ class HistoryScreen extends ConsumerStatefulWidget {
 }
 
 class _HistoryScreenState extends ConsumerState<HistoryScreen> {
+  final HistoryItemModel historyItemModel = HistoryItemModel(
+    id: 0,
+    searchDate: DateTime.now(),
+    resultIds: [],
+    companyNames: [],
+    descriptions: [],
+    countries: [],
+    timeZones: [],
+    websites: [],
+    twitters: [],
+    similarityPercentages: [],
+    isSaved: false,
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,8 +57,11 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
         ),
       ),
       body: SafeArea(
-        child: Column(
-          children: [],
+        child: ListView.builder(
+          itemCount: 10,
+          itemBuilder: (context, index) {
+            return MainHistoryItem(historyItemModel: historyItemModel);
+          },
         ),
       ),
     );

@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_brand_detection_app/themes/palette.dart';
 
-class CustomTextButton extends StatelessWidget {
-  final Text text;
+class CustomIconButton extends StatelessWidget {
+  final Icon icon;
   final Function() onTap;
   final Color backgroundColor;
   final double height;
   final double width;
   final BorderRadius? borderRadius;
 
-  const CustomTextButton({
+  const CustomIconButton({
     super.key,
-    required this.text,
+    required this.icon,
     required this.onTap,
     this.backgroundColor = Palette.mainColor,
     required this.height,
@@ -32,7 +32,7 @@ class CustomTextButton extends StatelessWidget {
         child: SizedBox(
           height: height,
           width: width,
-          child: Center(child: text),
+          child: Center(child: icon),
         ),
       ),
     );
