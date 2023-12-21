@@ -41,7 +41,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+          padding: ThemeConstants.screenPadding,
           child: Column(
             children: [
               const HistoryComponent(isSavedOnes: false),

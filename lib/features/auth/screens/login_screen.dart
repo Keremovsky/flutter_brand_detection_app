@@ -31,7 +31,7 @@ class _AuthScreenState extends ConsumerState<LoginScreen> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          padding: ThemeConstants.screenPadding,
           child: Form(
             child: Column(
               children: [

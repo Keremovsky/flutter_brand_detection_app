@@ -29,7 +29,7 @@ class _ForgetPasswordScreenState extends ConsumerState<ForgetPasswordScreen> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          padding: ThemeConstants.screenPadding,
           child: Column(
             children: [
               TextField(),

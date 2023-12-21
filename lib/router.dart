@@ -3,8 +3,10 @@ import 'package:flutter_brand_detection_app/core/constants/router_constants.dart
 import 'package:flutter_brand_detection_app/features/auth/screens/forget_password_screen.dart';
 import 'package:flutter_brand_detection_app/features/auth/screens/login_screen.dart';
 import 'package:flutter_brand_detection_app/features/auth/screens/register_screen.dart';
+import 'package:flutter_brand_detection_app/features/auth/screens/reset_password_screen.dart';
 import 'package:flutter_brand_detection_app/features/history/screens/history_screen.dart';
 import 'package:flutter_brand_detection_app/features/home/screens/home_screen.dart';
+import 'package:flutter_brand_detection_app/features/search/screens/result_screen.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRouter {
@@ -25,6 +27,15 @@ class AppRouter {
         pageBuilder: (context, state) {
           return const MaterialPage(
             child: HistoryScreen(),
+          );
+        },
+      ),
+      GoRoute(
+        name: RouterConstants.resultScreenName,
+        path: RouterConstants.resultScreenPath,
+        pageBuilder: (context, state) {
+          return const MaterialPage(
+            child: ResultScreen(),
           );
         },
       ),
@@ -52,6 +63,15 @@ class AppRouter {
         pageBuilder: (context, state) {
           return const MaterialPage(
             child: ForgetPasswordScreen(),
+          );
+        },
+      ),
+      GoRoute(
+        name: RouterConstants.resetPasswordScreenName,
+        path: RouterConstants.resetPasswordScreenPath,
+        pageBuilder: (context, state) {
+          return const MaterialPage(
+            child: ResetPasswordScreen(),
           );
         },
       ),

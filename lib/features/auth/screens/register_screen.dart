@@ -28,7 +28,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          padding: ThemeConstants.screenPadding,
           child: Form(
             child: Column(
               children: [

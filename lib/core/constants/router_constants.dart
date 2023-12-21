@@ -19,4 +19,7 @@ class RouterConstants {
 
   static const forgetPasswordScreenPath = "/forgetPasswordScreen";
   static const forgetPasswordScreenName = "forgetPasswordScreen";
+
+  static const resetPasswordScreenPath = "/resetPasswordScreen";
+  static const resetPasswordScreenName = "resetPasswordScreen";
 }
