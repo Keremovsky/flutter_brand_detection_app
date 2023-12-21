@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_brand_detection_app/core/utils/image_demonstrator.dart';
 import 'package:flutter_brand_detection_app/themes/palette.dart';
 
 class ResultItem extends StatelessWidget {
@@ -30,18 +31,13 @@ class ResultItem extends StatelessWidget {
           width: 160,
           child: Column(
             children: [
-              ClipRRect(
-                borderRadius: const BorderRadius.only(
+              ImageDemonstrator(
+                imageProvider: AssetImage("assets/ferrari.png"),
+                height: 160,
+                width: 160,
+                borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(10),
                   topRight: Radius.circular(10),
-                ),
-                child: SizedBox(
-                  height: 160,
-                  width: 160,
-                  child: Image(
-                    image: AssetImage("assets/ferrari.png"),
-                    fit: BoxFit.cover,
-                  ),
                 ),
               ),
               Padding(

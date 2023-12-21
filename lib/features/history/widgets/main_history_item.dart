@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart';
 import 'package:flutter_brand_detection_app/core/utils/custom_icon_button.dart';
+import 'package:flutter_brand_detection_app/core/utils/image_demonstrator.dart';
 import 'package:flutter_brand_detection_app/models/history_item_model.dart';
 import 'package:flutter_brand_detection_app/themes/palette.dart';
 
@@ -20,17 +21,13 @@ class MainHistoryItem extends StatelessWidget {
           height: 100,
           child: Row(
             children: [
-              const ClipRRect(
+              ImageDemonstrator(
+                imageProvider: AssetImage("assets/ferrari.png"),
+                height: 100,
+                width: 100,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(10),
                   bottomLeft: Radius.circular(10),
-                ),
-                child: SizedBox(
-                  height: 100,
-                  width: 100,
-                  child: Image(
-                    image: AssetImage("assets/ferrari.png"),
-                  ),
                 ),
               ),
               SizedBox(

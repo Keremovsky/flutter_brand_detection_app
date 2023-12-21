@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_brand_detection_app/core/utils/image_demonstrator.dart';
 import 'package:flutter_brand_detection_app/models/history_item_model.dart';
 import 'package:flutter_brand_detection_app/themes/palette.dart';
 
@@ -25,15 +26,13 @@ class HistoryItem extends StatelessWidget {
             width: 120,
             child: Column(
               children: [
-                ClipRRect(
+                ImageDemonstrator(
+                  imageProvider: AssetImage("assets/ferrari.png"),
+                  height: 120,
+                  width: 120,
                   borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(10),
                     topRight: Radius.circular(10),
-                  ),
-                  child: SizedBox(
-                    height: 120,
-                    width: 120,
-                    child: Image(image: AssetImage(imagePath)),
                   ),
                 ),
                 const Spacer(),
