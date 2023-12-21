@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart';
 import 'package:flutter_brand_detection_app/features/home/widgets/drawer.dart';
-import 'package:flutter_brand_detection_app/features/history/widgets/history_component.dart';
+import 'package:flutter_brand_detection_app/features/history/widgets/history_list.dart';
 import 'package:flutter_brand_detection_app/features/home/widgets/image_choice_button.dart';
 import 'package:flutter_brand_detection_app/features/image_picker/controller/image_picker_controller.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

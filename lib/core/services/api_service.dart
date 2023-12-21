@@ -31,7 +31,7 @@ class ApiService {
         imagePath,
         contentType: MediaType("image", "png"),
       );
-      // add file to request
+      // add image to request
       request.files.add(multiPartFile);
     }
     // add all other headers
