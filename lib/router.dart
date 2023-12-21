@@ -4,6 +4,7 @@ import 'package:flutter_brand_detection_app/features/auth/screens/forget_passwor
 import 'package:flutter_brand_detection_app/features/auth/screens/login_screen.dart';
 import 'package:flutter_brand_detection_app/features/auth/screens/register_screen.dart';
 import 'package:flutter_brand_detection_app/features/auth/screens/reset_password_screen.dart';
+import 'package:flutter_brand_detection_app/features/feedback/screens/feedback_screen.dart';
 import 'package:flutter_brand_detection_app/features/history/screens/history_screen.dart';
 import 'package:flutter_brand_detection_app/features/home/screens/home_screen.dart';
 import 'package:flutter_brand_detection_app/features/search/screens/result_screen.dart';
@@ -36,6 +37,15 @@ class AppRouter {
         pageBuilder: (context, state) {
           return const MaterialPage(
             child: ResultScreen(),
+          );
+        },
+      ),
+      GoRoute(
+        name: RouterConstants.feedbackScreenName,
+        path: RouterConstants.feedbackScreenPath,
+        pageBuilder: (context, state) {
+          return const MaterialPage(
+            child: FeedbackScreen(),
           );
         },
       ),
