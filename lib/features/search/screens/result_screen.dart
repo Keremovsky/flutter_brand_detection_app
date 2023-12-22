@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart';
 import 'package:flutter_brand_detection_app/core/utils/custom_button.dart';
 import 'package:flutter_brand_detection_app/core/utils/image_demonstrator.dart';
-import 'package:flutter_brand_detection_app/features/search/widgets/result_item.dart';
 import 'package:flutter_brand_detection_app/features/search/widgets/result_list.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -15,6 +14,27 @@ class ResultScreen extends ConsumerStatefulWidget {
 }
 
 class _ResultScreenState extends ConsumerState<ResultScreen> {
+  late final ImageProvider xLogoProvider;
+  late final ImageProvider googleLogoProvider;
+  late final ImageProvider xmlLogoProvider;
+
+  @override
+  void initState() {
+    super.initState();
+    xLogoProvider = const AssetImage("assets/x_logo.png");
+    googleLogoProvider = const AssetImage("assets/google_logo.png");
+    xmlLogoProvider = const AssetImage("assets/xml_logo.png");
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // load images to the cache
+    precacheImage(xLogoProvider, context);
+    precacheImage(googleLogoProvider, context);
+    precacheImage(xmlLogoProvider, context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

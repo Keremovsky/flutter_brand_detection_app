@@ -1,13 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart';
+import 'package:flutter_brand_detection_app/core/services/xml_service.dart';
 import 'package:flutter_brand_detection_app/core/utils/custom_button.dart';
 import 'package:flutter_brand_detection_app/core/utils/image_demonstrator.dart';
 import 'package:flutter_brand_detection_app/core/utils_functions.dart';
 import 'package:flutter_brand_detection_app/themes/palette.dart';
 import 'package:go_router/go_router.dart';
 
-class SingleResultScreen extends StatelessWidget {
+class SingleResultScreen extends StatefulWidget {
   const SingleResultScreen({super.key});
+
+  @override
+  State<SingleResultScreen> createState() => _SingleResultScreenState();
+}
+
+class _SingleResultScreenState extends State<SingleResultScreen> {
+  late final XmlService xmlService;
+
+  @override
+  void initState() {
+    super.initState();
+    xmlService = XmlService();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,16 +53,17 @@ class SingleResultScreen extends StatelessWidget {
                 width: 200,
                 borderRadius: BorderRadius.circular(10),
               ),
+              const SizedBox(height: 15),
               Text(
                 "Ferrari",
                 style: Theme.of(context).textTheme.displayLarge,
               ),
-              const CustomSizedBox(),
+              const _CustomSizedBox(),
               Text(
                 "Official account of #Ferrari, Italian Excellence that makes the world dream.",
                 style: Theme.of(context).textTheme.displayMedium,
               ),
-              const CustomSizedBox(),
+              const _CustomSizedBox(),
               Text(
                 "Maranello | Italy",
                 style: Theme.of(context).textTheme.displayMedium,
@@ -71,7 +86,20 @@ class SingleResultScreen extends StatelessWidget {
                       width: 25,
                     ),
                   ),
-                  const CustomSizedBox(),
+                  CustomButton(
+                    onTap: () {
+                      xmlService.downloadXmlFile(context);
+                    },
+                    height: 40,
+                    width: 80,
+                    borderRadius: BorderRadius.circular(10),
+                    backgroundColor: Colors.orange,
+                    child: const ImageDemonstrator(
+                      imageProvider: AssetImage("assets/xml_logo.png"),
+                      height: 27,
+                      width: 27,
+                    ),
+                  ),
                   CustomButton(
                     onTap: () {
                       launchURL("https://www.google.com");
@@ -96,10 +124,8 @@ class SingleResultScreen extends StatelessWidget {
   }
 }
 
-class CustomSizedBox extends StatelessWidget {
-  const CustomSizedBox({
-    super.key,
-  });
+class _CustomSizedBox extends StatelessWidget {
+  const _CustomSizedBox();
 
   @override
   Widget build(BuildContext context) {
