@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class ImageDemon extends StatelessWidget {
+class ImageDemonstrator extends StatelessWidget {
   final ImageProvider imageProvider;
   final double height;
   final double width;
   final BorderRadius borderRadius;
 
-  const ImageDemon({
+  const ImageDemonstrator({
     super.key,
     required this.imageProvider,
     required this.height,

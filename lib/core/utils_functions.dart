@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void giveFeedback(
   BuildContext context,
@@ -15,4 +16,13 @@ void giveFeedback(
       behavior: SnackBarBehavior.floating,
     ),
   );
+}
+
+void launchURL(String url) async {
+  final uri = Uri.parse(url);
+
+  final canLaunch = await canLaunchUrl(uri);
+  if (canLaunch) {
+    await launchUrl(uri);
+  }
 }

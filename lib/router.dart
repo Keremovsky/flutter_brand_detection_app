@@ -8,6 +8,7 @@ import 'package:flutter_brand_detection_app/features/feedback/screens/feedback_s
 import 'package:flutter_brand_detection_app/features/history/screens/history_screen.dart';
 import 'package:flutter_brand_detection_app/features/home/screens/home_screen.dart';
 import 'package:flutter_brand_detection_app/features/search/screens/result_screen.dart';
+import 'package:flutter_brand_detection_app/features/search/screens/single_result_screen.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRouter {
@@ -37,6 +38,15 @@ class AppRouter {
         pageBuilder: (context, state) {
           return const MaterialPage(
             child: ResultScreen(),
+          );
+        },
+      ),
+      GoRoute(
+        name: RouterConstants.singleResultScreenName,
+        path: RouterConstants.singleResultScreenPath,
+        pageBuilder: (context, state) {
+          return const MaterialPage(
+            child: SingleResultScreen(),
           );
         },
       ),

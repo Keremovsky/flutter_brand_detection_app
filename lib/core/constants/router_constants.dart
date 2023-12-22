@@ -8,6 +8,9 @@ class RouterConstants {
   static const resultScreenPath = "/resultScreen";
   static const resultScreenName = "resultScreen";
 
+  static const singleResultScreenPath = "/singleResultScreen";
+  static const singleResultScreenName = "singleResultScreen";
+
   static const feedbackScreenPath = "/feedbackScreen";
   static const feedbackScreenName = "feedbackScreen";
 

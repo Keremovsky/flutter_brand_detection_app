@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_brand_detection_app/core/constants/router_constants.dart';
 import 'package:flutter_brand_detection_app/core/utils/image_demonstrator.dart';
 import 'package:flutter_brand_detection_app/models/history_item_model.dart';
 import 'package:flutter_brand_detection_app/themes/palette.dart';
+import 'package:go_router/go_router.dart';
 
 class HistoryItem extends StatelessWidget {
   final HistoryItemModel historyModel;
@@ -16,7 +18,9 @@ class HistoryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        context.pushNamed(RouterConstants.resultScreenName);
+      },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 5),
         child: Material(

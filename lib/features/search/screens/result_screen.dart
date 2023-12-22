@@ -58,14 +58,14 @@ class _ResultScreenState extends ConsumerState<ResultScreen> {
                 style: Theme.of(context).textTheme.displaySmall,
               ),
               CustomButton(
-                child: Text(
-                  "Geri Bildirim Yolla",
-                  style: Theme.of(context).textTheme.displayLarge,
-                ),
                 onTap: () {},
                 height: 40,
                 width: 200,
                 borderRadius: BorderRadius.circular(10),
+                child: Text(
+                  "Geri Bildirim Yolla",
+                  style: Theme.of(context).textTheme.displayLarge,
+                ),
               ),
             ],
           ),
