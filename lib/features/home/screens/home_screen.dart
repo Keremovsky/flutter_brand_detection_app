@@ -16,6 +16,24 @@ class HomeScreen extends ConsumerStatefulWidget {
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   final GlobalKey<ScaffoldState> _scaffolKey = GlobalKey<ScaffoldState>();
 
+  late final ImageProvider xLogoImage;
+  late final ImageProvider googleLogoImage;
+
+  @override
+  void initState() {
+    super.initState();
+    xLogoImage = const AssetImage("assets/x_logo.png");
+    googleLogoImage = const AssetImage("assets/google_logo.png");
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // pre cache x and google logo
+    precacheImage(xLogoImage, context);
+    precacheImage(googleLogoImage, context);
+  }
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
