@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_brand_detection_app/themes/palette.dart';
 
-class CustomIconButton extends StatelessWidget {
-  final Icon icon;
+class CustomButton extends StatelessWidget {
+  final Widget child;
   final Function() onTap;
   final Color backgroundColor;
   final double height;
   final double width;
   final BorderRadius? borderRadius;
 
-  const CustomIconButton({
+  const CustomButton({
     super.key,
-    required this.icon,
+    required this.child,
     required this.onTap,
     this.backgroundColor = Palette.mainColor,
     required this.height,
@@ -32,7 +32,7 @@ class CustomIconButton extends StatelessWidget {
         child: SizedBox(
           height: height,
           width: width,
-          child: Center(child: icon),
+          child: Center(child: child),
         ),
       ),
     );

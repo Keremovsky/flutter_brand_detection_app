@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart';
-import 'package:flutter_brand_detection_app/core/utils/custom_icon_button.dart';
+import 'package:flutter_brand_detection_app/core/utils/custom_button.dart';
 import 'package:flutter_brand_detection_app/core/utils/image_demonstrator.dart';
 import 'package:flutter_brand_detection_app/models/history_item_model.dart';
 import 'package:flutter_brand_detection_app/themes/palette.dart';
@@ -56,40 +56,40 @@ class MainHistoryItem extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          CustomIconButton(
-                            icon: const Icon(
-                              Icons.remove,
-                              size: ThemeConstants.iconButtonIconSize,
-                            ),
+                          CustomButton(
                             backgroundColor: Palette.red,
                             onTap: () {},
                             height: 30,
                             width: 30,
                             borderRadius: BorderRadius.circular(100),
+                            child: const Icon(
+                              Icons.remove,
+                              size: ThemeConstants.iconButtonIconSize,
+                            ),
                           ),
                           const SizedBox(width: 10),
                           historyItemModel.isSaved
-                              ? CustomIconButton(
-                                  icon: const Icon(
-                                    Icons.star,
-                                    size: ThemeConstants.iconButtonIconSize,
-                                  ),
+                              ? CustomButton(
                                   backgroundColor: Palette.yellow,
                                   onTap: () {},
                                   height: 30,
                                   width: 30,
                                   borderRadius: BorderRadius.circular(100),
-                                )
-                              : CustomIconButton(
-                                  icon: const Icon(
-                                    Icons.add,
+                                  child: const Icon(
+                                    Icons.star,
                                     size: ThemeConstants.iconButtonIconSize,
                                   ),
+                                )
+                              : CustomButton(
                                   backgroundColor: Palette.green,
                                   onTap: () {},
                                   height: 30,
                                   width: 30,
                                   borderRadius: BorderRadius.circular(100),
+                                  child: const Icon(
+                                    Icons.add,
+                                    size: ThemeConstants.iconButtonIconSize,
+                                  ),
                                 ),
                         ],
                       ),

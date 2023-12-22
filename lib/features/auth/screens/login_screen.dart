@@ -2,7 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_brand_detection_app/core/constants/router_constants.dart';
 import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart';
-import 'package:flutter_brand_detection_app/core/utils/custom_text_button.dart';
+import 'package:flutter_brand_detection_app/core/utils/custom_button.dart';
 import 'package:flutter_brand_detection_app/themes/palette.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -41,8 +41,8 @@ class _AuthScreenState extends ConsumerState<LoginScreen> {
                   obscureText: true,
                 ),
                 const SizedBox(height: 40),
-                CustomTextButton(
-                  text: Text(
+                CustomButton(
+                  child: Text(
                     "Giriş Yap",
                     style: Theme.of(context).textTheme.displayLarge,
                   ),

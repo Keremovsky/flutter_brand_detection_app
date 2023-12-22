@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_brand_detection_app/core/utils/custom_text_button.dart';
+import 'package:flutter_brand_detection_app/core/utils/custom_button.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -29,29 +29,29 @@ class DeleteAllHistoryItemsAlert extends ConsumerWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                CustomTextButton(
-                  text: Text(
+                CustomButton(
+                  onTap: () {
+                    context.pop();
+                  },
+                  height: 40,
+                  width: 80,
+                  borderRadius: BorderRadius.circular(10),
+                  child: Text(
                     "Evet",
                     style: Theme.of(context).textTheme.displayLarge,
                   ),
+                ),
+                CustomButton(
                   onTap: () {
                     context.pop();
                   },
                   height: 40,
                   width: 80,
                   borderRadius: BorderRadius.circular(10),
-                ),
-                CustomTextButton(
-                  text: Text(
+                  child: Text(
                     "Hayır",
                     style: Theme.of(context).textTheme.displayLarge,
                   ),
-                  onTap: () {
-                    context.pop();
-                  },
-                  height: 40,
-                  width: 80,
-                  borderRadius: BorderRadius.circular(10),
                 ),
               ],
             )

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart';
-import 'package:flutter_brand_detection_app/core/utils/custom_text_button.dart';
+import 'package:flutter_brand_detection_app/core/utils/custom_button.dart';
 import 'package:flutter_brand_detection_app/core/utils/image_demonstrator.dart';
 import 'package:flutter_brand_detection_app/features/search/widgets/result_item.dart';
 import 'package:flutter_brand_detection_app/features/search/widgets/result_list.dart';
@@ -57,8 +57,8 @@ class _ResultScreenState extends ConsumerState<ResultScreen> {
                 "Sonuç yanlış mı?",
                 style: Theme.of(context).textTheme.displaySmall,
               ),
-              CustomTextButton(
-                text: Text(
+              CustomButton(
+                child: Text(
                   "Geri Bildirim Yolla",
                   style: Theme.of(context).textTheme.displayLarge,
                 ),

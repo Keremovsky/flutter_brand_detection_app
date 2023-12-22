@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart';
-import 'package:flutter_brand_detection_app/core/utils/custom_text_button.dart';
+import 'package:flutter_brand_detection_app/core/utils/custom_button.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -34,8 +34,8 @@ class _ForgetPasswordScreenState extends ConsumerState<ForgetPasswordScreen> {
             children: [
               TextField(),
               const SizedBox(height: 30),
-              CustomTextButton(
-                text: Text(
+              CustomButton(
+                child: Text(
                   "E-posta yolla",
                   style: Theme.of(context).textTheme.displayLarge,
                 ),
