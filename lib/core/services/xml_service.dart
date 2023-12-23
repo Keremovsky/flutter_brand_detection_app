@@ -32,7 +32,9 @@ class XmlService {
         final file = File(filePath);
 
         // save xml file
-        file.writeAsStringSync(xmlString);
+        file
+          ..createSync(recursive: true)
+          ..writeAsStringSync(xmlString);
 
         if (context.mounted) {
           giveFeedback(context, "XML dosyası başarıyla indirildi.");
@@ -45,7 +47,7 @@ class XmlService {
     } catch (e) {
       debugPrint(e.toString());
       if (context.mounted) {
-        giveFeedback(context, "XML dosyası indirilemedi.");
+        giveFeedback(context, "XML dosyası indirilirken bir hata oluştu.");
       }
     }
   }

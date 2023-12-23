@@ -17,6 +17,7 @@ class _ResultScreenState extends ConsumerState<ResultScreen> {
   late final ImageProvider xLogoProvider;
   late final ImageProvider googleLogoProvider;
   late final ImageProvider xmlLogoProvider;
+  late final ImageProvider excelLogoProvider;
 
   @override
   void initState() {
@@ -24,6 +25,7 @@ class _ResultScreenState extends ConsumerState<ResultScreen> {
     xLogoProvider = const AssetImage("assets/x_logo.png");
     googleLogoProvider = const AssetImage("assets/google_logo.png");
     xmlLogoProvider = const AssetImage("assets/xml_logo.png");
+    excelLogoProvider = const AssetImage("assets/excel_logo.png");
   }
 
   @override
@@ -33,6 +35,7 @@ class _ResultScreenState extends ConsumerState<ResultScreen> {
     precacheImage(xLogoProvider, context);
     precacheImage(googleLogoProvider, context);
     precacheImage(xmlLogoProvider, context);
+    precacheImage(excelLogoProvider, context);
   }
 
   @override

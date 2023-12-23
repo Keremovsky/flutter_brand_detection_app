@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart';
+import 'package:flutter_brand_detection_app/core/services/excel_service.dart';
 import 'package:flutter_brand_detection_app/core/services/xml_service.dart';
 import 'package:flutter_brand_detection_app/core/utils/custom_button.dart';
 import 'package:flutter_brand_detection_app/core/utils/image_demonstrator.dart';
@@ -16,11 +17,13 @@ class SingleResultScreen extends StatefulWidget {
 
 class _SingleResultScreenState extends State<SingleResultScreen> {
   late final XmlService xmlService;
+  late final ExcelService excelService;
 
   @override
   void initState() {
     super.initState();
     xmlService = XmlService();
+    excelService = ExcelService();
   }
 
   @override
@@ -77,7 +80,7 @@ class _SingleResultScreenState extends State<SingleResultScreen> {
                       launchURL("https://twitter.com/home?lang=en");
                     },
                     height: 40,
-                    width: 80,
+                    width: 60,
                     borderRadius: BorderRadius.circular(10),
                     backgroundColor: Palette.xColor,
                     child: const ImageDemonstrator(
@@ -88,27 +91,41 @@ class _SingleResultScreenState extends State<SingleResultScreen> {
                   ),
                   CustomButton(
                     onTap: () {
-                      xmlService.downloadXmlFile(context);
+                      launchURL("https://www.google.com");
                     },
                     height: 40,
-                    width: 80,
+                    width: 60,
                     borderRadius: BorderRadius.circular(10),
-                    backgroundColor: Colors.orange,
                     child: const ImageDemonstrator(
-                      imageProvider: AssetImage("assets/xml_logo.png"),
-                      height: 27,
-                      width: 27,
+                      imageProvider: AssetImage("assets/google_logo.png"),
+                      height: 25,
+                      width: 25,
                     ),
                   ),
                   CustomButton(
                     onTap: () {
-                      launchURL("https://www.google.com");
+                      xmlService.downloadXmlFile(context);
                     },
                     height: 40,
-                    width: 80,
+                    width: 60,
                     borderRadius: BorderRadius.circular(10),
+                    backgroundColor: Palette.xmlOrange,
                     child: const ImageDemonstrator(
-                      imageProvider: AssetImage("assets/google_logo.png"),
+                      imageProvider: AssetImage("assets/xml_logo.png"),
+                      height: 25,
+                      width: 25,
+                    ),
+                  ),
+                  CustomButton(
+                    onTap: () {
+                      excelService.downloadExcelFile(context);
+                    },
+                    height: 40,
+                    width: 60,
+                    borderRadius: BorderRadius.circular(10),
+                    backgroundColor: Palette.excelGreen,
+                    child: const ImageDemonstrator(
+                      imageProvider: AssetImage("assets/excel_logo.png"),
                       height: 25,
                       width: 25,
                     ),

@@ -8,4 +8,6 @@ class Palette {
   static const grey = Color.fromRGBO(102, 102, 102, 1);
   static const white = Color.fromRGBO(248, 248, 248, 1);
   static const xColor = Color.fromRGBO(0, 0, 0, 1);
+  static const excelGreen = Color.fromRGBO(76, 175, 80, 1);
+  static const xmlOrange = Color.fromRGBO(251, 140, 0, 1);
 }
