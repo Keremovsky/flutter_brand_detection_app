@@ -26,3 +26,7 @@ void launchURL(String url) async {
     await launchUrl(uri);
   }
 }
+
+bool isThemeLight(ThemeData themeMode) {
+  return themeMode.brightness == Brightness.light;
+}

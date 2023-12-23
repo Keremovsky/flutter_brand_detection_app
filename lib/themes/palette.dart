@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class Palette {
   static const mainColor = Color.fromRGBO(87, 182, 240, 1);
+  static const darkMainColor = Color.fromRGBO(13, 71, 161, 1);
   static const green = Color.fromRGBO(30, 215, 55, 1);
   static const yellow = Color.fromRGBO(255, 255, 39, 1);
   static const red = Color.fromRGBO(255, 52, 54, 1);

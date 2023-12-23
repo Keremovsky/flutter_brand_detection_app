@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_brand_detection_app/core/utils_functions.dart';
 import 'package:flutter_brand_detection_app/themes/palette.dart';
 
 class CustomButton extends StatelessWidget {
@@ -24,21 +25,41 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: padding ?? EdgeInsets.only(),
+      padding: padding ?? const EdgeInsets.only(),
       child: InkWell(
         onTap: onTap,
         borderRadius: borderRadius,
-        child: Ink(
-          decoration: BoxDecoration(
-            color: backgroundColor,
-            borderRadius: borderRadius,
-          ),
-          child: SizedBox(
-            height: height,
-            width: width,
-            child: Center(child: child),
-          ),
-        ),
+        child: Builder(builder: (context) {
+          ThemeData currentTheme = Theme.of(context);
+          if (backgroundColor == Palette.mainColor &&
+              !isThemeLight(currentTheme)) {
+            return Ink(
+              decoration: BoxDecoration(
+                color: isThemeLight(currentTheme)
+                    ? backgroundColor
+                    : Palette.darkMainColor,
+                borderRadius: borderRadius,
+              ),
+              child: SizedBox(
+                height: height,
+                width: width,
+                child: Center(child: child),
+              ),
+            );
+          }
+
+          return Ink(
+            decoration: BoxDecoration(
+              color: backgroundColor,
+              borderRadius: borderRadius,
+            ),
+            child: SizedBox(
+              height: height,
+              width: width,
+              child: Center(child: child),
+            ),
+          );
+        }),
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_brand_detection_app/core/constants/router_constants.dart';
 import 'package:flutter_brand_detection_app/core/utils/image_demonstrator.dart';
+import 'package:flutter_brand_detection_app/core/utils_functions.dart';
 import 'package:flutter_brand_detection_app/themes/palette.dart';
 import 'package:go_router/go_router.dart';
 
@@ -29,38 +30,40 @@ class ResultItem extends StatelessWidget {
         onTap: () {
           context.pushNamed(RouterConstants.singleResultScreenName);
         },
-        child: Material(
-          color: Palette.mainColor,
-          borderRadius: BorderRadius.circular(10),
-          child: SizedBox(
-            height: 200,
-            width: 160,
-            child: Column(
-              children: [
-                ImageDemonstrator(
-                  imageProvider: AssetImage("assets/ferrari.png"),
-                  height: 160,
-                  width: 160,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    topRight: Radius.circular(10),
+        child: Builder(builder: (context) {
+          ThemeData currentTheme = Theme.of(context);
+
+          return Material(
+            color: isThemeLight(currentTheme)
+                ? Palette.mainColor
+                : Palette.darkMainColor,
+            borderRadius: BorderRadius.circular(10),
+            child: SizedBox(
+              height: 200,
+              width: 160,
+              child: Column(
+                children: [
+                  ImageDemonstrator(
+                    imageProvider: AssetImage("assets/ferrari.png"),
+                    height: 160,
+                    width: 160,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(10),
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(3),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Ferrari",
-                        style: Theme.of(context).textTheme.displayLarge,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                      ),
-                      Material(
-                        color: Palette.white,
-                        borderRadius: BorderRadius.circular(10),
-                        child: Padding(
+                  Padding(
+                    padding: const EdgeInsets.all(3),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Ferrari",
+                          style: Theme.of(context).textTheme.displayLarge,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                        ),
+                        Padding(
                           padding: const EdgeInsets.all(5),
                           child: Text(
                             "%97",
@@ -72,14 +75,14 @@ class ResultItem extends StatelessWidget {
                                 ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ),
+          );
+        }),
       ),
     );
   }

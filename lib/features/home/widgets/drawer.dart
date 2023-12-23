@@ -13,15 +13,13 @@ class CustomDrawer extends StatelessWidget {
         CustomDrawerButton(
           icon: Icons.account_circle_rounded,
           text: "Hesabım",
-          onTap: () {
-            context.pushNamed(RouterConstants.loginScreenName);
-          },
+          onTap: () => context.pushNamed(RouterConstants.loginScreenName),
         ),
         const _CustomSizedBox(),
         CustomDrawerButton(
           icon: Icons.settings,
           text: "Ayarlar",
-          onTap: () {},
+          onTap: () => context.pushNamed(RouterConstants.settingsScreenName),
         ),
         const _CustomSizedBox(),
         CustomDrawerButton(

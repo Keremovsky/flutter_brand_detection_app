@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_brand_detection_app/core/services/theme_service.dart';
 import 'package:flutter_brand_detection_app/router.dart';
-import 'package:flutter_brand_detection_app/themes/palette.dart';
+import 'package:flutter_brand_detection_app/themes/theme_mode.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() async {
@@ -8,53 +9,21 @@ void main() async {
   runApp(ProviderScope(child: MyApp()));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   final router = AppRouter().router;
 
   MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final themeMode = ref.watch(themeServiceProvider);
+
     return MaterialApp.router(
       title: 'Flutter Brand Detection App',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Palette.mainColor,
-          background: Palette.white,
-        ),
-
-        // text theme
-        textTheme: const TextTheme(
-          titleLarge: TextStyle(
-            fontSize: 28,
-            fontWeight: FontWeight.bold,
-          ),
-          titleMedium: TextStyle(
-            fontSize: 26,
-            fontWeight: FontWeight.normal,
-          ),
-          displayLarge: TextStyle(
-            fontSize: 20,
-          ),
-          displayMedium: TextStyle(
-            fontSize: 18,
-          ),
-          displaySmall: TextStyle(
-            fontSize: 14,
-            color: Palette.grey,
-          ),
-        ),
-
-        // app bar theme
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Palette.mainColor,
-          scrolledUnderElevation: 0,
-          elevation: 0,
-        ),
-
-        useMaterial3: true,
-      ),
+      themeMode: themeMode,
+      theme: ThemeClass.lightTheme,
+      darkTheme: ThemeClass.darkTheme,
       routerConfig: router,
     );
   }
