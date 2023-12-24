@@ -7,6 +7,14 @@ class RouterConstants {
   static const settingsScreenPath = "/settingsScreen";
   static const settingsScreenName = "settingsScreen";
 
+  // feedback screen
+  static const feedbackScreenPath = "/feedbackScreen";
+  static const feedbackScreenName = "feedbackScreen";
+
+  // request screen
+  static const requestScreenPath = "/requestScreen";
+  static const requestScreenName = "requestScreen";
+
   // history screen
   static const historyScreenPath = "/historyScreen";
   static const historyScreenName = "historyScreen";
@@ -18,10 +26,6 @@ class RouterConstants {
   // single result screen
   static const singleResultScreenPath = "/singleResultScreen";
   static const singleResultScreenName = "singleResultScreen";
-
-  // feedback screen
-  static const feedbackScreenPath = "/feedbackScreen";
-  static const feedbackScreenName = "feedbackScreen";
 
   // login screen
   static const loginScreenPath = "/loginScreen";
