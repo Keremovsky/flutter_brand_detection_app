@@ -17,16 +17,12 @@ class ResultScreen extends ConsumerStatefulWidget {
 class _ResultScreenState extends ConsumerState<ResultScreen> {
   late final ImageProvider xLogoProvider;
   late final ImageProvider googleLogoProvider;
-  late final ImageProvider xmlLogoProvider;
-  late final ImageProvider excelLogoProvider;
 
   @override
   void initState() {
     super.initState();
     xLogoProvider = const AssetImage("assets/x_logo.png");
     googleLogoProvider = const AssetImage("assets/google_logo.png");
-    xmlLogoProvider = const AssetImage("assets/xml_logo.png");
-    excelLogoProvider = const AssetImage("assets/excel_logo.png");
   }
 
   @override
@@ -35,13 +31,12 @@ class _ResultScreenState extends ConsumerState<ResultScreen> {
     // load images to the cache
     precacheImage(xLogoProvider, context);
     precacheImage(googleLogoProvider, context);
-    precacheImage(xmlLogoProvider, context);
-    precacheImage(excelLogoProvider, context);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
@@ -83,7 +78,7 @@ class _ResultScreenState extends ConsumerState<ResultScreen> {
               ),
               CustomButton(
                 onTap: () {
-                  context.pushNamed(RouterConstants.requestScreenName);
+                  context.pushNamed(RouterConstants.feedbackScreenName);
                 },
                 height: 50,
                 width: 200,

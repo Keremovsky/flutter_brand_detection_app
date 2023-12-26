@@ -3,6 +3,7 @@ import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart'
 import 'package:flutter_brand_detection_app/core/utils/custom_button.dart';
 import 'package:flutter_brand_detection_app/themes/palette.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class FeedbackScreen extends ConsumerStatefulWidget {
   const FeedbackScreen({super.key});
@@ -15,6 +16,7 @@ class _FeedbackScreenState extends ConsumerState<FeedbackScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
@@ -35,15 +37,26 @@ class _FeedbackScreenState extends ConsumerState<FeedbackScreen> {
                 "Geri Bildirim Yolla",
                 style: Theme.of(context).textTheme.titleLarge,
               ),
+              const SizedBox(height: 10),
               TextField(
-                maxLines: 5,
-                maxLength: 500,
+                maxLines: 10,
+                maxLength: 1000,
+                decoration: InputDecoration(
+                  floatingLabelBehavior: FloatingLabelBehavior.always,
+                  labelText: "Açıklama",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
               ),
+              const SizedBox(height: 5),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   CustomButton(
-                    onTap: () {},
+                    onTap: () {
+                      context.pop();
+                    },
                     height: 50,
                     width: 100,
                     backgroundColor: Palette.red,

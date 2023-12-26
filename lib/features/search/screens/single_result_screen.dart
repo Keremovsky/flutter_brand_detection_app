@@ -29,6 +29,7 @@ class _SingleResultScreenState extends State<SingleResultScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
@@ -45,9 +46,19 @@ class _SingleResultScreenState extends State<SingleResultScreen> {
           padding: ThemeConstants.screenPadding,
           child: Column(
             children: [
-              Text(
-                "Sonuç",
-                style: Theme.of(context).textTheme.titleLarge,
+              RichText(
+                text: TextSpan(
+                  text: "Sonuç ",
+                  style: Theme.of(context).textTheme.titleLarge,
+                  children: [
+                    TextSpan(
+                      text: "%97",
+                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                            color: Palette.green,
+                          ),
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(height: 5),
               ImageDemonstrator(
@@ -57,19 +68,44 @@ class _SingleResultScreenState extends State<SingleResultScreen> {
                 borderRadius: BorderRadius.circular(10),
               ),
               const SizedBox(height: 15),
-              Text(
-                "Ferrari",
-                style: Theme.of(context).textTheme.displayLarge,
+              Material(
+                color: Palette.grey,
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(10),
+                  topRight: Radius.circular(10),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: Text(
+                    "Ferrari",
+                    style: Theme.of(context).textTheme.displayLarge,
+                  ),
+                ),
               ),
-              const _CustomSizedBox(),
-              Text(
-                "Official account of #Ferrari, Italian Excellence that makes the world dream.",
-                style: Theme.of(context).textTheme.displayMedium,
+              Material(
+                color: Palette.grey,
+                borderRadius: BorderRadius.circular(10),
+                child: Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: Text(
+                    "Official account of #Ferrari, Italian Excellence that makes the world dream.",
+                    style: Theme.of(context).textTheme.displayMedium,
+                  ),
+                ),
               ),
-              const _CustomSizedBox(),
-              Text(
-                "Maranello | Italy",
-                style: Theme.of(context).textTheme.displayMedium,
+              Material(
+                color: Palette.grey,
+                borderRadius: const BorderRadius.only(
+                  bottomLeft: Radius.circular(10),
+                  bottomRight: Radius.circular(10),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: Text(
+                    "Maranello | Italy",
+                    style: Theme.of(context).textTheme.displayMedium,
+                  ),
+                ),
               ),
               const Spacer(flex: 1),
               Row(
@@ -80,7 +116,7 @@ class _SingleResultScreenState extends State<SingleResultScreen> {
                       launchURL("https://twitter.com/home?lang=en");
                     },
                     height: 50,
-                    width: 70,
+                    width: 80,
                     borderRadius: BorderRadius.circular(10),
                     backgroundColor: Palette.xColor,
                     child: const ImageDemonstrator(
@@ -94,38 +130,10 @@ class _SingleResultScreenState extends State<SingleResultScreen> {
                       launchURL("https://www.google.com");
                     },
                     height: 50,
-                    width: 70,
+                    width: 80,
                     borderRadius: BorderRadius.circular(10),
                     child: const ImageDemonstrator(
                       imageProvider: AssetImage("assets/google_logo.png"),
-                      height: 25,
-                      width: 25,
-                    ),
-                  ),
-                  CustomButton(
-                    onTap: () {
-                      xmlService.downloadXmlFile(context);
-                    },
-                    height: 50,
-                    width: 70,
-                    borderRadius: BorderRadius.circular(10),
-                    backgroundColor: Palette.xmlOrange,
-                    child: const ImageDemonstrator(
-                      imageProvider: AssetImage("assets/xml_logo.png"),
-                      height: 25,
-                      width: 25,
-                    ),
-                  ),
-                  CustomButton(
-                    onTap: () {
-                      excelService.downloadExcelFile(context);
-                    },
-                    height: 50,
-                    width: 70,
-                    borderRadius: BorderRadius.circular(10),
-                    backgroundColor: Palette.excelGreen,
-                    child: const ImageDemonstrator(
-                      imageProvider: AssetImage("assets/excel_logo.png"),
                       height: 25,
                       width: 25,
                     ),

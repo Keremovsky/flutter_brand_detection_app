@@ -4,7 +4,9 @@ import 'package:flutter_brand_detection_app/features/home/widgets/drawer_button.
 import 'package:go_router/go_router.dart';
 
 class CustomDrawer extends StatelessWidget {
-  const CustomDrawer({super.key});
+  final Function() refresh;
+
+  const CustomDrawer({super.key, required this.refresh});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,10 @@ class CustomDrawer extends StatelessWidget {
         CustomDrawerButton(
           icon: Icons.settings,
           text: "Ayarlar",
-          onTap: () => context.pushNamed(RouterConstants.settingsScreenName),
+          onTap: () async {
+            await context.pushNamed(RouterConstants.settingsScreenName);
+            refresh;
+          },
         ),
         const _CustomSizedBox(),
         CustomDrawerButton(

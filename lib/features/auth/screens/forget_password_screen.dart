@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_brand_detection_app/core/constants/router_constants.dart';
 import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart';
 import 'package:flutter_brand_detection_app/core/utils/custom_button.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -32,10 +33,19 @@ class _ForgetPasswordScreenState extends ConsumerState<ForgetPasswordScreen> {
           padding: ThemeConstants.screenPadding,
           child: Column(
             children: [
-              TextField(),
+              TextField(
+                decoration: InputDecoration(
+                  labelText: "E-mail",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+              ),
               const SizedBox(height: 30),
               CustomButton(
-                onTap: () {},
+                onTap: () {
+                  context.pushNamed(RouterConstants.resetPasswordScreenName);
+                },
                 borderRadius: BorderRadius.circular(10),
                 height: 50,
                 width: 150,

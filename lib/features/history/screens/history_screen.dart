@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_brand_detection_app/core/constants/assets_constants.dart';
 import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart';
+import 'package:flutter_brand_detection_app/core/utils/custom_button.dart';
+import 'package:flutter_brand_detection_app/core/utils_functions.dart';
 import 'package:flutter_brand_detection_app/features/history/widgets/delete_all_history_items_alert.dart';
 import 'package:flutter_brand_detection_app/features/history/widgets/main_history_item.dart';
 import 'package:flutter_brand_detection_app/models/history_item_model.dart';
@@ -26,12 +29,47 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
     similarityPercentages: [],
     isSaved: false,
   );
+  late final bool isThemeLight;
+
+  @override
+  void initState() {
+    isThemeLight = isThemeLightFunc();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         actions: [
+          CustomButton(
+            onTap: () {},
+            borderRadius: BorderRadius.circular(100),
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            child: Padding(
+              padding: EdgeInsets.all(10.0),
+              child: Image(
+                image: isThemeLight
+                    ? const AssetImage(AssetsConstants.excelLogoBlack)
+                    : const AssetImage(AssetsConstants.excelLogoWhite),
+              ),
+            ),
+          ),
+          CustomButton(
+            onTap: () {},
+            borderRadius: BorderRadius.circular(100),
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Image(
+                image: isThemeLight
+                    ? const AssetImage(AssetsConstants.xmlLogoWhite)
+                    : const AssetImage(AssetsConstants.xmlLogoWhite),
+              ),
+            ),
+          ),
           IconButton(
             onPressed: () async {
               showDialog(

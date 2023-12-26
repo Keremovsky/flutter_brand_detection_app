@@ -35,10 +35,23 @@ class _AuthScreenState extends ConsumerState<LoginScreen> {
           child: Form(
             child: Column(
               children: [
-                TextFormField(),
+                TextFormField(
+                  decoration: InputDecoration(
+                    labelText: "E-mail",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                ),
                 const _CustomSizedBox(),
                 TextFormField(
                   obscureText: true,
+                  decoration: InputDecoration(
+                    labelText: "Şifre",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
                 ),
                 const SizedBox(height: 40),
                 CustomButton(

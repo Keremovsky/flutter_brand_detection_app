@@ -45,7 +45,7 @@ class ResultItem extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(3),
+                  padding: const EdgeInsets.all(10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -55,17 +55,12 @@ class ResultItem extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(5),
-                        child: Text(
-                          "%97",
-                          style: Theme.of(context)
-                              .textTheme
-                              .displayLarge!
-                              .copyWith(
-                                color: _calculateColor(97),
-                              ),
-                        ),
+                      Text(
+                        "%97",
+                        style:
+                            Theme.of(context).textTheme.displayLarge!.copyWith(
+                                  color: _calculateColor(97),
+                                ),
                       ),
                     ],
                   ),

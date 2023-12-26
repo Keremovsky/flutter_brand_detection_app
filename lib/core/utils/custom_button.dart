@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 class CustomButton extends StatelessWidget {
   final Function() onTap;
   final Color? backgroundColor;
-  final double height;
-  final double width;
+  final double? height;
+  final double? width;
+  final double? elevation;
   final BorderRadius? borderRadius;
   final EdgeInsets? padding;
   final Widget child;
@@ -13,8 +14,9 @@ class CustomButton extends StatelessWidget {
     super.key,
     required this.onTap,
     this.backgroundColor,
-    required this.height,
-    required this.width,
+    this.height,
+    this.width,
+    this.elevation,
     this.borderRadius,
     this.padding,
     required this.child,
@@ -29,7 +31,7 @@ class CustomButton extends StatelessWidget {
         width: width,
         child: Card(
           color: backgroundColor,
-          elevation: 1,
+          elevation: elevation ?? 1,
           child: InkWell(
             onTap: onTap,
             borderRadius: borderRadius,

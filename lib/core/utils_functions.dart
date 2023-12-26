@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 void giveFeedback(
@@ -27,6 +28,7 @@ void launchURL(String url) async {
   }
 }
 
-bool isThemeLight(ThemeData themeMode) {
-  return themeMode.brightness == Brightness.light;
+bool isThemeLightFunc() {
+  return Brightness.light ==
+      SchedulerBinding.instance.platformDispatcher.platformBrightness;
 }

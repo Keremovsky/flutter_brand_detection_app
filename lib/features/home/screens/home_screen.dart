@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart';
 import 'package:flutter_brand_detection_app/core/utils/custom_button.dart';
 import 'package:flutter_brand_detection_app/core/utils/image_demonstrator.dart';
+import 'package:flutter_brand_detection_app/core/utils_functions.dart';
 import 'package:flutter_brand_detection_app/features/home/widgets/drawer.dart';
 import 'package:flutter_brand_detection_app/features/history/widgets/history_list.dart';
 import 'package:flutter_brand_detection_app/features/image_picker/controller/image_picker_controller.dart';
@@ -15,18 +16,25 @@ class HomeScreen extends ConsumerStatefulWidget {
 }
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
-  final GlobalKey<ScaffoldState> _scaffolKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  late bool isThemeLight;
+
+  @override
+  void initState() {
+    isThemeLight = isThemeLightFunc();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      key: _scaffolKey,
+      key: scaffoldKey,
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            _scaffolKey.currentState!.openDrawer();
+            scaffoldKey.currentState!.openDrawer();
           },
           icon: const Icon(
             Icons.menu_rounded,
@@ -34,10 +42,16 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ),
         ),
       ),
-      drawer: const Drawer(
+      drawer: Drawer(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 30),
-          child: CustomDrawer(),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 30),
+          child: CustomDrawer(
+            refresh: () {
+              setState(() {
+                isThemeLight = isThemeLightFunc();
+              });
+            },
+          ),
         ),
       ),
       body: SafeArea(
@@ -56,12 +70,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           .read(imagePickerControllerProvider.notifier)
                           .takePicture(context);
                       if (result == null) {
-                        print("null");
+                        debugPrint("null");
                       } else {
-                        print(result.path);
+                        debugPrint(result.path);
                       }
                     },
-                    height: width * 0.65,
+                    height: width * 0.6,
                     width: width * 0.45,
                     borderRadius: BorderRadius.circular(10),
                     child: Padding(
@@ -69,7 +83,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       child: Column(
                         children: [
                           ImageDemonstrator(
-                            imageProvider: AssetImage("assets/take_photo.png"),
+                            imageProvider: isThemeLight
+                                ? const AssetImage(
+                                    "assets/take_photo_black.png")
+                                : const AssetImage(
+                                    "assets/take_photo_white.png"),
                           ),
                           const Spacer(),
                           Text(
@@ -87,12 +105,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           .getImageGallery(context);
 
                       if (result == null) {
-                        print("null");
+                        debugPrint("null");
                       } else {
-                        print(result.path);
+                        debugPrint(result.path);
                       }
                     },
-                    height: width * 0.65,
+                    height: width * 0.6,
                     width: width * 0.45,
                     borderRadius: BorderRadius.circular(10),
                     child: Padding(
@@ -100,8 +118,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       child: Column(
                         children: [
                           ImageDemonstrator(
-                            imageProvider:
-                                AssetImage("assets/take_from_file.png"),
+                            imageProvider: isThemeLight
+                                ? const AssetImage(
+                                    "assets/take_from_file_black.png")
+                                : const AssetImage(
+                                    "assets/take_from_file_white.png"),
                           ),
                           const Spacer(),
                           Text(

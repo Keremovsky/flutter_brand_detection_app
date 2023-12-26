@@ -32,9 +32,25 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
           padding: ThemeConstants.screenPadding,
           child: Column(
             children: [
-              TextField(),
+              TextFormField(
+                obscureText: true,
+                decoration: InputDecoration(
+                  labelText: "Yeni şifre",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+              ),
               const SizedBox(height: 15),
-              TextField(),
+              TextFormField(
+                obscureText: true,
+                decoration: InputDecoration(
+                  labelText: "Yeni şifre tekrar",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+              ),
               const SizedBox(height: 30),
               CustomButton(
                 onTap: () {},

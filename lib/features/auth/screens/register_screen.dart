@@ -32,12 +32,42 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
           child: Form(
             child: Column(
               children: [
-                TextFormField(),
+                TextFormField(
+                  decoration: InputDecoration(
+                    labelText: "E-mail",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                ),
                 const _CustomSizedBox(),
-                TextFormField(),
+                TextFormField(
+                  decoration: InputDecoration(
+                    labelText: "İsim",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                ),
                 const _CustomSizedBox(),
                 TextFormField(
                   obscureText: true,
+                  decoration: InputDecoration(
+                    labelText: "Şifre",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                ),
+                const _CustomSizedBox(),
+                TextFormField(
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    labelText: "Tekrar şifre",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
                 ),
                 const SizedBox(height: 30),
                 CustomButton(
