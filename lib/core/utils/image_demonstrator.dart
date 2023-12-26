@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 
 class ImageDemonstrator extends StatelessWidget {
   final ImageProvider imageProvider;
-  final double height;
-  final double width;
+  final double? height;
+  final double? width;
   final BorderRadius borderRadius;
 
   const ImageDemonstrator({
     super.key,
     required this.imageProvider,
-    required this.height,
-    required this.width,
+    this.height,
+    this.width,
     this.borderRadius = BorderRadius.zero,
   });
 

@@ -79,8 +79,8 @@ class _SingleResultScreenState extends State<SingleResultScreen> {
                     onTap: () {
                       launchURL("https://twitter.com/home?lang=en");
                     },
-                    height: 40,
-                    width: 60,
+                    height: 50,
+                    width: 70,
                     borderRadius: BorderRadius.circular(10),
                     backgroundColor: Palette.xColor,
                     child: const ImageDemonstrator(
@@ -93,8 +93,8 @@ class _SingleResultScreenState extends State<SingleResultScreen> {
                     onTap: () {
                       launchURL("https://www.google.com");
                     },
-                    height: 40,
-                    width: 60,
+                    height: 50,
+                    width: 70,
                     borderRadius: BorderRadius.circular(10),
                     child: const ImageDemonstrator(
                       imageProvider: AssetImage("assets/google_logo.png"),
@@ -106,8 +106,8 @@ class _SingleResultScreenState extends State<SingleResultScreen> {
                     onTap: () {
                       xmlService.downloadXmlFile(context);
                     },
-                    height: 40,
-                    width: 60,
+                    height: 50,
+                    width: 70,
                     borderRadius: BorderRadius.circular(10),
                     backgroundColor: Palette.xmlOrange,
                     child: const ImageDemonstrator(
@@ -120,8 +120,8 @@ class _SingleResultScreenState extends State<SingleResultScreen> {
                     onTap: () {
                       excelService.downloadExcelFile(context);
                     },
-                    height: 40,
-                    width: 60,
+                    height: 50,
+                    width: 70,
                     borderRadius: BorderRadius.circular(10),
                     backgroundColor: Palette.excelGreen,
                     child: const ImageDemonstrator(

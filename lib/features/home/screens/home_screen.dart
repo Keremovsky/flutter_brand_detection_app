@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart';
+import 'package:flutter_brand_detection_app/core/utils/custom_button.dart';
+import 'package:flutter_brand_detection_app/core/utils/image_demonstrator.dart';
 import 'package:flutter_brand_detection_app/features/home/widgets/drawer.dart';
 import 'package:flutter_brand_detection_app/features/history/widgets/history_list.dart';
-import 'package:flutter_brand_detection_app/features/home/widgets/image_choice_button.dart';
 import 'package:flutter_brand_detection_app/features/image_picker/controller/image_picker_controller.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -49,11 +50,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  ImageChoiceButton(
-                    text: "Fotoğraf Çek",
-                    imagePath: "assets/take_photo.png",
-                    height: width * 0.65,
-                    width: width * 0.45,
+                  CustomButton(
                     onTap: () async {
                       final result = await ref
                           .read(imagePickerControllerProvider.notifier)
@@ -64,12 +61,26 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                         print(result.path);
                       }
                     },
-                  ),
-                  ImageChoiceButton(
-                    text: "Dosyadan Seç",
-                    imagePath: "assets/take_from_file.png",
                     height: width * 0.65,
                     width: width * 0.45,
+                    borderRadius: BorderRadius.circular(10),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: Column(
+                        children: [
+                          ImageDemonstrator(
+                            imageProvider: AssetImage("assets/take_photo.png"),
+                          ),
+                          const Spacer(),
+                          Text(
+                            "Fotoğraf Çek",
+                            style: Theme.of(context).textTheme.displayLarge,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  CustomButton(
                     onTap: () async {
                       final result = await ref
                           .read(imagePickerControllerProvider.notifier)
@@ -81,6 +92,25 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                         print(result.path);
                       }
                     },
+                    height: width * 0.65,
+                    width: width * 0.45,
+                    borderRadius: BorderRadius.circular(10),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: Column(
+                        children: [
+                          ImageDemonstrator(
+                            imageProvider:
+                                AssetImage("assets/take_from_file.png"),
+                          ),
+                          const Spacer(),
+                          Text(
+                            "Dosyadan Seç",
+                            style: Theme.of(context).textTheme.displayLarge,
+                          )
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),

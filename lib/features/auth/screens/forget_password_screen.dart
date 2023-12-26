@@ -35,14 +35,14 @@ class _ForgetPasswordScreenState extends ConsumerState<ForgetPasswordScreen> {
               TextField(),
               const SizedBox(height: 30),
               CustomButton(
+                onTap: () {},
+                borderRadius: BorderRadius.circular(10),
+                height: 50,
+                width: 150,
                 child: Text(
                   "E-posta yolla",
                   style: Theme.of(context).textTheme.displayLarge,
                 ),
-                onTap: () {},
-                borderRadius: BorderRadius.circular(10),
-                height: 40,
-                width: 140,
               )
             ],
           ),

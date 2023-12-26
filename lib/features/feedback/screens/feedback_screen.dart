@@ -44,7 +44,7 @@ class _FeedbackScreenState extends ConsumerState<FeedbackScreen> {
                 children: [
                   CustomButton(
                     onTap: () {},
-                    height: 40,
+                    height: 50,
                     width: 100,
                     backgroundColor: Palette.red,
                     borderRadius: BorderRadius.circular(10),
@@ -55,7 +55,7 @@ class _FeedbackScreenState extends ConsumerState<FeedbackScreen> {
                   ),
                   CustomButton(
                     onTap: () {},
-                    height: 40,
+                    height: 50,
                     width: 100,
                     borderRadius: BorderRadius.circular(10),
                     child: Text(

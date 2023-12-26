@@ -37,14 +37,14 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
               TextField(),
               const SizedBox(height: 30),
               CustomButton(
+                onTap: () {},
+                borderRadius: BorderRadius.circular(10),
+                height: 50,
+                width: 140,
                 child: Text(
                   "Şifreyi yenile",
                   style: Theme.of(context).textTheme.displayLarge,
                 ),
-                onTap: () {},
-                borderRadius: BorderRadius.circular(10),
-                height: 40,
-                width: 140,
               )
             ],
           ),

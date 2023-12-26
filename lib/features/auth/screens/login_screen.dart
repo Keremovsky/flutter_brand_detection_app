@@ -48,7 +48,7 @@ class _AuthScreenState extends ConsumerState<LoginScreen> {
                   ),
                   onTap: () {},
                   borderRadius: BorderRadius.circular(10),
-                  height: 40,
+                  height: 50,
                   width: 120,
                 ),
                 const _CustomSizedBox(),
@@ -61,7 +61,7 @@ class _AuthScreenState extends ConsumerState<LoginScreen> {
                     style: Theme.of(context)
                         .textTheme
                         .displayMedium!
-                        .copyWith(color: Palette.mainColor),
+                        .copyWith(color: Palette.blue),
                   ),
                 ),
                 const Spacer(flex: 12),
@@ -80,7 +80,7 @@ class _AuthScreenState extends ConsumerState<LoginScreen> {
                         style: Theme.of(context)
                             .textTheme
                             .displaySmall!
-                            .copyWith(color: Palette.mainColor),
+                            .copyWith(color: Palette.blue),
                       ),
                     ],
                   ),

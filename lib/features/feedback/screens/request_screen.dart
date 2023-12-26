@@ -6,6 +6,7 @@ import 'package:flutter_brand_detection_app/core/utils/image_demonstrator.dart';
 import 'package:flutter_brand_detection_app/features/image_picker/controller/image_picker_controller.dart';
 import 'package:flutter_brand_detection_app/themes/palette.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class RequestScreen extends ConsumerStatefulWidget {
   const RequestScreen({super.key});
@@ -49,8 +50,10 @@ class _RequestScreenState extends ConsumerState<RequestScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   CustomButton(
-                    onTap: () {},
-                    height: 40,
+                    onTap: () {
+                      context.pop();
+                    },
+                    height: 50,
                     width: 100,
                     backgroundColor: Palette.red,
                     borderRadius: BorderRadius.circular(10),
@@ -61,7 +64,7 @@ class _RequestScreenState extends ConsumerState<RequestScreen> {
                   ),
                   CustomButton(
                     onTap: () {},
-                    height: 40,
+                    height: 50,
                     width: 100,
                     borderRadius: BorderRadius.circular(10),
                     child: Text(
@@ -81,15 +84,15 @@ class _RequestScreenState extends ConsumerState<RequestScreen> {
                   if (result != null) {
                     takenImage = ImageDemonstrator(
                       imageProvider: FileImage(File(result.path)),
-                      height: 130,
-                      width: 130,
+                      height: 150,
+                      width: 150,
                       borderRadius: BorderRadius.circular(10),
                     );
                     setState(() {});
                   }
                 },
-                height: 150,
-                width: 150,
+                height: 180,
+                width: 180,
                 borderRadius: BorderRadius.circular(10),
                 child: takenImage ??
                     Column(

@@ -33,7 +33,7 @@ class DeleteAllHistoryItemsAlert extends ConsumerWidget {
                   onTap: () {
                     context.pop();
                   },
-                  height: 40,
+                  height: 50,
                   width: 80,
                   borderRadius: BorderRadius.circular(10),
                   child: Text(
@@ -45,7 +45,7 @@ class DeleteAllHistoryItemsAlert extends ConsumerWidget {
                   onTap: () {
                     context.pop();
                   },
-                  height: 40,
+                  height: 50,
                   width: 80,
                   borderRadius: BorderRadius.circular(10),
                   child: Text(

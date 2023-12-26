@@ -35,7 +35,7 @@ class _HistoryComponentState extends ConsumerState<HistoryComponent> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 195,
+      height: 205,
       child: Column(
         children: [
           Row(

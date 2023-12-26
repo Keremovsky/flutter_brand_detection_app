@@ -27,14 +27,14 @@ class ThemeClass {
 
     // app bar theme
     appBarTheme: const AppBarTheme(
-      backgroundColor: Palette.mainColor,
       scrolledUnderElevation: 0,
-      elevation: 0,
+      elevation: 2,
     ),
 
     // switch theme
-    switchTheme: SwitchThemeData(
-      trackColor: MaterialStateProperty.all(Palette.mainColor),
+    switchTheme: const SwitchThemeData(
+      trackColor: MaterialStatePropertyAll<Color>(Palette.blue),
+      trackOutlineColor: MaterialStatePropertyAll<Color>(Palette.blue),
     ),
   );
 
@@ -63,14 +63,8 @@ class ThemeClass {
 
     // app bar theme
     appBarTheme: const AppBarTheme(
-      backgroundColor: Palette.darkMainColor,
       scrolledUnderElevation: 0,
-      elevation: 0,
-    ),
-
-    // switch theme
-    switchTheme: SwitchThemeData(
-      trackOutlineWidth: MaterialStateProperty.all(0),
+      elevation: 2,
     ),
   );
 }

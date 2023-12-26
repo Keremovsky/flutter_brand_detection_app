@@ -42,7 +42,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                 const SizedBox(height: 30),
                 CustomButton(
                   onTap: () {},
-                  height: 40,
+                  height: 50,
                   width: 120,
                   borderRadius: BorderRadius.circular(10),
                   child: Text(

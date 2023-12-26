@@ -85,7 +85,7 @@ class _ResultScreenState extends ConsumerState<ResultScreen> {
                 onTap: () {
                   context.pushNamed(RouterConstants.requestScreenName);
                 },
-                height: 40,
+                height: 50,
                 width: 200,
                 borderRadius: BorderRadius.circular(10),
                 child: Text(
