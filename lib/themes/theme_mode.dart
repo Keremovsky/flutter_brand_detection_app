@@ -2,22 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_brand_detection_app/themes/palette.dart';
 
 class ThemeClass {
-  static ThemeData lightTheme = ThemeData(
+  static ThemeData lightTheme = ThemeData.light().copyWith(
     // text theme
     textTheme: const TextTheme(
       titleLarge: TextStyle(
         fontSize: 28,
         fontWeight: FontWeight.bold,
+        color: Palette.xColor,
       ),
       titleMedium: TextStyle(
         fontSize: 26,
         fontWeight: FontWeight.normal,
+        color: Palette.xColor,
       ),
       displayLarge: TextStyle(
         fontSize: 20,
+        color: Palette.xColor,
       ),
       displayMedium: TextStyle(
         fontSize: 18,
+        color: Palette.xColor,
       ),
       displaySmall: TextStyle(
         fontSize: 14,
@@ -27,7 +31,6 @@ class ThemeClass {
 
     // app bar theme
     appBarTheme: const AppBarTheme(
-      scrolledUnderElevation: 0,
       elevation: 2,
     ),
 
@@ -53,7 +56,7 @@ class ThemeClass {
         fontSize: 20,
       ),
       displayMedium: TextStyle(
-        fontSize: 18,
+        fontSize: 16,
       ),
       displaySmall: TextStyle(
         fontSize: 14,
@@ -63,7 +66,6 @@ class ThemeClass {
 
     // app bar theme
     appBarTheme: const AppBarTheme(
-      scrolledUnderElevation: 0,
       elevation: 2,
     ),
   );

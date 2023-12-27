@@ -19,16 +19,12 @@ class RequestScreen extends ConsumerStatefulWidget {
 
 class _RequestScreenState extends ConsumerState<RequestScreen> {
   ImageDemonstrator? takenImage;
-  late final bool isThemeLight;
-
-  @override
-  void initState() {
-    isThemeLight = isThemeLightFunc();
-    super.initState();
-  }
+  late bool isThemeLight;
 
   @override
   Widget build(BuildContext context) {
+    isThemeLight = isThemeLightFunc(context);
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(

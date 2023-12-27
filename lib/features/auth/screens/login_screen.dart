@@ -1,8 +1,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_brand_detection_app/core/constants/assets_constants.dart';
 import 'package:flutter_brand_detection_app/core/constants/router_constants.dart';
 import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart';
 import 'package:flutter_brand_detection_app/core/utils/custom_button.dart';
+import 'package:flutter_brand_detection_app/core/utils/image_demonstrator.dart';
 import 'package:flutter_brand_detection_app/themes/palette.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -19,6 +21,11 @@ class _AuthScreenState extends ConsumerState<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text(
+          "Giriş Yap",
+          style: Theme.of(context).textTheme.titleMedium,
+        ),
+        centerTitle: true,
         leading: IconButton(
           onPressed: () {
             context.pop();
@@ -55,14 +62,14 @@ class _AuthScreenState extends ConsumerState<LoginScreen> {
                 ),
                 const SizedBox(height: 40),
                 CustomButton(
-                  child: Text(
-                    "Giriş Yap",
-                    style: Theme.of(context).textTheme.displayLarge,
-                  ),
                   onTap: () {},
                   borderRadius: BorderRadius.circular(10),
                   height: 50,
                   width: 120,
+                  child: Text(
+                    "Giriş Yap",
+                    style: Theme.of(context).textTheme.displayLarge,
+                  ),
                 ),
                 const _CustomSizedBox(),
                 GestureDetector(
@@ -75,6 +82,17 @@ class _AuthScreenState extends ConsumerState<LoginScreen> {
                         .textTheme
                         .displayMedium!
                         .copyWith(color: Palette.blue),
+                  ),
+                ),
+                const Spacer(flex: 3),
+                CustomButton(
+                  onTap: () {},
+                  height: 60,
+                  width: 60,
+                  borderRadius: BorderRadius.circular(10),
+                  child: const ImageDemonstrator(
+                    imageProvider: AssetImage(AssetsConstants.googleLogo),
+                    outerPadding: EdgeInsets.all(10),
                   ),
                 ),
                 const Spacer(flex: 12),

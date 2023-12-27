@@ -23,7 +23,7 @@ class CustomDrawer extends StatelessWidget {
           text: "Ayarlar",
           onTap: () async {
             await context.pushNamed(RouterConstants.settingsScreenName);
-            refresh;
+            refresh();
           },
         ),
         const _CustomSizedBox(),

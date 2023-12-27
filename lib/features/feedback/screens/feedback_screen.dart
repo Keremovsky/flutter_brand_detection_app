@@ -39,8 +39,8 @@ class _FeedbackScreenState extends ConsumerState<FeedbackScreen> {
               ),
               const SizedBox(height: 10),
               TextField(
-                maxLines: 10,
-                maxLength: 1000,
+                maxLines: 7,
+                maxLength: 250,
                 decoration: InputDecoration(
                   floatingLabelBehavior: FloatingLabelBehavior.always,
                   labelText: "Açıklama",

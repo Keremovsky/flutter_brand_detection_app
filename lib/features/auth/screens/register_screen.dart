@@ -16,6 +16,11 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text(
+          "Kayıt Ol",
+          style: Theme.of(context).textTheme.titleMedium,
+        ),
+        centerTitle: true,
         leading: IconButton(
           onPressed: () {
             context.pop();

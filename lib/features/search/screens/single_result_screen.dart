@@ -18,6 +18,15 @@ class SingleResultScreen extends StatefulWidget {
 class _SingleResultScreenState extends State<SingleResultScreen> {
   late final XmlService xmlService;
   late final ExcelService excelService;
+  late bool isThemeLight;
+
+  Color _getColor() {
+    if (isThemeLight) {
+      return Palette.softBlue;
+    } else {
+      return Palette.grey;
+    }
+  }
 
   @override
   void initState() {
@@ -28,6 +37,8 @@ class _SingleResultScreenState extends State<SingleResultScreen> {
 
   @override
   Widget build(BuildContext context) {
+    isThemeLight = isThemeLightFunc(context);
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -69,7 +80,7 @@ class _SingleResultScreenState extends State<SingleResultScreen> {
               ),
               const SizedBox(height: 15),
               Material(
-                color: Palette.grey,
+                color: _getColor(),
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(10),
                   topRight: Radius.circular(10),
@@ -83,7 +94,7 @@ class _SingleResultScreenState extends State<SingleResultScreen> {
                 ),
               ),
               Material(
-                color: Palette.grey,
+                color: _getColor(),
                 borderRadius: BorderRadius.circular(10),
                 child: Padding(
                   padding: const EdgeInsets.all(5.0),
@@ -94,7 +105,7 @@ class _SingleResultScreenState extends State<SingleResultScreen> {
                 ),
               ),
               Material(
-                color: Palette.grey,
+                color: _getColor(),
                 borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(10),
                   bottomRight: Radius.circular(10),

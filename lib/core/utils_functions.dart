@@ -28,7 +28,6 @@ void launchURL(String url) async {
   }
 }
 
-bool isThemeLightFunc() {
-  return Brightness.light ==
-      SchedulerBinding.instance.platformDispatcher.platformBrightness;
+bool isThemeLightFunc(BuildContext context) {
+  return Brightness.light == Theme.of(context).brightness;
 }

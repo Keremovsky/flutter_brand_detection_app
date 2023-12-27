@@ -17,6 +17,11 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text(
+          "Doğrulama",
+          style: Theme.of(context).textTheme.titleMedium,
+        ),
+        centerTitle: true,
         leading: IconButton(
           onPressed: () {
             context.pop();

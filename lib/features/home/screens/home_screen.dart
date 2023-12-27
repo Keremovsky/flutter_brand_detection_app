@@ -20,14 +20,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   late bool isThemeLight;
 
   @override
-  void initState() {
-    isThemeLight = isThemeLightFunc();
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
+    isThemeLight = isThemeLightFunc(context);
 
     return Scaffold(
       key: scaffoldKey,
@@ -47,9 +42,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 30),
           child: CustomDrawer(
             refresh: () {
-              setState(() {
-                isThemeLight = isThemeLightFunc();
-              });
+              setState(() {});
             },
           ),
         ),

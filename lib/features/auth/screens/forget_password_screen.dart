@@ -18,6 +18,11 @@ class _ForgetPasswordScreenState extends ConsumerState<ForgetPasswordScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text(
+          "Şifre Yenileme",
+          style: Theme.of(context).textTheme.titleMedium,
+        ),
+        centerTitle: true,
         leading: IconButton(
           onPressed: () {
             context.pop();

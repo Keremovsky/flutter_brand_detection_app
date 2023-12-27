@@ -52,7 +52,10 @@ class MainHistoryItem extends StatelessWidget {
                       Positioned(
                         left: 10,
                         top: 30,
-                        child: Text(historyItemModel.searchDate.toString()),
+                        child: Text(
+                          "27/12/2023",
+                          style: Theme.of(context).textTheme.displayMedium,
+                        ),
                       ),
                       Positioned(
                         right: 5,

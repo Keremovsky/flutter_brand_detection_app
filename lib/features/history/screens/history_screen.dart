@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_brand_detection_app/core/constants/assets_constants.dart';
 import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart';
 import 'package:flutter_brand_detection_app/core/utils/custom_button.dart';
@@ -29,16 +30,11 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
     similarityPercentages: [],
     isSaved: false,
   );
-  late final bool isThemeLight;
-
-  @override
-  void initState() {
-    isThemeLight = isThemeLightFunc();
-    super.initState();
-  }
+  late bool isThemeLight;
 
   @override
   Widget build(BuildContext context) {
+    isThemeLight = isThemeLightFunc(context);
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -48,7 +44,7 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
             backgroundColor: Colors.transparent,
             elevation: 0,
             child: Padding(
-              padding: EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(10.0),
               child: Image(
                 image: isThemeLight
                     ? const AssetImage(AssetsConstants.excelLogoBlack)
@@ -65,7 +61,7 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
               padding: const EdgeInsets.all(10.0),
               child: Image(
                 image: isThemeLight
-                    ? const AssetImage(AssetsConstants.xmlLogoWhite)
+                    ? const AssetImage(AssetsConstants.xmlLogoBlack)
                     : const AssetImage(AssetsConstants.xmlLogoWhite),
               ),
             ),
