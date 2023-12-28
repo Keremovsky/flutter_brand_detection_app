@@ -42,4 +42,8 @@ class RouterConstants {
   // reset password screen
   static const resetPasswordScreenPath = "/resetPasswordScreen";
   static const resetPasswordScreenName = "resetPasswordScreen";
+
+  // image cropper screen
+  static const imageCropperPath = "/imageCropperScreen";
+  static const imageCropperName = "imageCropperScreen";
 }

@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_brand_detection_app/core/constants/router_constants.dart';
 import 'package:flutter_brand_detection_app/features/auth/screens/forget_password_screen.dart';
@@ -9,6 +11,7 @@ import 'package:flutter_brand_detection_app/features/feedback/screens/request_sc
 import 'package:flutter_brand_detection_app/features/history/screens/history_screen.dart';
 import 'package:flutter_brand_detection_app/features/home/screens/home_screen.dart';
 import 'package:flutter_brand_detection_app/features/home/screens/settings_screen.dart';
+import 'package:flutter_brand_detection_app/features/image_picker/screens/image_cropper_screen.dart';
 import 'package:flutter_brand_detection_app/features/search/screens/result_screen.dart';
 import 'package:flutter_brand_detection_app/features/search/screens/single_result_screen.dart';
 import 'package:go_router/go_router.dart';
@@ -112,6 +115,16 @@ class AppRouter {
         pageBuilder: (context, state) {
           return const MaterialPage(
             child: ResetPasswordScreen(),
+          );
+        },
+      ),
+      GoRoute(
+        name: RouterConstants.imageCropperName,
+        path: RouterConstants.imageCropperPath,
+        pageBuilder: (context, state) {
+          final unitList = state.extra as Uint8List;
+          return MaterialPage(
+            child: ImageCropperScreen(unitList: unitList),
           );
         },
       ),

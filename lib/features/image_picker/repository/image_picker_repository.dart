@@ -1,5 +1,4 @@
 import 'package:either_dart/either.dart';
-import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:riverpod/riverpod.dart';
@@ -30,7 +29,6 @@ class ImagePickerRepository {
         return const Left("no_permission");
       }
     } catch (e) {
-      debugPrint(e.toString());
       return const Left("error");
     }
   }
@@ -54,5 +52,9 @@ class ImagePickerRepository {
     } catch (e) {
       return const Left("error");
     }
+  }
+
+  void cropImage(String imagePath) async {
+    try {} catch (e) {}
   }
 }

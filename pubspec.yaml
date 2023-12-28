@@ -48,6 +48,7 @@ dependencies:
   xml: ^6.5.0
   path_provider: ^2.1.1
   shared_preferences: ^2.2.2
+  crop_image: ^1.0.11
 
 dev_dependencies:
   flutter_test:

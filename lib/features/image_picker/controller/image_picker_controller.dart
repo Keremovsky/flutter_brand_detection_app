@@ -64,4 +64,6 @@ class ImagePickerController extends StateNotifier<bool> {
       },
     );
   }
+
+  void cropImage(BuildContext context, String imagePath) async {}
 }

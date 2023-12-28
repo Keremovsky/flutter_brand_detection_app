@@ -1,4 +1,6 @@
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:flutter_brand_detection_app/core/constants/router_constants.dart';
 import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart';
 import 'package:flutter_brand_detection_app/core/utils/custom_button.dart';
 import 'package:flutter_brand_detection_app/core/utils/image_demonstrator.dart';
@@ -7,6 +9,7 @@ import 'package:flutter_brand_detection_app/features/home/widgets/drawer.dart';
 import 'package:flutter_brand_detection_app/features/history/widgets/history_list.dart';
 import 'package:flutter_brand_detection_app/features/image_picker/controller/image_picker_controller.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -62,10 +65,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       final result = await ref
                           .read(imagePickerControllerProvider.notifier)
                           .takePicture(context);
-                      if (result == null) {
-                        debugPrint("null");
-                      } else {
-                        debugPrint(result.path);
+
+                      if (result != null) {
+                        final Uint8List unitList = await result.readAsBytes();
+                        if (mounted) {
+                          context.pushNamed(
+                            RouterConstants.imageCropperName,
+                            extra: unitList,
+                          );
+                        }
                       }
                     },
                     height: width * 0.6,
@@ -97,10 +105,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           .read(imagePickerControllerProvider.notifier)
                           .getImageGallery(context);
 
-                      if (result == null) {
-                        debugPrint("null");
-                      } else {
-                        debugPrint(result.path);
+                      if (result != null) {
+                        final Uint8List unitList = await result.readAsBytes();
+                        if (mounted) {
+                          context.pushNamed(
+                            RouterConstants.imageCropperName,
+                            extra: unitList,
+                          );
+                        }
                       }
                     },
                     height: width * 0.6,
