@@ -1,4 +1,6 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 
 class HistoryItemModel {
@@ -8,7 +10,6 @@ class HistoryItemModel {
   List<String> companyNames;
   List<String> descriptions;
   List<String> countries;
-  List<String> timeZones;
   List<String> websites;
   List<String> twitters;
   List<double> similarityPercentages;
@@ -21,7 +22,6 @@ class HistoryItemModel {
     required this.companyNames,
     required this.descriptions,
     required this.countries,
-    required this.timeZones,
     required this.websites,
     required this.twitters,
     required this.similarityPercentages,
@@ -35,9 +35,8 @@ class HistoryItemModel {
     List<String>? companyNames,
     List<String>? descriptions,
     List<String>? countries,
-    List<String>? timeZones,
     List<String>? websites,
-    List<String>? twitter,
+    List<String>? twitters,
     List<double>? similarityPercentages,
     bool? isSaved,
   }) {
@@ -48,9 +47,8 @@ class HistoryItemModel {
       companyNames: companyNames ?? this.companyNames,
       descriptions: descriptions ?? this.descriptions,
       countries: countries ?? this.countries,
-      timeZones: timeZones ?? this.timeZones,
       websites: websites ?? this.websites,
-      twitters: twitter ?? this.twitters,
+      twitters: twitters ?? this.twitters,
       similarityPercentages:
           similarityPercentages ?? this.similarityPercentages,
       isSaved: isSaved ?? this.isSaved,
@@ -65,9 +63,8 @@ class HistoryItemModel {
       'companyNames': companyNames,
       'descriptions': descriptions,
       'countries': countries,
-      'timeZones': timeZones,
       'websites': websites,
-      'twitter': twitters,
+      'twitters': twitters,
       'similarityPercentages': similarityPercentages,
       'isSaved': isSaved,
     };
@@ -81,9 +78,8 @@ class HistoryItemModel {
       companyNames: List<String>.from((map['companyNames'] as List<String>)),
       descriptions: List<String>.from((map['descriptions'] as List<String>)),
       countries: List<String>.from((map['countries'] as List<String>)),
-      timeZones: List<String>.from((map['timeZones'] as List<String>)),
       websites: List<String>.from((map['websites'] as List<String>)),
-      twitters: List<String>.from((map['twitter'] as List<String>)),
+      twitters: List<String>.from((map['twitters'] as List<String>)),
       similarityPercentages:
           List<double>.from((map['similarityPercentages'] as List<double>)),
       isSaved: map['isSaved'] as bool,
@@ -97,7 +93,7 @@ class HistoryItemModel {
 
   @override
   String toString() {
-    return 'HistoryItemModel(id: $id, searchDate: $searchDate, resultIds: $resultIds, companyNames: $companyNames, descriptions: $descriptions, countries: $countries, timeZones: $timeZones, websites: $websites, twitter: $twitters, similarityPercentages: $similarityPercentages, isSaved: $isSaved)';
+    return 'HistoryItemModel(id: $id, searchDate: $searchDate, resultIds: $resultIds, companyNames: $companyNames, descriptions: $descriptions, countries: $countries, websites: $websites, twitters: $twitters, similarityPercentages: $similarityPercentages, isSaved: $isSaved)';
   }
 
   @override
@@ -110,7 +106,6 @@ class HistoryItemModel {
         listEquals(other.companyNames, companyNames) &&
         listEquals(other.descriptions, descriptions) &&
         listEquals(other.countries, countries) &&
-        listEquals(other.timeZones, timeZones) &&
         listEquals(other.websites, websites) &&
         listEquals(other.twitters, twitters) &&
         listEquals(other.similarityPercentages, similarityPercentages) &&
@@ -125,7 +120,6 @@ class HistoryItemModel {
         companyNames.hashCode ^
         descriptions.hashCode ^
         countries.hashCode ^
-        timeZones.hashCode ^
         websites.hashCode ^
         twitters.hashCode ^
         similarityPercentages.hashCode ^

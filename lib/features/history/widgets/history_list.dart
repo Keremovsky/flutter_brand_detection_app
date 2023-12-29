@@ -25,7 +25,6 @@ class _HistoryComponentState extends ConsumerState<HistoryComponent> {
     companyNames: [],
     descriptions: [],
     countries: [],
-    timeZones: [],
     websites: [],
     twitters: [],
     similarityPercentages: [],

@@ -1,5 +1,4 @@
 import 'package:flutter_brand_detection_app/features/auth/repository/auth_repository.dart';
-import 'package:flutter_brand_detection_app/models/user_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final authControllerProvider =

@@ -26,7 +26,6 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
     companyNames: [],
     descriptions: [],
     countries: [],
-    timeZones: [],
     websites: [],
     twitters: [],
     similarityPercentages: [],
