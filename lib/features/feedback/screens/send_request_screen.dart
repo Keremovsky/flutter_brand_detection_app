@@ -14,10 +14,11 @@ class SendRequestScreen extends ConsumerStatefulWidget {
   const SendRequestScreen({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _RequestScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _SendRequestScreenState();
 }
 
-class _RequestScreenState extends ConsumerState<SendRequestScreen> {
+class _SendRequestScreenState extends ConsumerState<SendRequestScreen> {
   ImageDemonstrator? takenImage;
   late bool isThemeLight;
 

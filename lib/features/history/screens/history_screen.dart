@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_brand_detection_app/core/constants/assets_constants.dart';
+import 'package:flutter_brand_detection_app/core/constants/router_constants.dart';
 import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart';
 import 'package:flutter_brand_detection_app/core/utils/custom_button.dart';
 import 'package:flutter_brand_detection_app/core/utils_functions.dart';
 import 'package:flutter_brand_detection_app/features/history/widgets/delete_all_history_items_alert.dart';
-import 'package:flutter_brand_detection_app/features/history/widgets/main_history_item.dart';
+import 'package:flutter_brand_detection_app/core/utils/list_item.dart';
 import 'package:flutter_brand_detection_app/models/history_item_model.dart';
+import 'package:flutter_brand_detection_app/themes/palette.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class HistoryScreen extends ConsumerStatefulWidget {
   const HistoryScreen({super.key});
@@ -94,7 +96,53 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
         child: ListView.builder(
           itemCount: 10,
           itemBuilder: (context, index) {
-            return MainHistoryItem(historyItemModel: historyItemModel);
+            return ModelListItem(
+              title: "Ferrari",
+              content: "27/12/2023",
+              image: const AssetImage("assets/ferrari.png"),
+              model: historyItemModel,
+              subChild: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  CustomButton(
+                    backgroundColor: Palette.red,
+                    onTap: () {},
+                    height: 35,
+                    width: 35,
+                    borderRadius: BorderRadius.circular(100),
+                    child: const Icon(
+                      Icons.remove,
+                      size: ThemeConstants.iconButtonIconSize,
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  historyItemModel.isSaved
+                      ? CustomButton(
+                          backgroundColor: Palette.yellow,
+                          onTap: () {},
+                          height: 35,
+                          width: 35,
+                          borderRadius: BorderRadius.circular(100),
+                          child: const Icon(
+                            Icons.star,
+                            size: ThemeConstants.iconButtonIconSize,
+                          ),
+                        )
+                      : CustomButton(
+                          backgroundColor: Palette.green,
+                          onTap: () {},
+                          height: 35,
+                          width: 35,
+                          borderRadius: BorderRadius.circular(100),
+                          child: const Icon(
+                            Icons.add,
+                            size: ThemeConstants.iconButtonIconSize,
+                          ),
+                        ),
+                ],
+              ),
+              onTap: () => context.pushNamed(RouterConstants.resultScreenName),
+            );
           },
         ),
       ),

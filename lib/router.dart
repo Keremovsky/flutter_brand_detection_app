@@ -5,6 +5,8 @@ import 'package:flutter_brand_detection_app/features/auth/screens/forget_passwor
 import 'package:flutter_brand_detection_app/features/auth/screens/login_screen.dart';
 import 'package:flutter_brand_detection_app/features/auth/screens/register_screen.dart';
 import 'package:flutter_brand_detection_app/features/auth/screens/reset_password_screen.dart';
+import 'package:flutter_brand_detection_app/features/feedback/screens/feedback_list_screen.dart';
+import 'package:flutter_brand_detection_app/features/feedback/screens/request_list_screen.dart';
 import 'package:flutter_brand_detection_app/features/feedback/screens/send_feedback_screen.dart';
 import 'package:flutter_brand_detection_app/features/feedback/screens/send_request_screen.dart';
 import 'package:flutter_brand_detection_app/features/history/screens/history_screen.dart';
@@ -52,6 +54,24 @@ class AppRouter {
         pageBuilder: (context, state) {
           return const MaterialPage(
             child: SendRequestScreen(),
+          );
+        },
+      ),
+      GoRoute(
+        name: RouterConstants.feedbackListScreenName,
+        path: RouterConstants.feedbackListScreenPath,
+        pageBuilder: (context, state) {
+          return const MaterialPage(
+            child: FeedbackListScreen(),
+          );
+        },
+      ),
+      GoRoute(
+        name: RouterConstants.requestListScreenName,
+        path: RouterConstants.requestListScreenPath,
+        pageBuilder: (context, state) {
+          return const MaterialPage(
+            child: RequestListScreen(),
           );
         },
       ),

@@ -92,14 +92,18 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   icon: Icons.work_history,
                   text: "Geçmiş İsteklerim",
                   textStyle: Theme.of(context).textTheme.displayLarge,
-                  onTap: () => null,
+                  onTap: () {
+                    context.pushNamed(RouterConstants.requestListScreenName);
+                  },
                 ),
                 const _CustomSizedBox(),
                 CustomDrawerButton(
                   icon: Icons.feedback,
                   text: "Geçmiş Geri Bildirimlerim",
                   textStyle: Theme.of(context).textTheme.displayLarge,
-                  onTap: () => null,
+                  onTap: () {
+                    context.pushNamed(RouterConstants.feedbackListScreenName);
+                  },
                 ),
               ],
             ),

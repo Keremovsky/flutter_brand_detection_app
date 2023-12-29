@@ -9,10 +9,11 @@ class SendFeedbackScreen extends ConsumerStatefulWidget {
   const SendFeedbackScreen({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _FeedbackScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _SendFeedbackScreenState();
 }
 
-class _FeedbackScreenState extends ConsumerState<SendFeedbackScreen> {
+class _SendFeedbackScreenState extends ConsumerState<SendFeedbackScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
