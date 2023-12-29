@@ -45,6 +45,7 @@ class _AuthScreenState extends ConsumerState<LoginScreen> {
                 TextFormField(
                   decoration: InputDecoration(
                     labelText: "E-mail",
+                    contentPadding: const EdgeInsets.all(10),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -55,6 +56,7 @@ class _AuthScreenState extends ConsumerState<LoginScreen> {
                   obscureText: true,
                   decoration: InputDecoration(
                     labelText: "Şifre",
+                    contentPadding: const EdgeInsets.all(10),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -63,7 +65,6 @@ class _AuthScreenState extends ConsumerState<LoginScreen> {
                 const SizedBox(height: 40),
                 CustomButton(
                   onTap: () {},
-                  borderRadius: BorderRadius.circular(10),
                   height: 50,
                   width: 120,
                   child: Text(
@@ -89,7 +90,6 @@ class _AuthScreenState extends ConsumerState<LoginScreen> {
                   onTap: () {},
                   height: 60,
                   width: 60,
-                  borderRadius: BorderRadius.circular(10),
                   child: const ImageDemonstrator(
                     imageProvider: AssetImage(AssetsConstants.googleLogo),
                     outerPadding: EdgeInsets.all(10),

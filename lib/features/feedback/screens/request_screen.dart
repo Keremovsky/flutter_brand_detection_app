@@ -134,7 +134,6 @@ class _RequestScreenState extends ConsumerState<RequestScreen> {
                       height: 50,
                       width: 100,
                       backgroundColor: Palette.red,
-                      borderRadius: BorderRadius.circular(10),
                       child: Text(
                         "İptal",
                         style: Theme.of(context).textTheme.displayLarge,
@@ -144,7 +143,6 @@ class _RequestScreenState extends ConsumerState<RequestScreen> {
                       onTap: () {},
                       height: 50,
                       width: 100,
-                      borderRadius: BorderRadius.circular(10),
                       child: Text(
                         "Yolla",
                         style: Theme.of(context).textTheme.displayLarge,
@@ -172,7 +170,6 @@ class _RequestScreenState extends ConsumerState<RequestScreen> {
                     },
                     height: 180,
                     width: 180,
-                    borderRadius: BorderRadius.circular(10),
                     child: takenImage ??
                         Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

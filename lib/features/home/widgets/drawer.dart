@@ -15,7 +15,7 @@ class CustomDrawer extends StatelessWidget {
         CustomDrawerButton(
           icon: Icons.account_circle_rounded,
           text: "Hesabım",
-          onTap: () => context.pushNamed(RouterConstants.loginScreenName),
+          onTap: () => context.pushNamed(RouterConstants.profileScreenName),
         ),
         const _CustomSizedBox(),
         CustomDrawerButton(

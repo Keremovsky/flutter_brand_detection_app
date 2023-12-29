@@ -44,6 +44,10 @@ class RouterConstants {
   static const resetPasswordScreenName = "resetPasswordScreen";
 
   // image cropper screen
-  static const imageCropperPath = "/imageCropperScreen";
-  static const imageCropperName = "imageCropperScreen";
+  static const imageCropperScreenPath = "/imageCropperScreen";
+  static const imageCropperScreenName = "imageCropperScreen";
+
+  // profile screen
+  static const profileScreenPath = "/profileScreen";
+  static const profileScreenName = "profileScreen";
 }

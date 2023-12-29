@@ -60,7 +60,6 @@ class _FeedbackScreenState extends ConsumerState<FeedbackScreen> {
                     height: 50,
                     width: 100,
                     backgroundColor: Palette.red,
-                    borderRadius: BorderRadius.circular(10),
                     child: Text(
                       "İptal",
                       style: Theme.of(context).textTheme.displayLarge,
@@ -70,7 +69,6 @@ class _FeedbackScreenState extends ConsumerState<FeedbackScreen> {
                     onTap: () {},
                     height: 50,
                     width: 100,
-                    borderRadius: BorderRadius.circular(10),
                     child: Text(
                       "Yolla",
                       style: Theme.of(context).textTheme.displayLarge,

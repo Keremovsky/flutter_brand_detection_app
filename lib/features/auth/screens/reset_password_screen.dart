@@ -41,6 +41,7 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
                 obscureText: true,
                 decoration: InputDecoration(
                   labelText: "Yeni şifre",
+                  contentPadding: const EdgeInsets.all(10),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -51,6 +52,7 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
                 obscureText: true,
                 decoration: InputDecoration(
                   labelText: "Yeni şifre tekrar",
+                  contentPadding: const EdgeInsets.all(10),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -59,7 +61,6 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
               const SizedBox(height: 30),
               CustomButton(
                 onTap: () {},
-                borderRadius: BorderRadius.circular(10),
                 height: 50,
                 width: 140,
                 child: Text(

@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart';
 
 class CustomDrawerButton extends StatelessWidget {
-  final String text;
-  final IconData icon;
   final Function() onTap;
+  final String text;
+  final TextStyle? textStyle;
+  final IconData icon;
 
   const CustomDrawerButton({
     super.key,
-    required this.icon,
-    required this.text,
     required this.onTap,
+    required this.text,
+    this.textStyle,
+    required this.icon,
   });
 
   @override
@@ -25,7 +27,7 @@ class CustomDrawerButton extends StatelessWidget {
             const SizedBox(width: 10),
             Text(
               text,
-              style: Theme.of(context).textTheme.titleMedium,
+              style: textStyle ?? Theme.of(context).textTheme.titleMedium,
             )
           ],
         ),

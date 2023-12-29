@@ -41,6 +41,7 @@ class _ForgetPasswordScreenState extends ConsumerState<ForgetPasswordScreen> {
               TextField(
                 decoration: InputDecoration(
                   labelText: "E-mail",
+                  contentPadding: const EdgeInsets.all(10),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -51,7 +52,6 @@ class _ForgetPasswordScreenState extends ConsumerState<ForgetPasswordScreen> {
                 onTap: () {
                   context.pushNamed(RouterConstants.resetPasswordScreenName);
                 },
-                borderRadius: BorderRadius.circular(10),
                 height: 50,
                 width: 150,
                 child: Text(

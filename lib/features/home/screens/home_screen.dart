@@ -70,7 +70,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                         final Uint8List unitList = await result.readAsBytes();
                         if (mounted) {
                           context.pushNamed(
-                            RouterConstants.imageCropperName,
+                            RouterConstants.imageCropperScreenName,
                             extra: unitList,
                           );
                         }
@@ -78,7 +78,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     },
                     height: width * 0.6,
                     width: width * 0.45,
-                    borderRadius: BorderRadius.circular(10),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       child: Column(
@@ -109,7 +108,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                         final Uint8List unitList = await result.readAsBytes();
                         if (mounted) {
                           context.pushNamed(
-                            RouterConstants.imageCropperName,
+                            RouterConstants.imageCropperScreenName,
                             extra: unitList,
                           );
                         }
@@ -117,7 +116,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     },
                     height: width * 0.6,
                     width: width * 0.45,
-                    borderRadius: BorderRadius.circular(10),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       child: Column(

@@ -40,9 +40,9 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
         actions: [
           CustomButton(
             onTap: () {},
-            borderRadius: BorderRadius.circular(100),
             backgroundColor: Colors.transparent,
             elevation: 0,
+            borderRadius: BorderRadius.circular(100),
             child: Padding(
               padding: const EdgeInsets.all(10.0),
               child: Image(
@@ -54,9 +54,9 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
           ),
           CustomButton(
             onTap: () {},
-            borderRadius: BorderRadius.circular(100),
             backgroundColor: Colors.transparent,
             elevation: 0,
+            borderRadius: BorderRadius.circular(100),
             child: Padding(
               padding: const EdgeInsets.all(10.0),
               child: Image(

@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_brand_detection_app/core/constants/router_constants.dart';
 import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart';
 import 'package:flutter_brand_detection_app/core/utils/custom_button.dart';
+import 'package:flutter_brand_detection_app/features/home/widgets/drawer_button.dart';
+import 'package:flutter_brand_detection_app/themes/palette.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class RegisterScreen extends ConsumerStatefulWidget {
-  const RegisterScreen({super.key});
+class ProfileScreen extends ConsumerStatefulWidget {
+  const ProfileScreen({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _RegisterScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _ProfileScreenState();
 }
 
-class _RegisterScreenState extends ConsumerState<RegisterScreen> {
+class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(
-          "Kayıt Ol",
+          "Profil",
           style: Theme.of(context).textTheme.titleMedium,
         ),
         centerTitle: true,
@@ -37,19 +41,18 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
           child: Form(
             child: Column(
               children: [
-                TextFormField(
-                  decoration: InputDecoration(
-                    labelText: "E-mail",
-                    contentPadding: const EdgeInsets.all(10),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
+                Text(
+                  "Merhaba, sayın Kerem",
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
-                const _CustomSizedBox(),
+                const SizedBox(height: 20),
                 TextFormField(
+                  maxLength: 50,
+                  initialValue: "Kerem",
                   decoration: InputDecoration(
                     labelText: "İsim",
+                    counterText: "",
+                    floatingLabelBehavior: FloatingLabelBehavior.always,
                     contentPadding: const EdgeInsets.all(10),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -58,9 +61,16 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                 ),
                 const _CustomSizedBox(),
                 TextFormField(
-                  obscureText: true,
+                  maxLength: 20,
                   decoration: InputDecoration(
                     labelText: "Şifre",
+                    hintText: "**********",
+                    hintStyle:
+                        Theme.of(context).textTheme.displayMedium!.copyWith(
+                              color: Palette.grey,
+                            ),
+                    counterText: "",
+                    floatingLabelBehavior: FloatingLabelBehavior.always,
                     contentPadding: const EdgeInsets.all(10),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -68,25 +78,28 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                   ),
                 ),
                 const _CustomSizedBox(),
-                TextFormField(
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    labelText: "Tekrar şifre",
-                    contentPadding: const EdgeInsets.all(10),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 30),
                 CustomButton(
                   onTap: () {},
                   height: 50,
-                  width: 120,
+                  width: 220,
                   child: Text(
-                    "Kayıt Ol",
+                    "Değişiklikleri Onayla",
                     style: Theme.of(context).textTheme.displayLarge,
                   ),
+                ),
+                const Spacer(),
+                CustomDrawerButton(
+                  icon: Icons.work_history,
+                  text: "Geçmiş İsteklerim",
+                  textStyle: Theme.of(context).textTheme.displayLarge,
+                  onTap: () => null,
+                ),
+                const _CustomSizedBox(),
+                CustomDrawerButton(
+                  icon: Icons.feedback,
+                  text: "Geçmiş Geri Bildirimlerim",
+                  textStyle: Theme.of(context).textTheme.displayLarge,
+                  onTap: () => null,
                 ),
               ],
             ),
@@ -104,6 +117,6 @@ class _CustomSizedBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(height: 15);
+    return const SizedBox(height: 12);
   }
 }
