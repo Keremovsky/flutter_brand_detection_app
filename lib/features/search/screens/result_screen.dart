@@ -78,7 +78,7 @@ class _ResultScreenState extends ConsumerState<ResultScreen> {
               ),
               CustomButton(
                 onTap: () {
-                  context.pushNamed(RouterConstants.feedbackScreenName);
+                  context.pushNamed(RouterConstants.sendFeedbackScreenName);
                 },
                 height: 50,
                 width: 200,

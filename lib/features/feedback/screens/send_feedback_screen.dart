@@ -5,14 +5,14 @@ import 'package:flutter_brand_detection_app/themes/palette.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class FeedbackScreen extends ConsumerStatefulWidget {
-  const FeedbackScreen({super.key});
+class SendFeedbackScreen extends ConsumerStatefulWidget {
+  const SendFeedbackScreen({super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _FeedbackScreenState();
 }
 
-class _FeedbackScreenState extends ConsumerState<FeedbackScreen> {
+class _FeedbackScreenState extends ConsumerState<SendFeedbackScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

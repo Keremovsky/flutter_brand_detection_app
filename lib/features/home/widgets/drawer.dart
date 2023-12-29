@@ -30,7 +30,7 @@ class CustomDrawer extends StatelessWidget {
         CustomDrawerButton(
           icon: Icons.send_rounded,
           text: "İstekte Bulun",
-          onTap: () => context.pushNamed(RouterConstants.requestScreenName),
+          onTap: () => context.pushNamed(RouterConstants.sendRequestScreenName),
         ),
         const _CustomSizedBox(),
         CustomDrawerButton(

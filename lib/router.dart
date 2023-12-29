@@ -5,8 +5,8 @@ import 'package:flutter_brand_detection_app/features/auth/screens/forget_passwor
 import 'package:flutter_brand_detection_app/features/auth/screens/login_screen.dart';
 import 'package:flutter_brand_detection_app/features/auth/screens/register_screen.dart';
 import 'package:flutter_brand_detection_app/features/auth/screens/reset_password_screen.dart';
-import 'package:flutter_brand_detection_app/features/feedback/screens/feedback_screen.dart';
-import 'package:flutter_brand_detection_app/features/feedback/screens/request_screen.dart';
+import 'package:flutter_brand_detection_app/features/feedback/screens/send_feedback_screen.dart';
+import 'package:flutter_brand_detection_app/features/feedback/screens/send_request_screen.dart';
 import 'package:flutter_brand_detection_app/features/history/screens/history_screen.dart';
 import 'package:flutter_brand_detection_app/features/home/screens/home_screen.dart';
 import 'package:flutter_brand_detection_app/features/home/screens/settings_screen.dart';
@@ -38,20 +38,20 @@ class AppRouter {
         },
       ),
       GoRoute(
-        name: RouterConstants.feedbackScreenName,
-        path: RouterConstants.feedbackScreenPath,
+        name: RouterConstants.sendFeedbackScreenName,
+        path: RouterConstants.sendFeedbackScreenPath,
         pageBuilder: (context, state) {
           return const MaterialPage(
-            child: FeedbackScreen(),
+            child: SendFeedbackScreen(),
           );
         },
       ),
       GoRoute(
-        name: RouterConstants.requestScreenName,
-        path: RouterConstants.requestScreenPath,
+        name: RouterConstants.sendRequestScreenName,
+        path: RouterConstants.sendRequestScreenPath,
         pageBuilder: (context, state) {
           return const MaterialPage(
-            child: RequestScreen(),
+            child: SendRequestScreen(),
           );
         },
       ),

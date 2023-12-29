@@ -10,14 +10,14 @@ import 'package:flutter_brand_detection_app/themes/palette.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class RequestScreen extends ConsumerStatefulWidget {
-  const RequestScreen({super.key});
+class SendRequestScreen extends ConsumerStatefulWidget {
+  const SendRequestScreen({super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _RequestScreenState();
 }
 
-class _RequestScreenState extends ConsumerState<RequestScreen> {
+class _RequestScreenState extends ConsumerState<SendRequestScreen> {
   ImageDemonstrator? takenImage;
   late bool isThemeLight;
 
