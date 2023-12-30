@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_brand_detection_app/core/constants/router_constants.dart';
 import 'package:flutter_brand_detection_app/features/history/widgets/history_item.dart';
-import 'package:flutter_brand_detection_app/models/history_item_model.dart';
+import 'package:flutter_brand_detection_app/models/history_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -18,7 +18,7 @@ class HistoryComponent extends ConsumerStatefulWidget {
 }
 
 class _HistoryComponentState extends ConsumerState<HistoryComponent> {
-  final HistoryItemModel historyItemModel = HistoryItemModel(
+  final HistoryModel historyItemModel = HistoryModel(
     id: 0,
     searchDate: DateTime.now(),
     resultIds: [],

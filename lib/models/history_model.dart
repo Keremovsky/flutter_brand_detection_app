@@ -1,9 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
-
 import 'package:flutter/foundation.dart';
 
-class HistoryItemModel {
+class HistoryModel {
   int id;
   DateTime searchDate;
   List<int> resultIds;
@@ -15,7 +14,7 @@ class HistoryItemModel {
   List<double> similarityPercentages;
   bool isSaved;
 
-  HistoryItemModel({
+  HistoryModel({
     required this.id,
     required this.searchDate,
     required this.resultIds,
@@ -28,7 +27,7 @@ class HistoryItemModel {
     required this.isSaved,
   });
 
-  HistoryItemModel copyWith({
+  HistoryModel copyWith({
     int? id,
     DateTime? searchDate,
     List<int>? resultIds,
@@ -40,7 +39,7 @@ class HistoryItemModel {
     List<double>? similarityPercentages,
     bool? isSaved,
   }) {
-    return HistoryItemModel(
+    return HistoryModel(
       id: id ?? this.id,
       searchDate: searchDate ?? this.searchDate,
       resultIds: resultIds ?? this.resultIds,
@@ -70,8 +69,8 @@ class HistoryItemModel {
     };
   }
 
-  factory HistoryItemModel.fromMap(Map<String, dynamic> map) {
-    return HistoryItemModel(
+  factory HistoryModel.fromMap(Map<String, dynamic> map) {
+    return HistoryModel(
       id: map['id'] as int,
       searchDate: DateTime.fromMillisecondsSinceEpoch(map['searchDate'] as int),
       resultIds: List<int>.from((map['resultIds'] as List<int>)),
@@ -88,8 +87,8 @@ class HistoryItemModel {
 
   String toJson() => json.encode(toMap());
 
-  factory HistoryItemModel.fromJson(String source) =>
-      HistoryItemModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory HistoryModel.fromJson(String source) =>
+      HistoryModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
@@ -97,7 +96,7 @@ class HistoryItemModel {
   }
 
   @override
-  bool operator ==(covariant HistoryItemModel other) {
+  bool operator ==(covariant HistoryModel other) {
     if (identical(this, other)) return true;
 
     return other.id == id &&

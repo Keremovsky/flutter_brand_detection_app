@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart';
-import 'package:flutter_brand_detection_app/core/utils/custom_button.dart';
 import 'package:flutter_brand_detection_app/core/utils/image_demonstrator.dart';
-import 'package:flutter_brand_detection_app/themes/palette.dart';
 
 class ModelListItem extends StatelessWidget {
   final String title;

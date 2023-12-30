@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_brand_detection_app/core/constants/router_constants.dart';
 import 'package:flutter_brand_detection_app/core/utils/image_demonstrator.dart';
-import 'package:flutter_brand_detection_app/models/history_item_model.dart';
+import 'package:flutter_brand_detection_app/models/history_model.dart';
 import 'package:go_router/go_router.dart';
 
 class HistoryItem extends StatelessWidget {
-  final HistoryItemModel historyModel;
+  final HistoryModel historyModel;
   final String imagePath;
 
   const HistoryItem({

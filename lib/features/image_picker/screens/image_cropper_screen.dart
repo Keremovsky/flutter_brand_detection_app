@@ -148,7 +148,9 @@ class _ImageCropperScreenState extends ConsumerState<ImageCropperScreen> {
                     ),
                     CustomButton(
                       onTap: () {
-                        context.pushNamed(RouterConstants.resultScreenName);
+                        context.pushReplacementNamed(
+                          RouterConstants.resultScreenName,
+                        );
                       },
                       height: 60,
                       width: 60,

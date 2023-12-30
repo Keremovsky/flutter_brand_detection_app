@@ -6,7 +6,7 @@ import 'package:flutter_brand_detection_app/core/utils/custom_button.dart';
 import 'package:flutter_brand_detection_app/core/utils_functions.dart';
 import 'package:flutter_brand_detection_app/features/history/widgets/delete_all_history_items_alert.dart';
 import 'package:flutter_brand_detection_app/core/utils/list_item.dart';
-import 'package:flutter_brand_detection_app/models/history_item_model.dart';
+import 'package:flutter_brand_detection_app/models/history_model.dart';
 import 'package:flutter_brand_detection_app/themes/palette.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -19,7 +19,7 @@ class HistoryScreen extends ConsumerStatefulWidget {
 }
 
 class _HistoryScreenState extends ConsumerState<HistoryScreen> {
-  final HistoryItemModel historyItemModel = HistoryItemModel(
+  final HistoryModel historyItemModel = HistoryModel(
     id: 0,
     searchDate: DateTime.now(),
     resultIds: [],
