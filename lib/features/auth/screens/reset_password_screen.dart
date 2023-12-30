@@ -39,23 +39,17 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
             children: [
               TextFormField(
                 obscureText: true,
-                decoration: InputDecoration(
+                style: Theme.of(context).textTheme.labelSmall,
+                decoration: const InputDecoration(
                   labelText: "Yeni şifre",
-                  contentPadding: const EdgeInsets.all(10),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
                 ),
               ),
               const SizedBox(height: 15),
               TextFormField(
                 obscureText: true,
-                decoration: InputDecoration(
+                style: Theme.of(context).textTheme.labelSmall,
+                decoration: const InputDecoration(
                   labelText: "Yeni şifre tekrar",
-                  contentPadding: const EdgeInsets.all(10),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
                 ),
               ),
               const SizedBox(height: 30),

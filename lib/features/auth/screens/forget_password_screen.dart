@@ -39,12 +39,9 @@ class _ForgetPasswordScreenState extends ConsumerState<ForgetPasswordScreen> {
           child: Column(
             children: [
               TextField(
-                decoration: InputDecoration(
+                style: Theme.of(context).textTheme.labelSmall,
+                decoration: const InputDecoration(
                   labelText: "E-mail",
-                  contentPadding: const EdgeInsets.all(10),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
                 ),
               ),
               const SizedBox(height: 30),

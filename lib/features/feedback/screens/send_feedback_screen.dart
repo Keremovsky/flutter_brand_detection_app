@@ -42,12 +42,10 @@ class _SendFeedbackScreenState extends ConsumerState<SendFeedbackScreen> {
               TextField(
                 maxLines: 7,
                 maxLength: 250,
-                decoration: InputDecoration(
+                style: Theme.of(context).textTheme.labelSmall,
+                decoration: const InputDecoration(
                   floatingLabelBehavior: FloatingLabelBehavior.always,
                   labelText: "Açıklama",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
                 ),
               ),
               const SizedBox(height: 5),

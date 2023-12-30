@@ -27,8 +27,39 @@ class ThemeClass {
         fontSize: 14,
         color: Palette.grey,
       ),
+      // for text fields
+      labelSmall: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.normal,
+        color: Palette.xColor,
+      ),
     ),
 
+    // text field theme
+    inputDecorationTheme: InputDecorationTheme(
+      labelStyle: const TextStyle(color: Palette.grey),
+      floatingLabelStyle: const TextStyle(color: Palette.blue),
+      hintStyle: const TextStyle(color: Palette.grey),
+      contentPadding: const EdgeInsets.all(10),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: const BorderSide(color: Palette.grey),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: const BorderSide(
+          color: Palette.blue,
+          width: 2,
+        ),
+      ),
+    ),
+
+    // for cursor in textfield
+    textSelectionTheme: const TextSelectionThemeData(
+      cursorColor: Palette.blue,
+      selectionHandleColor: Palette.blue,
+      selectionColor: Palette.blue,
+    ),
     // app bar theme
     appBarTheme: const AppBarTheme(
       elevation: 2,
@@ -56,12 +87,43 @@ class ThemeClass {
         fontSize: 20,
       ),
       displayMedium: TextStyle(
-        fontSize: 16,
+        fontSize: 18,
       ),
       displaySmall: TextStyle(
         fontSize: 14,
         color: Palette.grey,
       ),
+      // for text fields
+      labelSmall: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.normal,
+      ),
+    ),
+
+    // text field theme
+    inputDecorationTheme: InputDecorationTheme(
+      labelStyle: const TextStyle(color: Palette.grey),
+      floatingLabelStyle: const TextStyle(color: Palette.blue),
+      hintStyle: const TextStyle(color: Palette.grey),
+      contentPadding: const EdgeInsets.all(10),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: const BorderSide(color: Palette.grey),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: const BorderSide(
+          color: Palette.blue,
+          width: 2,
+        ),
+      ),
+    ),
+
+    // for cursor in textfield
+    textSelectionTheme: const TextSelectionThemeData(
+      cursorColor: Palette.blue,
+      selectionHandleColor: Palette.blue,
+      selectionColor: Palette.blue,
     ),
 
     // app bar theme

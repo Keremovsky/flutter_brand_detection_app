@@ -49,32 +49,26 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                 TextFormField(
                   maxLength: 50,
                   initialValue: "Kerem",
-                  decoration: InputDecoration(
+                  style: Theme.of(context).textTheme.labelSmall,
+                  decoration: const InputDecoration(
                     labelText: "İsim",
                     counterText: "",
                     floatingLabelBehavior: FloatingLabelBehavior.always,
-                    contentPadding: const EdgeInsets.all(10),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
                   ),
                 ),
                 const _CustomSizedBox(),
                 TextFormField(
                   maxLength: 20,
+                  style: Theme.of(context).textTheme.labelSmall,
+                  obscureText: true,
                   decoration: InputDecoration(
                     labelText: "Şifre",
-                    hintText: "**********",
-                    hintStyle:
-                        Theme.of(context).textTheme.displayMedium!.copyWith(
-                              color: Palette.grey,
-                            ),
                     counterText: "",
+                    hintText: "**********",
+                    hintStyle: Theme.of(context).textTheme.labelSmall!.copyWith(
+                          color: Palette.grey,
+                        ),
                     floatingLabelBehavior: FloatingLabelBehavior.always,
-                    contentPadding: const EdgeInsets.all(10),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
                   ),
                 ),
                 const _CustomSizedBox(),

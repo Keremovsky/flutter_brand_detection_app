@@ -6,7 +6,6 @@ class RequestModel {
   final int id;
   final File image;
   final String companyName;
-  final String fileName;
   final String description;
   final String country;
   final String website;
@@ -16,7 +15,6 @@ class RequestModel {
     required this.id,
     required this.image,
     required this.companyName,
-    required this.fileName,
     required this.description,
     required this.country,
     required this.website,
@@ -27,7 +25,6 @@ class RequestModel {
     int? id,
     File? image,
     String? companyName,
-    String? fileName,
     String? description,
     String? country,
     String? website,
@@ -37,7 +34,6 @@ class RequestModel {
       id: id ?? this.id,
       image: image ?? this.image,
       companyName: companyName ?? this.companyName,
-      fileName: fileName ?? this.fileName,
       description: description ?? this.description,
       country: country ?? this.country,
       website: website ?? this.website,
@@ -50,7 +46,6 @@ class RequestModel {
       'id': id,
       'image': image,
       'companyName': companyName,
-      'fileName': fileName,
       'description': description,
       'country': country,
       'website': website,
@@ -63,7 +58,6 @@ class RequestModel {
       id: map['id'] as int,
       image: map['image'] as File,
       companyName: map['companyName'] as String,
-      fileName: map['fileName'] as String,
       description: map['description'] as String,
       country: map['country'] as String,
       website: map['website'] as String,
@@ -78,7 +72,7 @@ class RequestModel {
 
   @override
   String toString() {
-    return 'RequestModel(id: $id, image: $image, companyName: $companyName, fileName: $fileName, description: $description, country: $country, website: $website, twitter: $twitter)';
+    return 'RequestModel(id: $id, image: $image, companyName: $companyName, description: $description, country: $country, website: $website, twitter: $twitter)';
   }
 
   @override
@@ -88,7 +82,6 @@ class RequestModel {
     return other.id == id &&
         other.image == image &&
         other.companyName == companyName &&
-        other.fileName == fileName &&
         other.description == description &&
         other.country == country &&
         other.website == website &&
@@ -100,7 +93,6 @@ class RequestModel {
     return id.hashCode ^
         image.hashCode ^
         companyName.hashCode ^
-        fileName.hashCode ^
         description.hashCode ^
         country.hashCode ^
         website.hashCode ^

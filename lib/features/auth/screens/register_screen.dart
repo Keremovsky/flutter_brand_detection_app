@@ -38,44 +38,32 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
             child: Column(
               children: [
                 TextFormField(
-                  decoration: InputDecoration(
+                  style: Theme.of(context).textTheme.labelSmall,
+                  decoration: const InputDecoration(
                     labelText: "E-mail",
-                    contentPadding: const EdgeInsets.all(10),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
                   ),
                 ),
                 const _CustomSizedBox(),
                 TextFormField(
-                  decoration: InputDecoration(
+                  style: Theme.of(context).textTheme.labelSmall,
+                  decoration: const InputDecoration(
                     labelText: "İsim",
-                    contentPadding: const EdgeInsets.all(10),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
                   ),
                 ),
                 const _CustomSizedBox(),
                 TextFormField(
                   obscureText: true,
-                  decoration: InputDecoration(
+                  style: Theme.of(context).textTheme.labelSmall,
+                  decoration: const InputDecoration(
                     labelText: "Şifre",
-                    contentPadding: const EdgeInsets.all(10),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
                   ),
                 ),
                 const _CustomSizedBox(),
                 TextFormField(
                   obscureText: true,
-                  decoration: InputDecoration(
+                  style: Theme.of(context).textTheme.labelSmall,
+                  decoration: const InputDecoration(
                     labelText: "Tekrar şifre",
-                    contentPadding: const EdgeInsets.all(10),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
                   ),
                 ),
                 const SizedBox(height: 30),

@@ -19,6 +19,7 @@ class SendRequestScreen extends ConsumerStatefulWidget {
 }
 
 class _SendRequestScreenState extends ConsumerState<SendRequestScreen> {
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   ImageDemonstrator? takenImage;
   late bool isThemeLight;
 
@@ -43,6 +44,7 @@ class _SendRequestScreenState extends ConsumerState<SendRequestScreen> {
         child: Padding(
           padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
           child: Form(
+            key: formKey,
             child: ListView(
               children: [
                 Center(
@@ -54,30 +56,20 @@ class _SendRequestScreenState extends ConsumerState<SendRequestScreen> {
                 const SizedBox(height: 5),
                 TextFormField(
                   maxLength: 50,
-                  decoration: InputDecoration(
+                  onSaved: (value) {},
+                  style: Theme.of(context).textTheme.labelSmall,
+                  validator: (value) => validate(value),
+                  decoration: const InputDecoration(
                     labelText: "Şirket ismi",
                     counterText: "",
-                    contentPadding: const EdgeInsets.all(10),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
                   ),
                 ),
                 const _CustomSizedBox(),
                 TextFormField(
                   maxLength: 50,
-                  decoration: InputDecoration(
-                    labelText: "Dosya ismi",
-                    counterText: "",
-                    contentPadding: const EdgeInsets.all(10),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                ),
-                const _CustomSizedBox(),
-                TextFormField(
-                  maxLength: 50,
+                  onSaved: (value) {},
+                  style: Theme.of(context).textTheme.labelSmall,
+                  validator: (value) => validate(value),
                   decoration: InputDecoration(
                     labelText: "Menşei",
                     counterText: "",
@@ -90,38 +82,35 @@ class _SendRequestScreenState extends ConsumerState<SendRequestScreen> {
                 const _CustomSizedBox(),
                 TextFormField(
                   maxLength: 100,
-                  decoration: InputDecoration(
+                  onSaved: (value) {},
+                  validator: (value) => validate(value),
+                  style: Theme.of(context).textTheme.labelSmall,
+                  decoration: const InputDecoration(
                     labelText: "İnternet sitesi",
                     counterText: "",
-                    contentPadding: const EdgeInsets.all(10),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
                   ),
                 ),
                 const _CustomSizedBox(),
                 TextFormField(
                   maxLength: 100,
-                  decoration: InputDecoration(
+                  onSaved: (value) {},
+                  validator: (value) => validate(value),
+                  style: Theme.of(context).textTheme.labelSmall,
+                  decoration: const InputDecoration(
                     labelText: "Twitter sitesi",
                     counterText: "",
-                    contentPadding: const EdgeInsets.all(10),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
                   ),
                 ),
                 const _CustomSizedBox(),
                 TextFormField(
                   maxLines: 3,
                   maxLength: 1000,
-                  decoration: InputDecoration(
+                  onSaved: (value) {},
+                  validator: (value) => validate(value),
+                  style: Theme.of(context).textTheme.labelSmall,
+                  decoration: const InputDecoration(
                     labelText: "Açıklama",
-                    counterText: "",
                     floatingLabelBehavior: FloatingLabelBehavior.always,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
                   ),
                 ),
                 const _CustomSizedBox(),
@@ -141,7 +130,12 @@ class _SendRequestScreenState extends ConsumerState<SendRequestScreen> {
                       ),
                     ),
                     CustomButton(
-                      onTap: () {},
+                      onTap: () {
+                        if (takenImage == null) {
+                          giveFeedback(context, "Lütfen fotoğraf seçin.");
+                        }
+                        if (formKey.currentState!.validate()) {}
+                      },
                       height: 50,
                       width: 100,
                       child: Text(
@@ -151,7 +145,7 @@ class _SendRequestScreenState extends ConsumerState<SendRequestScreen> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 5),
+                const _CustomSizedBox(),
                 Center(
                   child: CustomButton(
                     onTap: () async {
@@ -194,7 +188,6 @@ class _SendRequestScreenState extends ConsumerState<SendRequestScreen> {
                         ),
                   ),
                 ),
-                const Spacer(),
               ],
             ),
           ),

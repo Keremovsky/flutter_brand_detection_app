@@ -30,3 +30,10 @@ void launchURL(String url) async {
 bool isThemeLightFunc(BuildContext context) {
   return Brightness.light == Theme.of(context).brightness;
 }
+
+String? validate(String? value) {
+  if (value == null || value.isEmpty) {
+    return "Lütfen bu alanı doldurunuz.";
+  }
+  return null;
+}
