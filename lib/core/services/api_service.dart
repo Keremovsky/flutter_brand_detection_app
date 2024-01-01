@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:http_parser/http_parser.dart';
@@ -8,19 +10,19 @@ class ApiService {
 
   ApiService() : _client = http.Client();
 
-  Future<Response> get(String view) async {
+  Future<Map<String, dynamic>> get(String view) async {
     final url = Uri.parse(_mainUrl + view);
     // send get request
     final response = await _client.get(url);
 
-    return response;
+    return jsonDecode(response.body) as Map<String, dynamic>;
   }
 
-  Future<void> post(
+  Future<Map<String, dynamic>> post(
     String view,
-    Map<String, String> headers,
+    Map<String, String> headers, {
     String? imagePath,
-  ) async {
+  }) async {
     final url = Uri.parse(_mainUrl + view);
     final request = http.MultipartRequest("POST", url);
 
@@ -38,14 +40,18 @@ class ApiService {
     request.fields.addAll(headers);
 
     // send request
-    await request.send();
+    final streamResponse = await request.send();
+    // transform response to response
+    final response = await http.Response.fromStream(streamResponse);
+
+    return jsonDecode(response.body) as Map<String, dynamic>;
   }
 
-  Future<Response> delete(String view) async {
+  Future<Map<String, dynamic>> delete(String view) async {
     final url = Uri.parse(_mainUrl + view);
     // send delete request
     final response = await _client.delete(url);
 
-    return response;
+    return jsonDecode(response.body) as Map<String, dynamic>;
   }
 }
