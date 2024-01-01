@@ -3,12 +3,12 @@ import 'dart:convert';
 
 class FeedbackModel {
   final int id;
-  final int resultId;
+  final int historyId;
   final String description;
 
   FeedbackModel({
     required this.id,
-    required this.resultId,
+    required this.historyId,
     required this.description,
   });
 
@@ -19,7 +19,7 @@ class FeedbackModel {
   }) {
     return FeedbackModel(
       id: id ?? this.id,
-      resultId: resultId ?? this.resultId,
+      historyId: resultId ?? this.historyId,
       description: description ?? this.description,
     );
   }
@@ -27,7 +27,7 @@ class FeedbackModel {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
-      'resultId': resultId,
+      'resultId': historyId,
       'description': description,
     };
   }
@@ -35,7 +35,7 @@ class FeedbackModel {
   factory FeedbackModel.fromMap(Map<String, dynamic> map) {
     return FeedbackModel(
       id: map['id'] as int,
-      resultId: map['resultId'] as int,
+      historyId: map['resultId'] as int,
       description: map['description'] as String,
     );
   }
@@ -47,17 +47,17 @@ class FeedbackModel {
 
   @override
   String toString() =>
-      'FeedbackModel(id: $id, resultId: $resultId, description: $description)';
+      'FeedbackModel(id: $id, resultId: $historyId, description: $description)';
 
   @override
   bool operator ==(covariant FeedbackModel other) {
     if (identical(this, other)) return true;
 
     return other.id == id &&
-        other.resultId == resultId &&
+        other.historyId == historyId &&
         other.description == description;
   }
 
   @override
-  int get hashCode => id.hashCode ^ resultId.hashCode ^ description.hashCode;
+  int get hashCode => id.hashCode ^ historyId.hashCode ^ description.hashCode;
 }
