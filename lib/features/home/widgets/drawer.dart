@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_brand_detection_app/core/constants/router_constants.dart';
+import 'package:flutter_brand_detection_app/features/auth/controller/auth_controller.dart';
 import 'package:flutter_brand_detection_app/features/home/widgets/drawer_button.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class CustomDrawer extends StatelessWidget {
+class CustomDrawer extends ConsumerWidget {
   final Function() refresh;
 
   const CustomDrawer({super.key, required this.refresh});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Column(
       children: [
         CustomDrawerButton(
@@ -30,7 +32,33 @@ class CustomDrawer extends StatelessWidget {
         CustomDrawerButton(
           icon: Icons.send_rounded,
           text: "İstekte Bulun",
-          onTap: () => context.pushNamed(RouterConstants.sendRequestScreenName),
+          onTap: () {
+            final userModel = ref.read(userModelProvider).value;
+            if (userModel == null) {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    title: Center(
+                      child: Text(
+                        "İstek",
+                        style: Theme.of(context)
+                            .textTheme
+                            .displayLarge!
+                            .copyWith(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    content: Text(
+                      "İstekte bulunabilmek için giriş yapmanız gerekmekmektedir.",
+                      style: Theme.of(context).textTheme.displayMedium,
+                    ),
+                  );
+                },
+              );
+            } else {
+              context.pushNamed(RouterConstants.sendRequestScreenName);
+            }
+          },
         ),
         const _CustomSizedBox(),
         CustomDrawerButton(
@@ -39,11 +67,27 @@ class CustomDrawer extends StatelessWidget {
           onTap: () {},
         ),
         const _CustomSizedBox(),
-        CustomDrawerButton(
-          icon: Icons.logout_outlined,
-          text: "Çıkış Yap",
-          onTap: () {},
-        ),
+        ref
+            .watch(userModelProvider)
+            .whenData((value) {
+              if (value == null) {
+                return CustomDrawerButton(
+                  onTap: () {
+                    context.pushNamed(RouterConstants.loginScreenName);
+                  },
+                  text: "Giriş Yap",
+                  icon: Icons.login,
+                );
+              } else {
+                return CustomDrawerButton(
+                  onTap: () {},
+                  text: "Çıkış Yap",
+                  icon: Icons.logout,
+                );
+              }
+            })
+            .asData!
+            .value,
       ],
     );
   }

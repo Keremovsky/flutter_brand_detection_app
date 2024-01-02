@@ -10,9 +10,9 @@ final authControllerProvider =
           authRepository: ref.read(authRepositoryProvider),
         ));
 
-final userModelProvider = StateProvider<UserModel?>((ref) {
-  final authController = ref.watch(authControllerProvider);
-  return authController;
+final userModelProvider = StreamProvider<UserModel?>((ref) async* {
+  final userModelStream = ref.watch(authControllerProvider);
+  yield userModelStream;
 });
 
 class AuthController extends StateNotifier<UserModel?> {

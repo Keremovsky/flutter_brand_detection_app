@@ -3,6 +3,7 @@ import 'package:flutter_brand_detection_app/core/constants/router_constants.dart
 import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart';
 import 'package:flutter_brand_detection_app/core/utils/custom_button.dart';
 import 'package:flutter_brand_detection_app/core/utils/image_demonstrator.dart';
+import 'package:flutter_brand_detection_app/features/auth/controller/auth_controller.dart';
 import 'package:flutter_brand_detection_app/features/search/widgets/result_list.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -76,18 +77,32 @@ class _ResultScreenState extends ConsumerState<ResultScreen> {
                 "Sonuç yanlış mı?",
                 style: Theme.of(context).textTheme.displaySmall,
               ),
-              CustomButton(
-                onTap: () {
-                  context.pushNamed(RouterConstants.sendFeedbackScreenName);
-                },
-                height: 50,
-                width: 200,
-                borderRadius: BorderRadius.circular(10),
-                child: Text(
-                  "Geri Bildirim Yolla",
-                  style: Theme.of(context).textTheme.displayLarge,
-                ),
-              ),
+              ref
+                  .watch(userModelProvider)
+                  .whenData((value) {
+                    if (value == null) {
+                      return Text(
+                        "Giriş yapın ve geri bildirim yollayın.",
+                        style: Theme.of(context).textTheme.displaySmall,
+                      );
+                    } else {
+                      return CustomButton(
+                        onTap: () {
+                          context.pushNamed(
+                              RouterConstants.sendFeedbackScreenName);
+                        },
+                        height: 50,
+                        width: 200,
+                        borderRadius: BorderRadius.circular(10),
+                        child: Text(
+                          "Geri Bildirim Yolla",
+                          style: Theme.of(context).textTheme.displayLarge,
+                        ),
+                      );
+                    }
+                  })
+                  .asData!
+                  .value,
             ],
           ),
         ),

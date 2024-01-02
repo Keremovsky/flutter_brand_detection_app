@@ -3,9 +3,13 @@ import 'package:flutter_brand_detection_app/core/constants/assets_constants.dart
 import 'package:flutter_brand_detection_app/core/constants/router_constants.dart';
 import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart';
 import 'package:flutter_brand_detection_app/core/utils/custom_button.dart';
+import 'package:flutter_brand_detection_app/core/utils/custom_circular_progress_indicator.dart';
+import 'package:flutter_brand_detection_app/core/utils/error_widget.dart';
 import 'package:flutter_brand_detection_app/core/utils_functions.dart';
+import 'package:flutter_brand_detection_app/features/auth/controller/auth_controller.dart';
 import 'package:flutter_brand_detection_app/features/history/widgets/delete_all_history_items_alert.dart';
 import 'package:flutter_brand_detection_app/core/utils/list_item.dart';
+import 'package:flutter_brand_detection_app/features/history/widgets/no_user_history_alert.dart';
 import 'package:flutter_brand_detection_app/models/history_model.dart';
 import 'package:flutter_brand_detection_app/themes/palette.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -92,53 +96,72 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
         ),
       ),
       body: SafeArea(
-        child: ListView.builder(
-          itemCount: 10,
-          itemBuilder: (context, index) {
-            return ModelListItem(
-              title: "Ferrari",
-              content: "27/12/2023",
-              image: const AssetImage("assets/ferrari.png"),
-              model: historyItemModel,
-              subChild: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  CustomButton(
-                    backgroundColor: Palette.red,
-                    onTap: () {},
-                    height: 35,
-                    width: 35,
-                    child: const Icon(
-                      Icons.remove,
-                      size: ThemeConstants.iconButtonIconSize,
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  historyItemModel.isSaved
-                      ? CustomButton(
-                          backgroundColor: Palette.yellow,
+        child: ref.watch(userModelProvider).when(
+          data: (data) {
+            if (data == null) {
+              return const Center(child: NoUserHistoryAlert());
+            } else {
+              return ListView.builder(
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return ModelListItem(
+                    title: "Ferrari",
+                    content: "27/12/2023",
+                    image: const AssetImage("assets/ferrari.png"),
+                    model: historyItemModel,
+                    subChild: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        CustomButton(
+                          backgroundColor: Palette.red,
                           onTap: () {},
                           height: 35,
                           width: 35,
                           child: const Icon(
-                            Icons.star,
-                            size: ThemeConstants.iconButtonIconSize,
-                          ),
-                        )
-                      : CustomButton(
-                          backgroundColor: Palette.green,
-                          onTap: () {},
-                          height: 35,
-                          width: 35,
-                          child: const Icon(
-                            Icons.add,
+                            Icons.remove,
                             size: ThemeConstants.iconButtonIconSize,
                           ),
                         ),
-                ],
-              ),
-              onTap: () => context.pushNamed(RouterConstants.resultScreenName),
+                        const SizedBox(width: 10),
+                        historyItemModel.isSaved
+                            ? CustomButton(
+                                backgroundColor: Palette.yellow,
+                                onTap: () {},
+                                height: 35,
+                                width: 35,
+                                child: const Icon(
+                                  Icons.star,
+                                  size: ThemeConstants.iconButtonIconSize,
+                                ),
+                              )
+                            : CustomButton(
+                                backgroundColor: Palette.green,
+                                onTap: () {},
+                                height: 35,
+                                width: 35,
+                                child: const Icon(
+                                  Icons.add,
+                                  size: ThemeConstants.iconButtonIconSize,
+                                ),
+                              ),
+                      ],
+                    ),
+                    onTap: () => context.pushNamed(
+                      RouterConstants.resultScreenName,
+                    ),
+                  );
+                },
+              );
+            }
+          },
+          loading: () {
+            return const CustomCircularProgressIndicator(
+              size: 50,
+              color: Palette.blue,
             );
+          },
+          error: (error, stackTrace) {
+            return const ErrorAlertWidget();
           },
         ),
       ),
