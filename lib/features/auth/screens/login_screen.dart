@@ -79,7 +79,7 @@ class _AuthScreenState extends ConsumerState<LoginScreen> {
                       // save values
                       formKey.currentState!.save();
                       // send request to login
-                      ref.read(authControllerProvider.notifier).login(
+                      ref.read(authControllerProvider.notifier).loginWithEmail(
                             context,
                             email!,
                             password!,
