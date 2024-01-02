@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_brand_detection_app/core/constants/router_constants.dart';
 import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart';
 import 'package:flutter_brand_detection_app/core/utils/custom_button.dart';
+import 'package:flutter_brand_detection_app/core/utils_functions.dart';
 import 'package:flutter_brand_detection_app/features/home/widgets/drawer_button.dart';
 import 'package:flutter_brand_detection_app/themes/palette.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,6 +16,11 @@ class ProfileScreen extends ConsumerStatefulWidget {
 }
 
 class _ProfileScreenState extends ConsumerState<ProfileScreen> {
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  String? name;
+  String? password;
+  String? validatePass;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,6 +45,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         child: Padding(
           padding: ThemeConstants.screenPadding,
           child: Form(
+            key: formKey,
             child: Column(
               children: [
                 Text(
@@ -49,6 +56,10 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                 TextFormField(
                   maxLength: 50,
                   initialValue: "Kerem",
+                  onSaved: (value) {
+                    name = value;
+                  },
+                  validator: (value) => validate(value),
                   style: Theme.of(context).textTheme.labelSmall,
                   decoration: const InputDecoration(
                     labelText: "İsim",
@@ -59,8 +70,20 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                 const _CustomSizedBox(),
                 TextFormField(
                   maxLength: 20,
-                  style: Theme.of(context).textTheme.labelSmall,
                   obscureText: true,
+                  onSaved: (value) {
+                    password = value;
+                  },
+                  validator: (value) {
+                    if (value != null) {
+                      if (passwordValidator(value)) {
+                        return "Lütfen şifreyi uygun formatta girin.";
+                      }
+                    }
+
+                    return null;
+                  },
+                  style: Theme.of(context).textTheme.labelSmall,
                   decoration: InputDecoration(
                     labelText: "Şifre",
                     counterText: "",
@@ -72,8 +95,45 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   ),
                 ),
                 const _CustomSizedBox(),
+                TextFormField(
+                  maxLength: 20,
+                  obscureText: true,
+                  onSaved: (value) {
+                    validatePass = value;
+                  },
+                  validator: (value) {
+                    if (value != null) {
+                      if (passwordValidator(value)) {
+                        return "Lütfen şifreyi uygun formatta girin.";
+                      }
+                    }
+
+                    return null;
+                  },
+                  style: Theme.of(context).textTheme.labelSmall,
+                  decoration: InputDecoration(
+                    labelText: "Tekrar şifre",
+                    counterText: "",
+                    hintText: "**********",
+                    hintStyle: Theme.of(context).textTheme.labelSmall!.copyWith(
+                          color: Palette.grey,
+                        ),
+                    floatingLabelBehavior: FloatingLabelBehavior.always,
+                  ),
+                ),
+                const _CustomSizedBox(),
                 CustomButton(
-                  onTap: () {},
+                  onTap: () {
+                    if (formKey.currentState!.validate()) {
+                      formKey.currentState!.save();
+                      // don't change password
+                      if (password == null && validatePass == null) {
+                        // update username
+                      } else {
+                        // update username and password
+                      }
+                    }
+                  },
                   height: 50,
                   width: 220,
                   child: Text(

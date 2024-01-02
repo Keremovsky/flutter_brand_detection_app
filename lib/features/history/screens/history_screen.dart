@@ -108,7 +108,6 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
                     onTap: () {},
                     height: 35,
                     width: 35,
-                    borderRadius: BorderRadius.circular(100),
                     child: const Icon(
                       Icons.remove,
                       size: ThemeConstants.iconButtonIconSize,
@@ -121,7 +120,6 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
                           onTap: () {},
                           height: 35,
                           width: 35,
-                          borderRadius: BorderRadius.circular(100),
                           child: const Icon(
                             Icons.star,
                             size: ThemeConstants.iconButtonIconSize,
@@ -132,7 +130,6 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
                           onTap: () {},
                           height: 35,
                           width: 35,
-                          borderRadius: BorderRadius.circular(100),
                           child: const Icon(
                             Icons.add,
                             size: ThemeConstants.iconButtonIconSize,

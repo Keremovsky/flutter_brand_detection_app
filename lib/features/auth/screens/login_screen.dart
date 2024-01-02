@@ -5,6 +5,8 @@ import 'package:flutter_brand_detection_app/core/constants/router_constants.dart
 import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart';
 import 'package:flutter_brand_detection_app/core/utils/custom_button.dart';
 import 'package:flutter_brand_detection_app/core/utils/image_demonstrator.dart';
+import 'package:flutter_brand_detection_app/core/utils_functions.dart';
+import 'package:flutter_brand_detection_app/features/auth/controller/auth_controller.dart';
 import 'package:flutter_brand_detection_app/themes/palette.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -17,9 +19,14 @@ class LoginScreen extends ConsumerStatefulWidget {
 }
 
 class _AuthScreenState extends ConsumerState<LoginScreen> {
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  String? email;
+  String? password;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(
           "Giriş Yap",
@@ -40,9 +47,14 @@ class _AuthScreenState extends ConsumerState<LoginScreen> {
         child: Padding(
           padding: ThemeConstants.screenPadding,
           child: Form(
+            key: formKey,
             child: Column(
               children: [
                 TextFormField(
+                  onSaved: (value) {
+                    email = value;
+                  },
+                  validator: (value) => validate(value),
                   style: Theme.of(context).textTheme.labelSmall,
                   decoration: const InputDecoration(
                     labelText: "E-mail",
@@ -51,6 +63,10 @@ class _AuthScreenState extends ConsumerState<LoginScreen> {
                 const _CustomSizedBox(),
                 TextFormField(
                   obscureText: true,
+                  onSaved: (value) {
+                    password = value;
+                  },
+                  validator: (value) => validate(value),
                   style: Theme.of(context).textTheme.labelSmall,
                   decoration: const InputDecoration(
                     labelText: "Şifre",
@@ -58,7 +74,18 @@ class _AuthScreenState extends ConsumerState<LoginScreen> {
                 ),
                 const SizedBox(height: 40),
                 CustomButton(
-                  onTap: () {},
+                  onTap: () {
+                    if (formKey.currentState!.validate()) {
+                      // save values
+                      formKey.currentState!.save();
+                      // send request to login
+                      ref.read(authControllerProvider.notifier).login(
+                            context,
+                            email!,
+                            password!,
+                          );
+                    }
+                  },
                   height: 50,
                   width: 120,
                   child: Text(

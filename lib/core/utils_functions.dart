@@ -35,5 +35,20 @@ String? validate(String? value) {
   if (value == null || value.isEmpty) {
     return "Lütfen bu alanı doldurunuz.";
   }
+
   return null;
+}
+
+bool passwordValidator(String password) {
+  // at least one lowercase char, one uppercase char, one special char and one digit
+  RegExp regex = RegExp(
+      r'^(?=.*\d)(?=.*[#&+.])(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,12}$');
+
+  return !regex.hasMatch(password);
+}
+
+bool emailValidator(String email) {
+  RegExp regex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+
+  return !regex.hasMatch(email);
 }

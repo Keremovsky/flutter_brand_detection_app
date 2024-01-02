@@ -6,6 +6,7 @@ import 'package:flutter_brand_detection_app/core/utils/custom_button.dart';
 import 'package:flutter_brand_detection_app/core/utils/image_demonstrator.dart';
 import 'package:flutter_brand_detection_app/core/utils_functions.dart';
 import 'package:flutter_brand_detection_app/features/image_picker/controller/image_picker_controller.dart';
+import 'package:flutter_brand_detection_app/models/request_model.dart';
 import 'package:flutter_brand_detection_app/themes/palette.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -19,9 +20,18 @@ class SendRequestScreen extends ConsumerStatefulWidget {
 }
 
 class _SendRequestScreenState extends ConsumerState<SendRequestScreen> {
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  late final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   ImageDemonstrator? takenImage;
   late bool isThemeLight;
+  Map<String, dynamic> inputValues = {
+    'id': 0,
+    'image': null,
+    'companyName': null,
+    'description': null,
+    'country': null,
+    'website': null,
+    'twitter': null,
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -56,9 +66,11 @@ class _SendRequestScreenState extends ConsumerState<SendRequestScreen> {
                 const SizedBox(height: 5),
                 TextFormField(
                   maxLength: 50,
-                  onSaved: (value) {},
-                  style: Theme.of(context).textTheme.labelSmall,
+                  onSaved: (value) {
+                    inputValues["companyName"] = value;
+                  },
                   validator: (value) => validate(value),
+                  style: Theme.of(context).textTheme.labelSmall,
                   decoration: const InputDecoration(
                     labelText: "Şirket ismi",
                     counterText: "",
@@ -67,9 +79,11 @@ class _SendRequestScreenState extends ConsumerState<SendRequestScreen> {
                 const _CustomSizedBox(),
                 TextFormField(
                   maxLength: 50,
-                  onSaved: (value) {},
-                  style: Theme.of(context).textTheme.labelSmall,
+                  onSaved: (value) {
+                    inputValues["country"] = value;
+                  },
                   validator: (value) => validate(value),
+                  style: Theme.of(context).textTheme.labelSmall,
                   decoration: InputDecoration(
                     labelText: "Menşei",
                     counterText: "",
@@ -82,7 +96,9 @@ class _SendRequestScreenState extends ConsumerState<SendRequestScreen> {
                 const _CustomSizedBox(),
                 TextFormField(
                   maxLength: 100,
-                  onSaved: (value) {},
+                  onSaved: (value) {
+                    inputValues["website"] = value;
+                  },
                   validator: (value) => validate(value),
                   style: Theme.of(context).textTheme.labelSmall,
                   decoration: const InputDecoration(
@@ -93,7 +109,9 @@ class _SendRequestScreenState extends ConsumerState<SendRequestScreen> {
                 const _CustomSizedBox(),
                 TextFormField(
                   maxLength: 100,
-                  onSaved: (value) {},
+                  onSaved: (value) {
+                    inputValues["twitter"] = value;
+                  },
                   validator: (value) => validate(value),
                   style: Theme.of(context).textTheme.labelSmall,
                   decoration: const InputDecoration(
@@ -105,7 +123,9 @@ class _SendRequestScreenState extends ConsumerState<SendRequestScreen> {
                 TextFormField(
                   maxLines: 3,
                   maxLength: 1000,
-                  onSaved: (value) {},
+                  onSaved: (value) {
+                    inputValues["description"] = value;
+                  },
                   validator: (value) => validate(value),
                   style: Theme.of(context).textTheme.labelSmall,
                   decoration: const InputDecoration(
@@ -133,8 +153,15 @@ class _SendRequestScreenState extends ConsumerState<SendRequestScreen> {
                       onTap: () {
                         if (takenImage == null) {
                           giveFeedback(context, "Lütfen fotoğraf seçin.");
+                          return;
                         }
-                        if (formKey.currentState!.validate()) {}
+                        if (formKey.currentState!.validate()) {
+                          // save values
+                          formKey.currentState!.save();
+                          inputValues.addAll({"image": takenImage});
+                          final request = RequestModel.fromMap(inputValues);
+                          // send request to send request
+                        }
                       },
                       height: 50,
                       width: 100,
