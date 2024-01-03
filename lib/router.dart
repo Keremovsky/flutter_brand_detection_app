@@ -133,8 +133,9 @@ class AppRouter {
         name: RouterConstants.resetPasswordScreenName,
         path: RouterConstants.resetPasswordScreenPath,
         pageBuilder: (context, state) {
-          return const MaterialPage(
-            child: ResetPasswordScreen(),
+          final userId = state.extra as String;
+          return MaterialPage(
+            child: ResetPasswordScreen(userId: userId),
           );
         },
       ),

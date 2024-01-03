@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart';
 import 'package:flutter_brand_detection_app/core/utils/custom_button.dart';
 import 'package:flutter_brand_detection_app/core/utils_functions.dart';
+import 'package:flutter_brand_detection_app/features/auth/controller/auth_controller.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 class ResetPasswordScreen extends ConsumerStatefulWidget {
-  const ResetPasswordScreen({super.key});
+  final String userId;
+
+  const ResetPasswordScreen({super.key, required this.userId});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -100,12 +103,20 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
                 CustomButton(
                   onTap: () {
                     if (formKey.currentState!.validate()) {
+                      formKey.currentState!.save();
                       if (password != validatePass) {
                         giveFeedback(context, "Şifreler eşleşmiyor.");
                         return;
                       }
+                      ref
+                          .read(authControllerProvider.notifier)
+                          .resetPasswordConfirm(
+                            context,
+                            validateCode!,
+                            widget.userId,
+                            password!,
+                          );
                     }
-                    // reset password
                   },
                   height: 50,
                   width: 140,

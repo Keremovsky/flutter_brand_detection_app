@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_brand_detection_app/core/constants/router_constants.dart';
 import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart';
 import 'package:flutter_brand_detection_app/core/utils/custom_button.dart';
 import 'package:flutter_brand_detection_app/core/utils_functions.dart';
+import 'package:flutter_brand_detection_app/features/auth/controller/auth_controller.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -63,7 +63,7 @@ class _ForgetPasswordScreenState extends ConsumerState<ForgetPasswordScreen> {
               ),
               const SizedBox(height: 30),
               CustomButton(
-                onTap: () {
+                onTap: () async {
                   if (textController.text.isNotEmpty) {
                     // control if it is a valid email
                     if (emailValidator(textController.text)) {
@@ -71,7 +71,12 @@ class _ForgetPasswordScreenState extends ConsumerState<ForgetPasswordScreen> {
                       return;
                     }
                     // send reset password request
-                    context.pushNamed(RouterConstants.resetPasswordScreenName);
+                    await ref
+                        .read(authControllerProvider.notifier)
+                        .resetPasswordRequest(
+                          context,
+                          textController.text,
+                        );
                   } else {
                     giveFeedback(context, "Lütfen email alanını doldurun.");
                   }

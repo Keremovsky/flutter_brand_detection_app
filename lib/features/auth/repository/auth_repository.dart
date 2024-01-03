@@ -22,13 +22,17 @@ class AuthRepository {
       };
       final response = await _apiService.post("login/", headers);
 
+      if (response.containsKey("response")) {
+        return Left(response["response"]);
+      }
+
       return Right(response);
     } catch (e) {
-      return const Left("error");
+      return const Left("server");
     }
   }
 
-  Future<Either<String, Map<String, dynamic>>> registerWithEmail(
+  Future<String> registerWithEmail(
     String email,
     String password,
     String name,
@@ -42,9 +46,47 @@ class AuthRepository {
       };
       final response = await _apiService.post("register/", headers);
 
-      return Right(response);
+      return response["response"];
     } catch (e) {
-      return const Left("error");
+      return "server";
+    }
+  }
+
+  Future<String> resetPasswordRequest(String email) async {
+    try {
+      final Map<String, String> headers = {
+        "email": email,
+      };
+
+      final response = await _apiService.post(
+        "reset-password-request/",
+        headers,
+      );
+
+      return response["response"];
+    } catch (e) {
+      return "server";
+    }
+  }
+
+  Future<String> resetPasswordConfirm(
+    String token,
+    String uidb64,
+    String password,
+  ) async {
+    try {
+      final Map<String, String> headers = {
+        "password": password,
+      };
+
+      final response = await _apiService.post(
+        "reset-password-confirm/$uidb64/$token/",
+        headers,
+      );
+
+      return response["response"];
+    } catch (e) {
+      return "server";
     }
   }
 }
