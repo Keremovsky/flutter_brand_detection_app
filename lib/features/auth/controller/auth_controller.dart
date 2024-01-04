@@ -82,13 +82,52 @@ class AuthController extends StateNotifier<UserModel?> {
           break;
         default:
           giveFeedback(context, "Hesabınız başarılıyla oluşturuldu!");
-          await Future.delayed(const Duration(milliseconds: 2400));
-          if (mounted) {
+          Future.delayed(const Duration(milliseconds: 2300)).then((value) {
             context.pop();
-          }
+          });
           break;
       }
     }
+  }
+
+  Future<void> signInWithGoogle(BuildContext context) async {
+    final control = await _authRepository.signInWithGoogle();
+
+    control.fold(
+      (left) {
+        switch (left) {
+          case "no_selection":
+            giveFeedback(context, "Herhangi bir google hesabı seçmediniz.");
+            break;
+          case "google_sign_in_error":
+            giveFeedback(
+              context,
+              "Google ile giriş yapılırken bir hata meydana geldi!",
+            );
+            break;
+          case "token":
+            giveFeedback(context, "Google hesabı doğrulanamadı!");
+            break;
+          case "already_email":
+            giveFeedback(
+              context,
+              "Lütfen emailiniz ile giriş yapın!",
+            );
+            break;
+          case "server":
+            giveFeedback(context, "Sunucu ile bağlantı kurulamadı!");
+            break;
+          default:
+            giveFeedback(context, "Bilinmeyen bir hata oluştu!");
+            break;
+        }
+      },
+      (right) {
+        final userModel = UserModel.fromMap(right);
+        state = userModel;
+        context.pop();
+      },
+    );
   }
 
   Future<void> resetPasswordRequest(BuildContext context, String email) async {
@@ -110,7 +149,7 @@ class AuthController extends StateNotifier<UserModel?> {
           break;
         default:
           giveFeedback(context, "Şifre yenileme kodu e-mailinize gönderildi!");
-          Future.delayed(const Duration(milliseconds: 2400)).then(
+          Future.delayed(const Duration(milliseconds: 2300)).then(
             (value) => context.pushReplacementNamed(
               RouterConstants.resetPasswordScreenName,
               extra: control,
@@ -156,7 +195,7 @@ class AuthController extends StateNotifier<UserModel?> {
           break;
         default:
           giveFeedback(context, "Şifreniz başarıyla yenilendi!");
-          Future.delayed(const Duration(milliseconds: 2400)).then(
+          Future.delayed(const Duration(milliseconds: 2300)).then(
             (value) => context.pop(),
           );
           break;

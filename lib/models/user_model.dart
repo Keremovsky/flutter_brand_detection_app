@@ -21,14 +21,14 @@ class UserModel {
     String? email,
     String? token,
     String? name,
-    String? registerationType,
+    String? registrationType,
   }) {
     return UserModel(
       id: id ?? this.id,
       email: email ?? this.email,
       token: token ?? this.token,
       name: name ?? this.name,
-      registrationType: registerationType ?? this.registrationType,
+      registrationType: registrationType ?? this.registrationType,
     );
   }
 
@@ -38,7 +38,7 @@ class UserModel {
       'email': email,
       'token': token,
       'name': name,
-      'registerationType': registrationType,
+      'registrationType': registrationType,
     };
   }
 
@@ -48,7 +48,7 @@ class UserModel {
       email: map['email'] as String,
       token: map['token'] as String,
       name: map['name'] as String,
-      registrationType: map['registerationType'] as String,
+      registrationType: map['registrationType'] as String,
     );
   }
 
@@ -59,7 +59,7 @@ class UserModel {
 
   @override
   String toString() {
-    return 'UserModel(id: $id, email: $email, token: $token, name: $name, registerationType: $registrationType)';
+    return 'UserModel(id: $id, email: $email, token: $token, name: $name, registrationType: $registrationType)';
   }
 
   @override

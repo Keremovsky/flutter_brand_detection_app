@@ -67,27 +67,7 @@ class CustomDrawer extends ConsumerWidget {
           onTap: () {},
         ),
         const _CustomSizedBox(),
-        ref
-            .watch(userModelProvider)
-            .whenData((value) {
-              if (value == null) {
-                return CustomDrawerButton(
-                  onTap: () {
-                    context.pushNamed(RouterConstants.loginScreenName);
-                  },
-                  text: "Giriş Yap",
-                  icon: Icons.login,
-                );
-              } else {
-                return CustomDrawerButton(
-                  onTap: () {},
-                  text: "Çıkış Yap",
-                  icon: Icons.logout,
-                );
-              }
-            })
-            .asData!
-            .value,
+        // sign in and sign out button
       ],
     );
   }

@@ -108,7 +108,11 @@ class _AuthScreenState extends ConsumerState<LoginScreen> {
                 ),
                 const Spacer(flex: 3),
                 CustomButton(
-                  onTap: () {},
+                  onTap: () async {
+                    await ref
+                        .read(authControllerProvider.notifier)
+                        .signInWithGoogle(context);
+                  },
                   height: 60,
                   width: 60,
                   child: const ImageDemonstrator(
