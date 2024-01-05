@@ -17,7 +17,15 @@ class CustomDrawer extends ConsumerWidget {
         CustomDrawerButton(
           icon: Icons.account_circle_rounded,
           text: "Hesabım",
-          onTap: () => context.pushNamed(RouterConstants.loginScreenName),
+          onTap: () {
+            final user = ref.read(authControllerProvider);
+
+            if (user != null) {
+              context.pushNamed(RouterConstants.profileScreenName);
+            } else {
+              context.pushNamed(RouterConstants.loginScreenName);
+            }
+          },
         ),
         const _CustomSizedBox(),
         CustomDrawerButton(

@@ -3,7 +3,9 @@ import 'package:flutter_brand_detection_app/core/constants/router_constants.dart
 import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart';
 import 'package:flutter_brand_detection_app/core/utils/custom_button.dart';
 import 'package:flutter_brand_detection_app/core/utils_functions.dart';
+import 'package:flutter_brand_detection_app/features/auth/controller/auth_controller.dart';
 import 'package:flutter_brand_detection_app/features/home/widgets/drawer_button.dart';
+import 'package:flutter_brand_detection_app/models/user_model.dart';
 import 'package:flutter_brand_detection_app/themes/palette.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -20,6 +22,13 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   String? name;
   String? password;
   String? validatePass;
+  late final UserModel user;
+
+  @override
+  void initState() {
+    user = ref.read(authControllerProvider)!;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -147,7 +156,10 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   text: "Geçmiş İsteklerim",
                   textStyle: Theme.of(context).textTheme.displayLarge,
                   onTap: () {
-                    context.pushNamed(RouterConstants.requestListScreenName);
+                    context.pushNamed(
+                      RouterConstants.requestListScreenName,
+                      extra: user.id,
+                    );
                   },
                 ),
                 const _CustomSizedBox(),

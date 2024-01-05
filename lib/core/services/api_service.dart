@@ -1,13 +1,14 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
+import 'package:flutter_brand_detection_app/core/constants/secret_constants.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:http_parser/http_parser.dart';
 
 class ApiService {
   final Client _client;
-  final String _mainUrl = "http://10.0.2.2:8000/";
+  final String _mainUrl = SecretConstants.mainUrl;
 
   ApiService() : _client = http.Client();
 
@@ -57,5 +58,13 @@ class ApiService {
     final response = await _client.delete(url);
 
     return jsonDecode(response.body) as Map<String, dynamic>;
+  }
+
+  Future<Uint8List> getImage(String path) async {
+    final url = Uri.parse(_mainUrl + path);
+
+    final response = await _client.get(url);
+
+    return response.bodyBytes;
   }
 }

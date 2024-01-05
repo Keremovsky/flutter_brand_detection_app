@@ -1,10 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
-import 'dart:io';
 
 class RequestModel {
   final int id;
-  final File image;
+  final String image;
   final String companyName;
   final String description;
   final String country;
@@ -23,7 +22,7 @@ class RequestModel {
 
   RequestModel copyWith({
     int? id,
-    File? image,
+    String? image,
     String? companyName,
     String? description,
     String? country,
@@ -56,7 +55,7 @@ class RequestModel {
   factory RequestModel.fromMap(Map<String, dynamic> map) {
     return RequestModel(
       id: map['id'] as int,
-      image: map['image'] as File,
+      image: map['image'] as String,
       companyName: map['companyName'] as String,
       description: map['description'] as String,
       country: map['country'] as String,

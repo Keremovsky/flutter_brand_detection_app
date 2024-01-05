@@ -44,3 +44,4 @@ app.*.map.json
 
 # added files
 /android/app/src/main/res/values/strings.xml
+lib/core/constants/secret_constants.dart

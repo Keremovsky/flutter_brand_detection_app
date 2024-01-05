@@ -5,11 +5,14 @@ import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart'
 import 'package:flutter_brand_detection_app/core/utils/custom_button.dart';
 import 'package:flutter_brand_detection_app/core/utils/image_demonstrator.dart';
 import 'package:flutter_brand_detection_app/core/utils_functions.dart';
+import 'package:flutter_brand_detection_app/features/auth/controller/auth_controller.dart';
+import 'package:flutter_brand_detection_app/features/feedback/controller/feedback_controller.dart';
 import 'package:flutter_brand_detection_app/features/image_picker/controller/image_picker_controller.dart';
 import 'package:flutter_brand_detection_app/models/request_model.dart';
 import 'package:flutter_brand_detection_app/themes/palette.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:image_picker/image_picker.dart';
 
 class SendRequestScreen extends ConsumerStatefulWidget {
   const SendRequestScreen({super.key});
@@ -25,13 +28,13 @@ class _SendRequestScreenState extends ConsumerState<SendRequestScreen> {
   late bool isThemeLight;
   Map<String, dynamic> inputValues = {
     'id': 0,
-    'image': null,
     'companyName': null,
     'description': null,
     'country': null,
     'website': null,
     'twitter': null,
   };
+  XFile? image;
 
   @override
   Widget build(BuildContext context) {
@@ -150,17 +153,27 @@ class _SendRequestScreenState extends ConsumerState<SendRequestScreen> {
                       ),
                     ),
                     CustomButton(
-                      onTap: () {
+                      onTap: () async {
                         if (takenImage == null) {
                           giveFeedback(context, "Lütfen fotoğraf seçin.");
                           return;
                         }
-                        if (formKey.currentState!.validate()) {
+                        if (formKey.currentState!.validate() && image != null) {
                           // save values
                           formKey.currentState!.save();
-                          inputValues.addAll({"image": takenImage});
-                          final request = RequestModel.fromMap(inputValues);
+                          final requestModel =
+                              RequestModel.fromMap(inputValues);
+
+                          final userModel = ref.read(authControllerProvider);
                           // send request to send request
+                          await ref
+                              .read(feedbackControllerProvider.notifier)
+                              .sendRequest(
+                                context,
+                                requestModel,
+                                image!,
+                                userModel!.id,
+                              );
                         }
                       },
                       height: 50,
@@ -187,6 +200,7 @@ class _SendRequestScreenState extends ConsumerState<SendRequestScreen> {
                           width: 150,
                           borderRadius: BorderRadius.circular(10),
                         );
+                        image = result;
                         setState(() {});
                       }
                     },

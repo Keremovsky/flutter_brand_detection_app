@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart';
+import 'package:flutter_brand_detection_app/core/utils/custom_circular_progress_indicator.dart';
 import 'package:flutter_brand_detection_app/core/utils/list_item.dart';
+import 'package:flutter_brand_detection_app/features/feedback/controller/feedback_controller.dart';
+import 'package:flutter_brand_detection_app/models/request_model.dart';
+import 'package:flutter_brand_detection_app/themes/palette.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/constants/secret_constants.dart';
+
 class RequestListScreen extends ConsumerStatefulWidget {
-  const RequestListScreen({super.key});
+  final int userId;
+
+  const RequestListScreen({super.key, required this.userId});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -13,6 +21,18 @@ class RequestListScreen extends ConsumerStatefulWidget {
 }
 
 class _RequestListScreenState extends ConsumerState<RequestListScreen> {
+  late Future<List<RequestModel>?> requestsFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    requestsFuture =
+        ref.read(feedbackControllerProvider.notifier).getAllRequest(
+              context,
+              widget.userId,
+            );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,15 +53,37 @@ class _RequestListScreenState extends ConsumerState<RequestListScreen> {
         ),
       ),
       body: SafeArea(
-        child: ListView.builder(
-          itemCount: 5,
-          itemBuilder: (context, index) {
-            return ModelListItem(
-              title: "Ferrari",
-              onTap: () {},
-              image: const AssetImage("assets/ferrari.png"),
-              model: null,
-            );
+        child: FutureBuilder(
+          future: ref
+              .read(feedbackControllerProvider.notifier)
+              .getAllRequest(context, 5),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const CustomCircularProgressIndicator(
+                size: 50,
+                color: Palette.blue,
+              );
+            }
+
+            final data = snapshot.data;
+
+            if (data == null) {
+              return const SizedBox();
+            } else {
+              return ListView.builder(
+                itemCount: data.length,
+                itemBuilder: (context, index) {
+                  return ModelListItem(
+                    title: data[index].companyName,
+                    onTap: () {},
+                    image: NetworkImage(
+                      "${SecretConstants.mainUrl}${data[index].image}",
+                    ),
+                    model: data[index],
+                  );
+                },
+              );
+            }
           },
         ),
       ),

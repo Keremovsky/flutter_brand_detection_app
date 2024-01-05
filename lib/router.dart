@@ -69,8 +69,9 @@ class AppRouter {
         name: RouterConstants.requestListScreenName,
         path: RouterConstants.requestListScreenPath,
         pageBuilder: (context, state) {
-          return const MaterialPage(
-            child: RequestListScreen(),
+          final userId = state.extra as int;
+          return MaterialPage(
+            child: RequestListScreen(userId: userId),
           );
         },
       ),
