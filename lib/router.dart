@@ -1,4 +1,3 @@
-import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_brand_detection_app/core/constants/router_constants.dart';
 import 'package:flutter_brand_detection_app/features/auth/screens/forget_password_screen.dart';
@@ -143,9 +142,9 @@ class AppRouter {
         name: RouterConstants.imageCropperScreenName,
         path: RouterConstants.imageCropperScreenPath,
         pageBuilder: (context, state) {
-          final unitList = state.extra as Uint8List;
+          final imagePath = state.extra as String;
           return MaterialPage(
-            child: ImageCropperScreen(unitList: unitList),
+            child: ImageCropperScreen(path: imagePath),
           );
         },
       ),

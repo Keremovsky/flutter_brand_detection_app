@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
@@ -19,25 +20,28 @@ class ApiService {
   }
 
   Future<Map<String, dynamic>> post(
-    String view,
-    Map<String, String> headers, {
-    String? imagePath,
+    String view, {
+    Map<String, String>? headers,
+    Uint8List? imageBytes,
   }) async {
     final url = Uri.parse(_mainUrl + view);
     final request = http.MultipartRequest("POST", url);
 
-    if (imagePath != null) {
+    if (imageBytes != null) {
       // get image as MultipartFile
-      final multiPartFile = await http.MultipartFile.fromPath(
+      final multiPartFile = http.MultipartFile.fromBytes(
         "image",
-        imagePath,
+        imageBytes,
+        filename: "image.png",
         contentType: MediaType("image", "png"),
       );
       // add image to request
       request.files.add(multiPartFile);
     }
-    // add all other headers
-    request.fields.addAll(headers);
+    if (headers != null) {
+      // add all other headers
+      request.fields.addAll(headers);
+    }
 
     // send request
     final streamResponse = await request.send();

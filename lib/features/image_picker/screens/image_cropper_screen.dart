@@ -1,19 +1,21 @@
-import 'dart:typed_data';
-
+import 'dart:io';
+import 'dart:ui';
 import 'package:crop_image/crop_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_brand_detection_app/core/constants/router_constants.dart';
 import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart';
 import 'package:flutter_brand_detection_app/core/utils/custom_button.dart';
 import 'package:flutter_brand_detection_app/core/utils_functions.dart';
+import 'package:flutter_brand_detection_app/features/auth/controller/auth_controller.dart';
 import 'package:flutter_brand_detection_app/features/image_picker/widgets/raito_selector_dialog.dart';
+import 'package:flutter_brand_detection_app/features/search/controller/search_controller.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 class ImageCropperScreen extends ConsumerStatefulWidget {
-  final Uint8List unitList;
+  final String path;
 
-  const ImageCropperScreen({super.key, required this.unitList});
+  const ImageCropperScreen({super.key, required this.path});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -65,8 +67,8 @@ class _ImageCropperScreenState extends ConsumerState<ImageCropperScreen> {
                 controller: cropController,
                 gridCornerSize: 35,
                 alwaysMove: true,
-                image: Image.memory(
-                  widget.unitList,
+                image: Image.file(
+                  File(widget.path),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -147,10 +149,25 @@ class _ImageCropperScreenState extends ConsumerState<ImageCropperScreen> {
                       ),
                     ),
                     CustomButton(
-                      onTap: () {
-                        context.pushReplacementNamed(
-                          RouterConstants.resultScreenName,
+                      onTap: () async {
+                        // get image data as bytes
+                        final image = await cropController.croppedBitmap();
+                        final data = await image.toByteData(
+                          format: ImageByteFormat.png,
                         );
+                        final bytes = data!.buffer.asUint8List();
+
+                        final userModel = ref.read(authControllerProvider);
+                        final id = userModel != null ? userModel.id : -1;
+
+                        await ref
+                            .read(searchControllerProvider.notifier)
+                            .search(bytes, id);
+                        if (mounted) {
+                          context.pushReplacementNamed(
+                            RouterConstants.resultScreenName,
+                          );
+                        }
                       },
                       height: 60,
                       width: 60,

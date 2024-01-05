@@ -27,7 +27,7 @@ class AuthRepository {
         "password": password,
         "registrationType": "email",
       };
-      final response = await _apiService.post("login/", headers);
+      final response = await _apiService.post("login/", headers: headers);
 
       if (response.containsKey("response")) {
         return Left(response["response"]);
@@ -61,7 +61,7 @@ class AuthRepository {
         "password": googleAuth.idToken!,
         "registrationType": "google",
       };
-      final response = await _apiService.post("login/", headers);
+      final response = await _apiService.post("login/", headers: headers);
 
       await _googleSignIn.disconnect();
 
@@ -87,7 +87,7 @@ class AuthRepository {
         "name": name,
         "registrationType": "email",
       };
-      final response = await _apiService.post("register/", headers);
+      final response = await _apiService.post("register/", headers: headers);
 
       return response["response"];
     } catch (e) {
@@ -103,7 +103,7 @@ class AuthRepository {
 
       final response = await _apiService.post(
         "reset-password-request/",
-        headers,
+        headers: headers,
       );
 
       return response["response"];
@@ -124,7 +124,7 @@ class AuthRepository {
 
       final response = await _apiService.post(
         "reset-password-confirm/$uidb64/$token/",
-        headers,
+        headers: headers,
       );
 
       return response["response"];

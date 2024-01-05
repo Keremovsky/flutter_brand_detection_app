@@ -67,11 +67,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           .takePicture(context);
 
                       if (result != null) {
-                        final Uint8List unitList = await result.readAsBytes();
                         if (mounted) {
                           context.pushNamed(
                             RouterConstants.imageCropperScreenName,
-                            extra: unitList,
+                            extra: result.path,
                           );
                         }
                       }
@@ -105,11 +104,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           .getImageGallery(context);
 
                       if (result != null) {
-                        final Uint8List unitList = await result.readAsBytes();
                         if (mounted) {
                           context.pushNamed(
                             RouterConstants.imageCropperScreenName,
-                            extra: unitList,
+                            extra: result.path,
                           );
                         }
                       }
