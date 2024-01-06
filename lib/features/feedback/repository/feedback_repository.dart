@@ -50,4 +50,34 @@ class FeedbackRepository {
       return const Left("server");
     }
   }
+
+  Future<String> sendFeedback(
+    String description,
+    int id,
+  ) async {
+    try {
+      final response = await _apiService.post(
+        "create-feedback/$id/",
+        headers: {"description": description},
+      );
+
+      return response["response"];
+    } catch (e) {
+      return "server";
+    }
+  }
+
+  Future<Either<String, Map<String, dynamic>>> getAllFeedback(int id) async {
+    try {
+      final response = await _apiService.get("get-all-feedback/$id/");
+
+      if (response.containsKey("response")) {
+        return Left(response["response"]);
+      }
+
+      return Right(response);
+    } catch (e) {
+      return const Left("server");
+    }
+  }
 }

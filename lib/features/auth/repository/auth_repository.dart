@@ -61,7 +61,10 @@ class AuthRepository {
         "password": googleAuth.idToken!,
         "registrationType": "google",
       };
-      final response = await _apiService.post("login/", headers: headers);
+      final response = await _apiService.post(
+        "sign-in-with-google/",
+        headers: headers,
+      );
 
       await _googleSignIn.disconnect();
 

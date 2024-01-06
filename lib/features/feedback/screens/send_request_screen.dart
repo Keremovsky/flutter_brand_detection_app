@@ -164,7 +164,7 @@ class _SendRequestScreenState extends ConsumerState<SendRequestScreen> {
                           final requestModel =
                               RequestModel.fromMap(inputValues);
 
-                          final userModel = ref.read(authControllerProvider);
+                          final user = ref.read(authControllerProvider)!;
                           // send request to send request
                           await ref
                               .read(feedbackControllerProvider.notifier)
@@ -172,7 +172,7 @@ class _SendRequestScreenState extends ConsumerState<SendRequestScreen> {
                                 context,
                                 requestModel,
                                 image!,
-                                userModel!.id,
+                                user.id,
                               );
                         }
                       },

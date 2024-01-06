@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_brand_detection_app/core/constants/router_constants.dart';
+import 'package:flutter_brand_detection_app/core/constants/secret_constants.dart';
 import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart';
+import 'package:flutter_brand_detection_app/core/utils/custom_circular_progress_indicator.dart';
 import 'package:flutter_brand_detection_app/core/utils/list_item.dart';
+import 'package:flutter_brand_detection_app/features/feedback/controller/feedback_controller.dart';
+import 'package:flutter_brand_detection_app/themes/palette.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -34,17 +37,37 @@ class _FeedbackListScreenState extends ConsumerState<FeedbackListScreen> {
         ),
       ),
       body: SafeArea(
-        child: ListView.builder(
-          itemCount: 10,
-          itemBuilder: (context, index) {
-            return ModelListItem(
-              title: "Ferrari",
-              onTap: () {
-                context.pushNamed(RouterConstants.resultScreenName);
-              },
-              image: const AssetImage("assets/ferrari.png"),
-              model: null,
-            );
+        child: FutureBuilder(
+          future: ref
+              .read(feedbackControllerProvider.notifier)
+              .getAllFeedback(context, 5),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const CustomCircularProgressIndicator(
+                size: 50,
+                color: Palette.blue,
+              );
+            }
+
+            final data = snapshot.data;
+
+            if (data == null) {
+              return const SizedBox();
+            } else {
+              return ListView.builder(
+                itemCount: data.length,
+                itemBuilder: (context, index) {
+                  return ModelListItem(
+                    title: data[index].description,
+                    onTap: () {},
+                    image: NetworkImage(
+                      "${SecretConstants.mainUrl}${data[index].image}",
+                    ),
+                    model: data[index],
+                  );
+                },
+              );
+            }
           },
         ),
       ),

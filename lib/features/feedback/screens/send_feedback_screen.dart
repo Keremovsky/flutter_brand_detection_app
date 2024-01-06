@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart';
 import 'package:flutter_brand_detection_app/core/utils/custom_button.dart';
 import 'package:flutter_brand_detection_app/core/utils_functions.dart';
+import 'package:flutter_brand_detection_app/features/auth/controller/auth_controller.dart';
+import 'package:flutter_brand_detection_app/features/feedback/controller/feedback_controller.dart';
 import 'package:flutter_brand_detection_app/themes/palette.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -83,10 +85,20 @@ class _SendFeedbackScreenState extends ConsumerState<SendFeedbackScreen> {
                   CustomButton(
                     onTap: () {
                       if (textController.text.isNotEmpty) {
+                        final user = ref.read(authControllerProvider)!;
                         // send feedback
+                        ref
+                            .read(feedbackControllerProvider.notifier)
+                            .sendFeedback(
+                              context,
+                              textController.text,
+                              user.id,
+                            );
                       } else {
                         giveFeedback(
-                            context, "Lütfen açıklama alanını doldurun.");
+                          context,
+                          "Lütfen açıklama alanını doldurun.",
+                        );
                       }
                     },
                     height: 50,

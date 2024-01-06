@@ -58,13 +58,13 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             child: Column(
               children: [
                 Text(
-                  "Merhaba, sayın Kerem",
+                  "Merhaba, sayın ${user.name}",
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 const SizedBox(height: 20),
                 TextFormField(
                   maxLength: 50,
-                  initialValue: "Kerem",
+                  initialValue: user.name,
                   onSaved: (value) {
                     name = value;
                   },
