@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_brand_detection_app/core/constants/router_constants.dart';
+import 'package:flutter_brand_detection_app/core/constants/secret_constants.dart';
 import 'package:flutter_brand_detection_app/core/utils/image_demonstrator.dart';
+import 'package:flutter_brand_detection_app/models/result_model.dart';
 import 'package:flutter_brand_detection_app/themes/palette.dart';
 import 'package:go_router/go_router.dart';
 
 class ResultItem extends StatelessWidget {
-  const ResultItem({super.key});
+  final ResultModel resultModel;
 
-  _calculateColor(int per) {
+  const ResultItem({super.key, required this.resultModel});
+
+  _calculateColor(double per) {
     if (per >= 50) {
       return ColorTween(
         begin: Palette.yellow,
@@ -27,7 +31,10 @@ class ResultItem extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: GestureDetector(
         onTap: () {
-          context.pushNamed(RouterConstants.singleResultScreenName);
+          context.pushNamed(
+            RouterConstants.singleResultScreenName,
+            extra: resultModel,
+          );
         },
         child: SizedBox(
           height: 210,
@@ -36,10 +43,12 @@ class ResultItem extends StatelessWidget {
             child: Column(
               children: [
                 ImageDemonstrator(
-                  imageProvider: AssetImage("assets/ferrari.png"),
+                  imageProvider: NetworkImage(
+                    SecretConstants.mainUrl + resultModel.image,
+                  ),
                   height: 160,
                   width: 160,
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(10),
                     topRight: Radius.circular(10),
                   ),
@@ -49,18 +58,23 @@ class ResultItem extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        "Ferrari",
-                        style: Theme.of(context).textTheme.displayLarge,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
+                      SizedBox(
+                        width: 95,
+                        child: Text(
+                          resultModel.name,
+                          style: Theme.of(context).textTheme.displayLarge,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                        ),
                       ),
                       Text(
-                        "%97",
-                        style:
-                            Theme.of(context).textTheme.displayLarge!.copyWith(
-                                  color: _calculateColor(97),
-                                ),
+                        "${resultModel.similarity.round()}%",
+                        style: Theme.of(context)
+                            .textTheme
+                            .displayLarge!
+                            .copyWith(
+                              color: _calculateColor(resultModel.similarity),
+                            ),
                       ),
                     ],
                   ),

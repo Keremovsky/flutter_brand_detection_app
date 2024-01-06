@@ -10,7 +10,7 @@ import 'package:flutter_brand_detection_app/features/auth/controller/auth_contro
 import 'package:flutter_brand_detection_app/features/history/widgets/delete_all_history_items_alert.dart';
 import 'package:flutter_brand_detection_app/core/utils/list_item.dart';
 import 'package:flutter_brand_detection_app/features/history/widgets/no_user_history_alert.dart';
-import 'package:flutter_brand_detection_app/models/history_model.dart';
+import 'package:flutter_brand_detection_app/models/result_model.dart';
 import 'package:flutter_brand_detection_app/themes/palette.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -23,17 +23,15 @@ class HistoryScreen extends ConsumerStatefulWidget {
 }
 
 class _HistoryScreenState extends ConsumerState<HistoryScreen> {
-  final HistoryModel historyItemModel = HistoryModel(
+  final ResultModel historyItemModel = ResultModel(
     id: 0,
-    searchDate: DateTime.now(),
-    resultIds: [],
-    companyNames: [],
-    descriptions: [],
-    countries: [],
-    websites: [],
-    twitters: [],
-    similarityPercentages: [],
-    isSaved: false,
+    name: "name",
+    image: "",
+    description: "description",
+    location: "location",
+    web: "web",
+    twitter: "twitter",
+    similarity: 95,
   );
   late bool isThemeLight;
 
@@ -123,7 +121,7 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
                           ),
                         ),
                         const SizedBox(width: 10),
-                        historyItemModel.isSaved
+                        false
                             ? CustomButton(
                                 backgroundColor: Palette.yellow,
                                 onTap: () {},

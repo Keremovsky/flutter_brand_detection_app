@@ -5,35 +5,28 @@ import 'package:flutter_brand_detection_app/core/utils/error_widget.dart';
 import 'package:flutter_brand_detection_app/features/auth/controller/auth_controller.dart';
 import 'package:flutter_brand_detection_app/features/history/widgets/history_item.dart';
 import 'package:flutter_brand_detection_app/features/history/widgets/no_user_history_alert.dart';
-import 'package:flutter_brand_detection_app/models/history_model.dart';
+import 'package:flutter_brand_detection_app/models/result_model.dart';
 import 'package:flutter_brand_detection_app/themes/palette.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 class HistoryComponent extends ConsumerStatefulWidget {
-  final bool isSavedOnes;
-
-  const HistoryComponent({
-    super.key,
-    required this.isSavedOnes,
-  });
+  const HistoryComponent({super.key});
 
   @override
   ConsumerState<HistoryComponent> createState() => _HistoryComponentState();
 }
 
 class _HistoryComponentState extends ConsumerState<HistoryComponent> {
-  final HistoryModel historyItemModel = HistoryModel(
+  final ResultModel historyItemModel = ResultModel(
     id: 0,
-    searchDate: DateTime.now(),
-    resultIds: [],
-    companyNames: [],
-    descriptions: [],
-    countries: [],
-    websites: [],
-    twitters: [],
-    similarityPercentages: [],
-    isSaved: false,
+    name: "name",
+    image: "",
+    description: "description",
+    location: "location",
+    web: "web",
+    twitter: "twitter",
+    similarity: 95,
   );
 
   @override
@@ -47,10 +40,7 @@ class _HistoryComponentState extends ConsumerState<HistoryComponent> {
             children: [
               GestureDetector(
                 onTap: () {
-                  if (widget.isSavedOnes) {
-                  } else {
-                    context.pushNamed(RouterConstants.historyScreenName);
-                  }
+                  context.pushNamed(RouterConstants.historyScreenName);
                 },
                 child: Text(
                   "Geçmiş",

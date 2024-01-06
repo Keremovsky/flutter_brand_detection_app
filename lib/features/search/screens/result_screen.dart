@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_brand_detection_app/core/constants/router_constants.dart';
 import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart';
@@ -5,11 +6,19 @@ import 'package:flutter_brand_detection_app/core/utils/custom_button.dart';
 import 'package:flutter_brand_detection_app/core/utils/image_demonstrator.dart';
 import 'package:flutter_brand_detection_app/features/auth/controller/auth_controller.dart';
 import 'package:flutter_brand_detection_app/features/search/widgets/result_list.dart';
+import 'package:flutter_brand_detection_app/models/result_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 class ResultScreen extends ConsumerStatefulWidget {
-  const ResultScreen({super.key});
+  final List<ResultModel> resultModels;
+  final Uint8List imageBytes;
+
+  const ResultScreen({
+    super.key,
+    required this.resultModels,
+    required this.imageBytes,
+  });
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _ResultScreenState();
@@ -60,7 +69,7 @@ class _ResultScreenState extends ConsumerState<ResultScreen> {
               ),
               const SizedBox(height: 5),
               ImageDemonstrator(
-                imageProvider: AssetImage("assets/ferrari.png"),
+                imageProvider: MemoryImage(widget.imageBytes),
                 height: 200,
                 width: 200,
                 borderRadius: BorderRadius.circular(10),
@@ -71,7 +80,7 @@ class _ResultScreenState extends ConsumerState<ResultScreen> {
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               const SizedBox(height: 5),
-              const ResultList(),
+              ResultList(resultModels: widget.resultModels),
               const Spacer(flex: 2),
               Text(
                 "Sonuç yanlış mı?",
@@ -89,7 +98,8 @@ class _ResultScreenState extends ConsumerState<ResultScreen> {
                       return CustomButton(
                         onTap: () {
                           context.pushNamed(
-                              RouterConstants.sendFeedbackScreenName);
+                            RouterConstants.sendFeedbackScreenName,
+                          );
                         },
                         height: 50,
                         width: 200,

@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_brand_detection_app/core/constants/secret_constants.dart';
 import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart';
 import 'package:flutter_brand_detection_app/core/services/excel_service.dart';
 import 'package:flutter_brand_detection_app/core/services/xml_service.dart';
 import 'package:flutter_brand_detection_app/core/utils/custom_button.dart';
 import 'package:flutter_brand_detection_app/core/utils/image_demonstrator.dart';
 import 'package:flutter_brand_detection_app/core/utils_functions.dart';
+import 'package:flutter_brand_detection_app/models/result_model.dart';
 import 'package:flutter_brand_detection_app/themes/palette.dart';
 import 'package:go_router/go_router.dart';
 
 class SingleResultScreen extends StatefulWidget {
-  const SingleResultScreen({super.key});
+  final ResultModel resultModel;
+
+  const SingleResultScreen({super.key, required this.resultModel});
 
   @override
   State<SingleResultScreen> createState() => _SingleResultScreenState();
@@ -25,6 +29,20 @@ class _SingleResultScreenState extends State<SingleResultScreen> {
       return Palette.softBlue;
     } else {
       return Palette.grey;
+    }
+  }
+
+  _calculateColor(double per) {
+    if (per >= 50) {
+      return ColorTween(
+        begin: Palette.yellow,
+        end: Palette.green,
+      ).lerp((per - 50) / 50);
+    } else {
+      return ColorTween(
+        begin: Palette.red,
+        end: Palette.yellow,
+      ).lerp((per / 50));
     }
   }
 
@@ -63,9 +81,10 @@ class _SingleResultScreenState extends State<SingleResultScreen> {
                   style: Theme.of(context).textTheme.titleLarge,
                   children: [
                     TextSpan(
-                      text: "%97",
+                      text: "${widget.resultModel.similarity.round()}%",
                       style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                            color: Palette.green,
+                            color:
+                                _calculateColor(widget.resultModel.similarity),
                           ),
                     ),
                   ],
@@ -73,7 +92,9 @@ class _SingleResultScreenState extends State<SingleResultScreen> {
               ),
               const SizedBox(height: 5),
               ImageDemonstrator(
-                imageProvider: const AssetImage("assets/ferrari.png"),
+                imageProvider: NetworkImage(
+                  SecretConstants.mainUrl + widget.resultModel.image,
+                ),
                 height: 200,
                 width: 200,
                 borderRadius: BorderRadius.circular(10),
@@ -81,14 +102,11 @@ class _SingleResultScreenState extends State<SingleResultScreen> {
               const SizedBox(height: 15),
               Material(
                 color: _getColor(),
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  topRight: Radius.circular(10),
-                ),
+                borderRadius: BorderRadius.circular(10),
                 child: Padding(
                   padding: const EdgeInsets.all(5.0),
                   child: Text(
-                    "Ferrari",
+                    widget.resultModel.name,
                     style: Theme.of(context).textTheme.displayLarge,
                   ),
                 ),
@@ -99,21 +117,20 @@ class _SingleResultScreenState extends State<SingleResultScreen> {
                 child: Padding(
                   padding: const EdgeInsets.all(5.0),
                   child: Text(
-                    "Official account of #Ferrari, Italian Excellence that makes the world dream.",
+                    widget.resultModel.name,
                     style: Theme.of(context).textTheme.displayMedium,
                   ),
                 ),
               ),
               Material(
                 color: _getColor(),
-                borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(10),
-                  bottomRight: Radius.circular(10),
-                ),
+                borderRadius: BorderRadius.circular(10),
                 child: Padding(
                   padding: const EdgeInsets.all(5.0),
                   child: Text(
-                    "Maranello | Italy",
+                    widget.resultModel.location == ""
+                        ? "Şirketin konum bilgisi bulunmamaktadır."
+                        : widget.resultModel.location,
                     style: Theme.of(context).textTheme.displayMedium,
                   ),
                 ),
@@ -124,7 +141,7 @@ class _SingleResultScreenState extends State<SingleResultScreen> {
                 children: [
                   CustomButton(
                     onTap: () {
-                      launchURL("https://twitter.com/home?lang=en");
+                      launchURL(widget.resultModel.twitter);
                     },
                     height: 50,
                     width: 80,
@@ -138,7 +155,7 @@ class _SingleResultScreenState extends State<SingleResultScreen> {
                   ),
                   CustomButton(
                     onTap: () {
-                      launchURL("https://www.google.com");
+                      launchURL(widget.resultModel.web);
                     },
                     height: 50,
                     width: 80,

@@ -83,7 +83,7 @@ class FeedbackController extends StateNotifier<bool> {
           requests.add(RequestModel.fromMap(request));
         }
 
-        return requests;
+        return requests.reversed.toList();
       },
     );
   }
@@ -161,7 +161,7 @@ class FeedbackController extends StateNotifier<bool> {
           feedbacks.add(FeedbackModel.fromMap(feedback));
         }
 
-        return feedbacks;
+        return feedbacks.reversed.toList();
       },
     );
   }

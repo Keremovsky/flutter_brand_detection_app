@@ -3,7 +3,7 @@ import 'dart:convert';
 
 class RequestModel {
   final int id;
-  final String image;
+  final String? image;
   final String companyName;
   final String description;
   final String country;
@@ -55,7 +55,7 @@ class RequestModel {
   factory RequestModel.fromMap(Map<String, dynamic> map) {
     return RequestModel(
       id: map['id'] as int,
-      image: map['image'] as String,
+      image: map['image'] != null ? map['image'] as String : null,
       companyName: map['companyName'] as String,
       description: map['description'] as String,
       country: map['country'] as String,

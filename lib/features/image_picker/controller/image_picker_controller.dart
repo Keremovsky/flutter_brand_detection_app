@@ -22,16 +22,10 @@ class ImagePickerController extends StateNotifier<bool> {
 
     return control.fold(
       (left) {
-        if (left == "no_selection") {
-          giveFeedback(
-            context,
-            "Fotoğraf çekmediniz!",
-            duration: const Duration(seconds: 1),
-          );
+        if (left == "error") {
+          giveFeedback(context, "Bilinmeyen bir hata oluştu!");
         } else if (left == "no_permission") {
           giveFeedback(context, "Kamera için izin alınamadı!");
-        } else {
-          giveFeedback(context, "Bilinmeyen bir hata oluştu!");
         }
         return null;
       },
@@ -46,16 +40,10 @@ class ImagePickerController extends StateNotifier<bool> {
 
     return control.fold(
       (left) {
-        if (left == "no_selection") {
-          giveFeedback(
-            context,
-            "Fotoğraf seçmediniz!",
-            duration: const Duration(seconds: 1),
-          );
+        if (left == "error") {
+          giveFeedback(context, "Bilinmeyen bir hata oluştu!");
         } else if (left == "no_permission") {
           giveFeedback(context, "Dosya ulaşımı için izin alınamadı!");
-        } else {
-          giveFeedback(context, "Bilinmeyen bir hata oluştu!");
         }
         return null;
       },

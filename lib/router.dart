@@ -15,6 +15,7 @@ import 'package:flutter_brand_detection_app/features/image_picker/screens/image_
 import 'package:flutter_brand_detection_app/features/search/screens/result_screen.dart';
 import 'package:flutter_brand_detection_app/features/search/screens/single_result_screen.dart';
 import 'package:flutter_brand_detection_app/features/auth/screens/profile_screen.dart';
+import 'package:flutter_brand_detection_app/models/result_model.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRouter {
@@ -88,8 +89,12 @@ class AppRouter {
         name: RouterConstants.resultScreenName,
         path: RouterConstants.resultScreenPath,
         pageBuilder: (context, state) {
-          return const MaterialPage(
-            child: ResultScreen(),
+          final data = state.extra as List<dynamic>;
+          return MaterialPage(
+            child: ResultScreen(
+              resultModels: data[0],
+              imageBytes: data[1],
+            ),
           );
         },
       ),
@@ -97,8 +102,9 @@ class AppRouter {
         name: RouterConstants.singleResultScreenName,
         path: RouterConstants.singleResultScreenPath,
         pageBuilder: (context, state) {
-          return const MaterialPage(
-            child: SingleResultScreen(),
+          final resultModel = state.extra as ResultModel;
+          return MaterialPage(
+            child: SingleResultScreen(resultModel: resultModel),
           );
         },
       ),

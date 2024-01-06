@@ -160,13 +160,17 @@ class _ImageCropperScreenState extends ConsumerState<ImageCropperScreen> {
                         final userModel = ref.read(authControllerProvider);
                         final id = userModel != null ? userModel.id : -1;
 
-                        await ref
+                        final resultModels = await ref
                             .read(searchControllerProvider.notifier)
-                            .search(bytes, id);
-                        if (mounted) {
-                          context.pushReplacementNamed(
-                            RouterConstants.resultScreenName,
-                          );
+                            .search(context, bytes, id);
+
+                        if (resultModels != null) {
+                          if (mounted) {
+                            context.pushReplacementNamed(
+                              RouterConstants.resultScreenName,
+                              extra: [resultModels, bytes],
+                            );
+                          }
                         }
                       },
                       height: 60,

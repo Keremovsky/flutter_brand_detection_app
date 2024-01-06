@@ -54,7 +54,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           padding: ThemeConstants.screenPadding,
           child: Column(
             children: [
-              const HistoryComponent(isSavedOnes: false),
+              const HistoryComponent(),
               const Spacer(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
