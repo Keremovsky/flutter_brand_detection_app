@@ -91,9 +91,14 @@ class FeedbackController extends StateNotifier<bool> {
   Future<void> sendFeedback(
     BuildContext context,
     String description,
+    String historyId,
     int id,
   ) async {
-    final control = await _feedbackRepository.sendFeedback(description, id);
+    final control = await _feedbackRepository.sendFeedback(
+      description,
+      historyId,
+      id,
+    );
 
     if (mounted) {
       switch (control) {

@@ -99,6 +99,9 @@ class _ResultScreenState extends ConsumerState<ResultScreen> {
                         onTap: () {
                           context.pushNamed(
                             RouterConstants.sendFeedbackScreenName,
+                            pathParameters: {
+                              "id": widget.resultModels[0].id.toString()
+                            },
                           );
                         },
                         height: 50,

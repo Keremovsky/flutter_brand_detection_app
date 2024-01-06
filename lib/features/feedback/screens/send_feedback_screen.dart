@@ -9,7 +9,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 class SendFeedbackScreen extends ConsumerStatefulWidget {
-  const SendFeedbackScreen({super.key});
+  final String historyId;
+
+  const SendFeedbackScreen({super.key, required this.historyId});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -92,6 +94,7 @@ class _SendFeedbackScreenState extends ConsumerState<SendFeedbackScreen> {
                             .sendFeedback(
                               context,
                               textController.text,
+                              widget.historyId,
                               user.id,
                             );
                       } else {

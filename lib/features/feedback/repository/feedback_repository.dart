@@ -53,12 +53,16 @@ class FeedbackRepository {
 
   Future<String> sendFeedback(
     String description,
+    String historyId,
     int id,
   ) async {
     try {
       final response = await _apiService.post(
         "create-feedback/$id/",
-        headers: {"description": description},
+        headers: {
+          "historyId": historyId,
+          "description": description,
+        },
       );
 
       return response["response"];

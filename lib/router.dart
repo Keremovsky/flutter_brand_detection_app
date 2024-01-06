@@ -41,10 +41,12 @@ class AppRouter {
       ),
       GoRoute(
         name: RouterConstants.sendFeedbackScreenName,
-        path: RouterConstants.sendFeedbackScreenPath,
+        path: "${RouterConstants.sendFeedbackScreenPath}/:id",
         pageBuilder: (context, state) {
-          return const MaterialPage(
-            child: SendFeedbackScreen(),
+          return MaterialPage(
+            child: SendFeedbackScreen(
+              historyId: state.pathParameters["id"]!,
+            ),
           );
         },
       ),
