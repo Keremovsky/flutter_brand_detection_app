@@ -1,17 +1,17 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_brand_detection_app/core/constants/router_constants.dart';
 import 'package:flutter_brand_detection_app/core/utils_functions.dart';
 import 'package:flutter_brand_detection_app/features/auth/repository/auth_repository.dart';
+import 'package:flutter_brand_detection_app/features/history/controller/history_controller.dart';
 import 'package:flutter_brand_detection_app/models/user_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 final authControllerProvider =
     StateNotifierProvider<AuthController, UserModel?>((ref) => AuthController(
-          authRepository: ref.read(authRepositoryProvider),
-        ));
+        authRepository: ref.read(authRepositoryProvider),
+        historyController: ref.read(historyControllerProvider.notifier)));
 
 final userModelProvider = StreamProvider<UserModel?>((ref) async* {
   final userModelStream = ref.watch(authControllerProvider);
@@ -20,10 +20,13 @@ final userModelProvider = StreamProvider<UserModel?>((ref) async* {
 
 class AuthController extends StateNotifier<UserModel?> {
   final AuthRepository _authRepository;
+  final HistoryController _historyController;
 
   AuthController({
     required AuthRepository authRepository,
+    required HistoryController historyController,
   })  : _authRepository = authRepository,
+        _historyController = historyController,
         super(null);
 
   Future<void> loginWithEmail(
@@ -51,8 +54,10 @@ class AuthController extends StateNotifier<UserModel?> {
         }
       },
       (right) {
-        // final userModel = UserModel.fromMap(right);
-        debugPrint(right.toString());
+        final userModel = UserModel.fromMap(right);
+        state = userModel;
+        _historyController.updateHistory(userModel.id);
+        context.pop();
       },
     );
   }
@@ -125,6 +130,7 @@ class AuthController extends StateNotifier<UserModel?> {
       (right) {
         final userModel = UserModel.fromMap(right);
         state = userModel;
+        _historyController.updateHistory(userModel.id);
         context.pop();
       },
     );
