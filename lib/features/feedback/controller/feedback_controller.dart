@@ -140,8 +140,10 @@ class FeedbackController extends StateNotifier<bool> {
       (left) {
         switch (left) {
           case "no_user":
-            giveFeedback(context,
-                "Yaptığınız geri bildirimleri görebilmek için lütfen giriş yapın.");
+            giveFeedback(
+              context,
+              "Yaptığınız geri bildirimleri görebilmek için lütfen giriş yapın.",
+            );
             break;
           case "no_feedback":
             giveFeedback(
