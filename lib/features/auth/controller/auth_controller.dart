@@ -7,11 +7,14 @@ import 'package:flutter_brand_detection_app/features/history/controller/history_
 import 'package:flutter_brand_detection_app/models/user_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 final authControllerProvider =
     StateNotifierProvider<AuthController, UserModel?>((ref) => AuthController(
-        authRepository: ref.read(authRepositoryProvider),
-        historyController: ref.read(historyControllerProvider.notifier)));
+          authRepository: ref.read(authRepositoryProvider),
+          historyController: ref.read(historyControllerProvider.notifier),
+          internetConnectionChecker: InternetConnectionChecker(),
+        ));
 
 final userModelProvider = StreamProvider<UserModel?>((ref) async* {
   final userModelStream = ref.watch(authControllerProvider);
@@ -21,28 +24,41 @@ final userModelProvider = StreamProvider<UserModel?>((ref) async* {
 class AuthController extends StateNotifier<UserModel?> {
   final AuthRepository _authRepository;
   final HistoryController _historyController;
+  final InternetConnectionChecker _internetConnectionChecker;
 
-  AuthController({
-    required AuthRepository authRepository,
-    required HistoryController historyController,
-  })  : _authRepository = authRepository,
+  AuthController(
+      {required AuthRepository authRepository,
+      required HistoryController historyController,
+      required InternetConnectionChecker internetConnectionChecker})
+      : _authRepository = authRepository,
         _historyController = historyController,
+        _internetConnectionChecker = internetConnectionChecker,
         super(null);
 
   Future<bool> autoLogin() async {
+    final isConnected = await _internetConnectionChecker.hasConnection;
+
+    if (!isConnected) {
+      return false;
+    }
+
     final control = await _authRepository.autoLogin();
 
-    if (control != null) {
-      if (control.containsKey("response")) {
-        return false;
-      }
-
-      final userModel = UserModel.fromMap(control);
-      state = userModel;
-      _historyController.updateHistory(userModel.id);
-      return true;
-    }
-    return false;
+    return control.fold(
+      (left) {
+        if (left == "server") {
+          return false;
+        } else {
+          return true;
+        }
+      },
+      (right) {
+        final userModel = UserModel.fromMap(right);
+        state = userModel;
+        _historyController.updateHistory(userModel.id);
+        return true;
+      },
+    );
   }
 
   Future<void> loginWithEmail(
@@ -163,6 +179,12 @@ class AuthController extends StateNotifier<UserModel?> {
           giveFeedback(
             context,
             "Bu e-mail ile kayıtlı bir kullanıcı mevcut değil.",
+          );
+          break;
+        case "google":
+          giveFeedback(
+            context,
+            "Google ile kayıt olan kullanıcılar şifre yenileyemezler.",
           );
           break;
         case "error":

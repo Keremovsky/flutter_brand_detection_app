@@ -19,4 +19,7 @@ class AssetsConstants {
 
   static const jsonLogoWhite = "assets/json_logo_white.png";
   static const jsonLogoBlack = "assets/json_logo_black.png";
+
+  static const noConnectionWhite = "assets/no_connection_white.png";
+  static const noConnectionBlack = "assets/no_connection_black.png";
 }

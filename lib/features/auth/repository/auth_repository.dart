@@ -20,7 +20,7 @@ class AuthRepository {
   })  : _apiService = apiService,
         _googleSignIn = googleSignIn;
 
-  Future<Map<String, dynamic>?> autoLogin() async {
+  Future<Either<String, Map<String, dynamic>>> autoLogin() async {
     try {
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       final registrationType = prefs.getString(SecretConstants.regisTypeKey);
@@ -40,7 +40,11 @@ class AuthRepository {
             headers: headers,
           );
 
-          return response;
+          if (response.containsKey("response")) {
+            return Left(response["response"]);
+          }
+
+          return Right(response);
         } else {
           final email = prefs.getString(SecretConstants.emailKey);
           final password = prefs.getString(SecretConstants.passwordKey);
@@ -55,12 +59,16 @@ class AuthRepository {
             headers: headers,
           );
 
-          return response;
+          if (response.containsKey("response")) {
+            return Left(response["response"]);
+          }
+
+          return Right(response);
         }
       }
-      return null;
+      return const Left("server");
     } catch (e) {
-      return null;
+      return const Left("server");
     }
   }
 

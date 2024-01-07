@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_brand_detection_app/core/utils/custom_circular_progress_indicator.dart';
 import 'package:flutter_brand_detection_app/features/auth/controller/auth_controller.dart';
 import 'package:flutter_brand_detection_app/features/home/screens/home_screen.dart';
+import 'package:flutter_brand_detection_app/features/home/widgets/splash_error.dart';
 import 'package:flutter_brand_detection_app/themes/palette.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -27,7 +28,13 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
             );
           }
 
-          return const HomeScreen();
+          final data = snapshot.data;
+
+          if (data == null || !data) {
+            return SplashError(refresh: () => setState(() {}));
+          } else {
+            return const HomeScreen();
+          }
         },
       ),
     );
