@@ -54,7 +54,7 @@ class _SavedHistoryScreenState extends ConsumerState<SavedHistoryScreen> {
                         itemCount: data.length,
                         itemBuilder: (context, index) {
                           if (!data[index][0].isSaved!) {
-                            return SizedBox();
+                            return const SizedBox();
                           }
                           return ModelListItem(
                             title: data[index][0].name,
