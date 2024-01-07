@@ -39,4 +39,19 @@ class HistoryRepository {
       return "server";
     }
   }
+
+  Future<String> handleSaveHistory(int id, String historyId) async {
+    try {
+      final headers = {"id": historyId};
+
+      final response = await _apiService.post(
+        "handle-save-history/$id/",
+        headers: headers,
+      );
+
+      return response["response"];
+    } catch (e) {
+      return "server";
+    }
+  }
 }

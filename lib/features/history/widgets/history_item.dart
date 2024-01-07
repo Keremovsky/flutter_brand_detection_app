@@ -69,7 +69,9 @@ class _HistoryItemState extends State<HistoryItem> {
                         maxLines: 1,
                       ),
                     ),
-                    const HistoryPopUpMenuButton(),
+                    HistoryPopUpMenuButton(
+                      historyId: widget.resultModels[0].id.toString(),
+                    ),
                   ],
                 ),
                 const Spacer(),

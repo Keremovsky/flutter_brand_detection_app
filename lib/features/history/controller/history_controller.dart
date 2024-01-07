@@ -43,8 +43,11 @@ class HistoryController extends StateNotifier<List<List<ResultModel>>> {
     }
   }
 
-  Future<void> deleteHistory(
-      BuildContext context, int id, String historyId) async {
+  Future<bool> deleteHistory(
+    BuildContext context,
+    int id,
+    String historyId,
+  ) async {
     final control = await _historyRepository.deleteHistory(id, historyId);
 
     if (mounted) {
@@ -54,24 +57,63 @@ class HistoryController extends StateNotifier<List<List<ResultModel>>> {
             context,
             "Geri bildirimi silebilmek için lütfen doğru kullanıcı ile giriş yapın.",
           );
-          break;
+          return false;
         case "no_user":
           giveFeedback(
             context,
             "Yaptığınız geri bildirimleri silebilmek için lütfen giriş yapın.",
           );
-          break;
+          return false;
         case "no_history":
           giveFeedback(context, "Silmeye çalıştığınız geçmiş bulunmamaktadır.");
-          break;
+          return false;
         case "error":
           giveFeedback(context, "Bilinmeyen bir hata oluştu!");
-          break;
+          return false;
         case "server":
           giveFeedback(context, "Sunucu ile bağlantı kurulamadı!");
-          break;
+          return false;
         default:
+          return true;
       }
     }
+    return false;
+  }
+
+  Future<bool> handleSaveHistory(
+    BuildContext context,
+    int id,
+    String historyId,
+  ) async {
+    final control = await _historyRepository.handleSaveHistory(id, historyId);
+
+    if (mounted) {
+      switch (control) {
+        case "no_access":
+          giveFeedback(
+            context,
+            "Geri bildirimi silebilmek için lütfen doğru kullanıcı ile giriş yapın.",
+          );
+          return false;
+        case "no_user":
+          giveFeedback(
+            context,
+            "Yaptığınız geri bildirimleri silebilmek için lütfen giriş yapın.",
+          );
+          return false;
+        case "no_history":
+          giveFeedback(context, "Silmeye çalıştığınız geçmiş bulunmamaktadır.");
+          return false;
+        case "error":
+          giveFeedback(context, "Bilinmeyen bir hata oluştu!");
+          return false;
+        case "server":
+          giveFeedback(context, "Sunucu ile bağlantı kurulamadı!");
+          return false;
+        default:
+          return true;
+      }
+    }
+    return false;
   }
 }

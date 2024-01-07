@@ -77,6 +77,7 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
             if (data == null) {
               return const Center(child: NoUserHistoryAlert());
             } else {
+              final user = ref.read(authControllerProvider)!;
               return ref.watch(historyStreamProvider).when(
                     data: (data) {
                       return ListView.builder(
@@ -111,11 +112,8 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
                                 CustomButton(
                                   backgroundColor: Palette.red,
                                   onTap: () async {
-                                    // get user data
-                                    final user =
-                                        ref.read(authControllerProvider)!;
                                     // delete history item
-                                    await ref
+                                    final isDeleted = await ref
                                         .read(
                                             historyControllerProvider.notifier)
                                         .deleteHistory(
@@ -123,11 +121,14 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
                                           user.id,
                                           data[index][0].id.toString(),
                                         );
-                                    // update history in app
-                                    await ref
-                                        .read(
-                                            historyControllerProvider.notifier)
-                                        .updateHistory(user.id);
+
+                                    if (isDeleted) {
+                                      // update history in app
+                                      await ref
+                                          .read(historyControllerProvider
+                                              .notifier)
+                                          .updateHistory(user.id);
+                                    }
                                   },
                                   height: 35,
                                   width: 35,
@@ -137,29 +138,36 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
                                   ),
                                 ),
                                 const SizedBox(width: 10),
-                                data[index][0].isSaved!
-                                    ? CustomButton(
-                                        backgroundColor: Palette.yellow,
-                                        onTap: () {},
-                                        height: 35,
-                                        width: 35,
-                                        child: const Icon(
-                                          Icons.star,
-                                          size:
-                                              ThemeConstants.iconButtonIconSize,
-                                        ),
-                                      )
-                                    : CustomButton(
-                                        backgroundColor: Palette.green,
-                                        onTap: () {},
-                                        height: 35,
-                                        width: 35,
-                                        child: const Icon(
-                                          Icons.add,
-                                          size:
-                                              ThemeConstants.iconButtonIconSize,
-                                        ),
-                                      ),
+                                CustomButton(
+                                  backgroundColor: data[index][0].isSaved!
+                                      ? Palette.yellow
+                                      : Palette.green,
+                                  onTap: () async {
+                                    final isHandled = await ref
+                                        .read(
+                                            historyControllerProvider.notifier)
+                                        .handleSaveHistory(
+                                          context,
+                                          user.id,
+                                          data[index][0].id.toString(),
+                                        );
+
+                                    if (isHandled) {
+                                      await ref
+                                          .read(historyControllerProvider
+                                              .notifier)
+                                          .updateHistory(user.id);
+                                    }
+                                  },
+                                  height: 35,
+                                  width: 35,
+                                  child: Icon(
+                                    data[index][0].isSaved!
+                                        ? Icons.star
+                                        : Icons.add,
+                                    size: ThemeConstants.iconButtonIconSize,
+                                  ),
+                                ),
                               ],
                             ),
                           );
