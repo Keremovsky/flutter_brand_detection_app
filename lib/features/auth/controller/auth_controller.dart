@@ -169,10 +169,10 @@ class AuthController extends StateNotifier<UserModel?> {
   Future<void> resetPasswordConfirm(
     BuildContext context,
     String token,
-    String userId,
+    String id,
     String password,
   ) async {
-    final uidb64 = base64Encode(utf8.encode(userId));
+    final uidb64 = base64Encode(utf8.encode(id));
     final control = await _authRepository.resetPasswordConfirm(
       token,
       uidb64,
@@ -206,6 +206,25 @@ class AuthController extends StateNotifier<UserModel?> {
           );
           break;
       }
+    }
+  }
+
+  Future<void> signOut(BuildContext context) async {
+    if (state == null) {
+      giveFeedback(context, "Giriş yapmadan çıkış yapamazsınız!");
+      context.pop();
+      return;
+    }
+
+    final control = await _authRepository.signOut(state!.registrationType);
+
+    if (mounted) {
+      if (control) {
+        state = null;
+      } else {
+        giveFeedback(context, "Hesaptan çıkış yapılamadı!");
+      }
+      context.pop();
     }
   }
 }

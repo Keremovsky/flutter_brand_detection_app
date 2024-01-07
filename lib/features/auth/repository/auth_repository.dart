@@ -135,4 +135,15 @@ class AuthRepository {
       return "server";
     }
   }
+
+  Future<bool> signOut(String registrationType) async {
+    try {
+      if (registrationType == "google") {
+        await _googleSignIn.signOut();
+      }
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
 }

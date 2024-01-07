@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_brand_detection_app/core/constants/router_constants.dart';
+import 'package:flutter_brand_detection_app/core/utils/custom_button.dart';
 import 'package:flutter_brand_detection_app/features/auth/controller/auth_controller.dart';
 import 'package:flutter_brand_detection_app/features/home/widgets/drawer_button.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -76,6 +77,23 @@ class CustomDrawer extends ConsumerWidget {
         ),
         const _CustomSizedBox(),
         // sign in and sign out button
+        ref.watch(authControllerProvider) == null
+            ? CustomDrawerButton(
+                onTap: () async {
+                  context.pushNamed(RouterConstants.loginScreenName);
+                },
+                text: "Giriş Yap",
+                icon: Icons.login,
+              )
+            : CustomDrawerButton(
+                onTap: () async {
+                  await ref
+                      .read(authControllerProvider.notifier)
+                      .signOut(context);
+                },
+                text: "Çıkış Yap",
+                icon: Icons.logout,
+              ),
       ],
     );
   }
