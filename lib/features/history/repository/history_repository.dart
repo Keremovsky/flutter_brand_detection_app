@@ -24,4 +24,19 @@ class HistoryRepository {
       return null;
     }
   }
+
+  Future<String> deleteHistory(int id, String historyId) async {
+    try {
+      final headers = {"id": historyId};
+
+      final response = await _apiService.post(
+        "delete-history/$id/",
+        headers: headers,
+      );
+
+      return response["response"];
+    } catch (e) {
+      return "server";
+    }
+  }
 }

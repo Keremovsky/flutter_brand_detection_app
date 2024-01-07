@@ -10,10 +10,8 @@ import 'package:flutter_brand_detection_app/core/utils/error_widget.dart';
 import 'package:flutter_brand_detection_app/core/utils_functions.dart';
 import 'package:flutter_brand_detection_app/features/auth/controller/auth_controller.dart';
 import 'package:flutter_brand_detection_app/features/history/controller/history_controller.dart';
-import 'package:flutter_brand_detection_app/features/history/widgets/delete_all_history_items_alert.dart';
 import 'package:flutter_brand_detection_app/core/utils/list_item.dart';
 import 'package:flutter_brand_detection_app/features/history/widgets/no_user_history_alert.dart';
-import 'package:flutter_brand_detection_app/models/result_model.dart';
 import 'package:flutter_brand_detection_app/themes/palette.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -26,16 +24,6 @@ class HistoryScreen extends ConsumerStatefulWidget {
 }
 
 class _HistoryScreenState extends ConsumerState<HistoryScreen> {
-  final ResultModel historyItemModel = ResultModel(
-    id: 0,
-    name: "name",
-    image: "",
-    description: "description",
-    location: "location",
-    web: "web",
-    twitter: "twitter",
-    similarity: 95,
-  );
   late bool isThemeLight;
 
   @override
@@ -72,19 +60,6 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
               ),
             ),
           ),
-          IconButton(
-            onPressed: () async {
-              showDialog(
-                  context: context,
-                  builder: (context) {
-                    return const DeleteAllHistoryItemsAlert();
-                  });
-            },
-            icon: const Icon(
-              Icons.delete,
-              size: ThemeConstants.generalIconSize,
-            ),
-          ),
         ],
         leading: IconButton(
           onPressed: () {
@@ -112,8 +87,7 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
                             content: data[index][0].date,
                             onTap: () async {
                               final imageBytes = await ApiService().getImage(
-                                SecretConstants.mainUrl +
-                                    data[index][0].searchedImage!,
+                                data[index][0].searchedImage!,
                               );
 
                               if (mounted) {
@@ -136,7 +110,25 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
                               children: [
                                 CustomButton(
                                   backgroundColor: Palette.red,
-                                  onTap: () {},
+                                  onTap: () async {
+                                    // get user data
+                                    final user =
+                                        ref.read(authControllerProvider)!;
+                                    // delete history item
+                                    await ref
+                                        .read(
+                                            historyControllerProvider.notifier)
+                                        .deleteHistory(
+                                          context,
+                                          user.id,
+                                          data[index][0].id.toString(),
+                                        );
+                                    // update history in app
+                                    await ref
+                                        .read(
+                                            historyControllerProvider.notifier)
+                                        .updateHistory(user.id);
+                                  },
                                   height: 35,
                                   width: 35,
                                   child: const Icon(
