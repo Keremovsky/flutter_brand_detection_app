@@ -17,6 +17,6 @@ class AssetsConstants {
   static const xmlLogoWhite = "assets/xml_logo_white.png";
   static const xmlLogoBlack = "assets/xml_logo_black.png";
 
-  // temporary
-  static const ferrari = "assets/ferrari.png";
+  static const jsonLogoWhite = "assets/json_logo_white.png";
+  static const jsonLogoBlack = "assets/json_logo_black.png";
 }
