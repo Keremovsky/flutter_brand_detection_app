@@ -7,7 +7,6 @@ import 'package:flutter_brand_detection_app/features/history/controller/history_
 import 'package:flutter_brand_detection_app/features/history/widgets/history_item.dart';
 import 'package:flutter_brand_detection_app/features/history/widgets/no_history_alert.dart';
 import 'package:flutter_brand_detection_app/features/history/widgets/no_user_history_alert.dart';
-import 'package:flutter_brand_detection_app/models/result_model.dart';
 import 'package:flutter_brand_detection_app/themes/palette.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -20,17 +19,6 @@ class HistoryComponent extends ConsumerStatefulWidget {
 }
 
 class _HistoryComponentState extends ConsumerState<HistoryComponent> {
-  final ResultModel historyItemModel = ResultModel(
-    id: 0,
-    name: "name",
-    image: "",
-    description: "description",
-    location: "location",
-    web: "web",
-    twitter: "twitter",
-    similarity: 95,
-  );
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(

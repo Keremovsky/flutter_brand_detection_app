@@ -9,6 +9,7 @@ import 'package:flutter_brand_detection_app/features/feedback/screens/request_li
 import 'package:flutter_brand_detection_app/features/feedback/screens/send_feedback_screen.dart';
 import 'package:flutter_brand_detection_app/features/feedback/screens/send_request_screen.dart';
 import 'package:flutter_brand_detection_app/features/history/screens/history_screen.dart';
+import 'package:flutter_brand_detection_app/features/history/screens/saved_history_screen.dart';
 import 'package:flutter_brand_detection_app/features/home/screens/home_screen.dart';
 import 'package:flutter_brand_detection_app/features/home/screens/settings_screen.dart';
 import 'package:flutter_brand_detection_app/features/home/screens/splash_screen.dart';
@@ -85,6 +86,15 @@ class AppRouter {
           final userId = state.extra as int;
           return MaterialPage(
             child: RequestListScreen(userId: userId),
+          );
+        },
+      ),
+      GoRoute(
+        name: RouterConstants.savedHistoryScreenName,
+        path: RouterConstants.savedHistoryScreenPath,
+        pageBuilder: (context, state) {
+          return const MaterialPage(
+            child: SavedHistoryScreen(),
           );
         },
       ),

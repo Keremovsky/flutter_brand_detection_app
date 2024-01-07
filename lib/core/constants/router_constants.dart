@@ -31,6 +31,10 @@ class RouterConstants {
   static const historyScreenPath = "/historyScreen";
   static const historyScreenName = "historyScreen";
 
+  // saved history screen
+  static const savedHistoryScreenPath = "/savedHistoryScreen";
+  static const savedHistoryScreenName = "savedHistoryScreen";
+
   // result screen
   static const resultScreenPath = "/resultScreen";
   static const resultScreenName = "resultScreen";

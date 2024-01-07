@@ -72,7 +72,9 @@ class CustomDrawer extends ConsumerWidget {
         CustomDrawerButton(
           icon: Icons.save_outlined,
           text: "Kaydedilenler",
-          onTap: () {},
+          onTap: () {
+            context.pushNamed(RouterConstants.savedHistoryScreenName);
+          },
         ),
         const _CustomSizedBox(),
         // sign in and sign out button
