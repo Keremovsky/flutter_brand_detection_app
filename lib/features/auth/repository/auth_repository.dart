@@ -187,6 +187,26 @@ class AuthRepository {
     }
   }
 
+  Future<Either<String, Map<String, dynamic>>> changeName(
+      int id, String newName) async {
+    try {
+      final headers = {"name": newName};
+
+      final response = await _apiService.post(
+        "change-name/$id/",
+        headers: headers,
+      );
+
+      if (response.containsKey("response")) {
+        return Left(response["response"]);
+      }
+
+      return Right(response);
+    } catch (e) {
+      return const Left("server");
+    }
+  }
+
   Future<bool> signOut(String registrationType) async {
     try {
       final SharedPreferences prefs = await SharedPreferences.getInstance();

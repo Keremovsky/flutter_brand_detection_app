@@ -5,8 +5,6 @@ import 'package:flutter_brand_detection_app/core/utils/custom_button.dart';
 import 'package:flutter_brand_detection_app/core/utils_functions.dart';
 import 'package:flutter_brand_detection_app/features/auth/controller/auth_controller.dart';
 import 'package:flutter_brand_detection_app/features/home/widgets/drawer_button.dart';
-import 'package:flutter_brand_detection_app/models/user_model.dart';
-import 'package:flutter_brand_detection_app/themes/palette.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -22,16 +20,10 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   String? name;
   String? password;
   String? validatePass;
-  late final UserModel user;
-
-  @override
-  void initState() {
-    user = ref.read(authControllerProvider)!;
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
+    final user = ref.watch(authControllerProvider)!;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -77,69 +69,20 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   ),
                 ),
                 const _CustomSizedBox(),
-                TextFormField(
-                  maxLength: 20,
-                  obscureText: true,
-                  onSaved: (value) {
-                    password = value;
-                  },
-                  validator: (value) {
-                    if (value != null) {
-                      if (passwordValidator(value)) {
-                        return "Lütfen şifreyi uygun formatta girin.";
-                      }
-                    }
-
-                    return null;
-                  },
-                  style: Theme.of(context).textTheme.labelSmall,
-                  decoration: InputDecoration(
-                    labelText: "Şifre",
-                    counterText: "",
-                    hintText: "**********",
-                    hintStyle: Theme.of(context).textTheme.labelSmall!.copyWith(
-                          color: Palette.grey,
-                        ),
-                    floatingLabelBehavior: FloatingLabelBehavior.always,
-                  ),
-                ),
-                const _CustomSizedBox(),
-                TextFormField(
-                  maxLength: 20,
-                  obscureText: true,
-                  onSaved: (value) {
-                    validatePass = value;
-                  },
-                  validator: (value) {
-                    if (value != null) {
-                      if (passwordValidator(value)) {
-                        return "Lütfen şifreyi uygun formatta girin.";
-                      }
-                    }
-
-                    return null;
-                  },
-                  style: Theme.of(context).textTheme.labelSmall,
-                  decoration: InputDecoration(
-                    labelText: "Tekrar şifre",
-                    counterText: "",
-                    hintText: "**********",
-                    hintStyle: Theme.of(context).textTheme.labelSmall!.copyWith(
-                          color: Palette.grey,
-                        ),
-                    floatingLabelBehavior: FloatingLabelBehavior.always,
-                  ),
-                ),
-                const _CustomSizedBox(),
                 CustomButton(
-                  onTap: () {
+                  onTap: () async {
                     if (formKey.currentState!.validate()) {
                       formKey.currentState!.save();
-                      // don't change password
-                      if (password == null && validatePass == null) {
-                        // update username
-                      } else {
-                        // update username and password
+
+                      // update username
+                      if (name! != user.name) {
+                        await ref
+                            .read(authControllerProvider.notifier)
+                            .changeName(
+                              context,
+                              user.id,
+                              name!,
+                            );
                       }
                     }
                   },
@@ -151,6 +94,23 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   ),
                 ),
                 const Spacer(),
+                CustomButton(
+                  onTap: () async {
+                    await ref
+                        .read(authControllerProvider.notifier)
+                        .resetPasswordRequest(
+                          context,
+                          user.email,
+                        );
+                  },
+                  height: 50,
+                  width: 150,
+                  child: Text(
+                    "Şifre Yenile",
+                    style: Theme.of(context).textTheme.displayLarge,
+                  ),
+                ),
+                const _CustomSizedBox(),
                 CustomDrawerButton(
                   icon: Icons.work_history,
                   text: "Geçmiş İsteklerim",

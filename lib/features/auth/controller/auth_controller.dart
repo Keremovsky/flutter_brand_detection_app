@@ -172,8 +172,12 @@ class AuthController extends StateNotifier<UserModel?> {
           giveFeedback(context, "Sunucu ile bağlantı kurulamadı!");
           break;
         default:
-          giveFeedback(context, "Şifre yenileme kodu e-mailinize gönderildi!");
-          Future.delayed(const Duration(milliseconds: 2300)).then(
+          giveFeedback(
+            context,
+            "Şifre yenileme kodu e-mailinize gönderildi!",
+            duration: const Duration(milliseconds: 1500),
+          );
+          Future.delayed(const Duration(milliseconds: 1800)).then(
             (value) => context.pushReplacementNamed(
               RouterConstants.resetPasswordScreenName,
               extra: control,
@@ -218,13 +222,47 @@ class AuthController extends StateNotifier<UserModel?> {
           giveFeedback(context, "Sunucu ile bağlantı kurulamadı!");
           break;
         default:
-          giveFeedback(context, "Şifreniz başarıyla yenilendi!");
-          Future.delayed(const Duration(milliseconds: 2300)).then(
+          if (state != null) {
+            state = null;
+          }
+          giveFeedback(
+            context,
+            "Şifreniz başarıyla yenilendi!",
+            duration: const Duration(milliseconds: 1500),
+          );
+          Future.delayed(const Duration(milliseconds: 1800)).then(
             (value) => context.pop(),
           );
           break;
       }
     }
+  }
+
+  Future<void> changeName(BuildContext context, int id, String newName) async {
+    final control = await _authRepository.changeName(id, newName);
+
+    control.fold(
+      (left) {
+        switch (left) {
+          case "no_user":
+            giveFeedback(
+              context,
+              "İsmi değiştirilmeye çalışılan kullanıcı mevcut değil.",
+            );
+            break;
+          case "error":
+            giveFeedback(context, "Bilinmeyen bir hata oluştu!");
+            break;
+          default:
+            giveFeedback(context, "Sunucu ile bağlantı kurulamadı!");
+        }
+      },
+      (right) {
+        giveFeedback(context, "İsminiz başarıyla değiştirildi.");
+        final userModel = UserModel.fromMap(right);
+        state = userModel;
+      },
+    );
   }
 
   Future<void> signOut(BuildContext context) async {
