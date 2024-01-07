@@ -1,7 +1,9 @@
 import 'package:either_dart/either.dart';
+import 'package:flutter_brand_detection_app/core/constants/secret_constants.dart';
 import 'package:flutter_brand_detection_app/core/services/api_service.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:riverpod/riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final authRepositoryProvider = Provider((ref) => AuthRepository(
       apiService: ApiService(),
@@ -12,16 +14,61 @@ class AuthRepository {
   final ApiService _apiService;
   final GoogleSignIn _googleSignIn;
 
-  AuthRepository(
-      {required ApiService apiService, required GoogleSignIn googleSignIn})
-      : _apiService = apiService,
+  AuthRepository({
+    required ApiService apiService,
+    required GoogleSignIn googleSignIn,
+  })  : _apiService = apiService,
         _googleSignIn = googleSignIn;
+
+  Future<Map<String, dynamic>?> autoLogin() async {
+    try {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      final registrationType = prefs.getString(SecretConstants.regisTypeKey);
+
+      if (registrationType != null) {
+        if (registrationType == "google") {
+          final GoogleSignInAccount? googleAccount =
+              await _googleSignIn.signIn();
+          final googleAuth = await googleAccount!.authentication;
+          final Map<String, String> headers = {
+            "password": googleAuth.idToken!,
+            "registrationType": "google",
+          };
+          final response = await _apiService.post(
+            "sign-in-with-google/",
+            headers: headers,
+          );
+
+          return response;
+        } else {
+          final email = prefs.getString(SecretConstants.emailKey);
+          final password = prefs.getString(SecretConstants.passwordKey);
+
+          final Map<String, String> headers = {
+            "email": email!,
+            "password": password!,
+            "registrationType": "email",
+          };
+          final response = await _apiService.post(
+            "login/",
+            headers: headers,
+          );
+
+          return response;
+        }
+      }
+      return null;
+    } catch (e) {
+      return null;
+    }
+  }
 
   Future<Either<String, Map<String, dynamic>>> loginWithEmail(
     String email,
     String password,
   ) async {
     try {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
       final Map<String, String> headers = {
         "email": email,
         "password": password,
@@ -33,6 +80,9 @@ class AuthRepository {
         return Left(response["response"]);
       }
 
+      await prefs.setString(SecretConstants.regisTypeKey, "email");
+      await prefs.setString(SecretConstants.emailKey, email);
+      await prefs.setString(SecretConstants.passwordKey, password);
       return Right(response);
     } catch (e) {
       return const Left("server");
@@ -41,6 +91,7 @@ class AuthRepository {
 
   Future<Either<String, Map<String, dynamic>>> signInWithGoogle() async {
     try {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
       // get google account
       final GoogleSignInAccount? googleAccount = await _googleSignIn.signIn();
 
@@ -66,12 +117,11 @@ class AuthRepository {
         headers: headers,
       );
 
-      await _googleSignIn.disconnect();
-
       if (response.containsKey("response")) {
         return Left(response["response"]);
       }
 
+      await prefs.setString(SecretConstants.regisTypeKey, "google");
       return Right(response);
     } catch (e) {
       return const Left("server");
@@ -138,10 +188,14 @@ class AuthRepository {
 
   Future<bool> signOut(String registrationType) async {
     try {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+
       if (registrationType == "google") {
         await _googleSignIn.signOut();
       }
-      return true;
+      final isDeleted = prefs.remove(SecretConstants.regisTypeKey);
+
+      return isDeleted;
     } catch (e) {
       return false;
     }

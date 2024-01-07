@@ -29,6 +29,22 @@ class AuthController extends StateNotifier<UserModel?> {
         _historyController = historyController,
         super(null);
 
+  Future<bool> autoLogin() async {
+    final control = await _authRepository.autoLogin();
+
+    if (control != null) {
+      if (control.containsKey("response")) {
+        return false;
+      }
+
+      final userModel = UserModel.fromMap(control);
+      state = userModel;
+      _historyController.updateHistory(userModel.id);
+      return true;
+    }
+    return false;
+  }
+
   Future<void> loginWithEmail(
     BuildContext context,
     String email,
@@ -53,11 +69,13 @@ class AuthController extends StateNotifier<UserModel?> {
             break;
         }
       },
-      (right) {
+      (right) async {
         final userModel = UserModel.fromMap(right);
         state = userModel;
-        _historyController.updateHistory(userModel.id);
-        context.pop();
+        await _historyController.updateHistory(userModel.id);
+        if (mounted) {
+          context.pop();
+        }
       },
     );
   }

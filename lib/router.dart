@@ -11,6 +11,7 @@ import 'package:flutter_brand_detection_app/features/feedback/screens/send_reque
 import 'package:flutter_brand_detection_app/features/history/screens/history_screen.dart';
 import 'package:flutter_brand_detection_app/features/home/screens/home_screen.dart';
 import 'package:flutter_brand_detection_app/features/home/screens/settings_screen.dart';
+import 'package:flutter_brand_detection_app/features/home/screens/splash_screen.dart';
 import 'package:flutter_brand_detection_app/features/image_picker/screens/image_cropper_screen.dart';
 import 'package:flutter_brand_detection_app/features/search/screens/result_screen.dart';
 import 'package:flutter_brand_detection_app/features/search/screens/single_result_screen.dart';
@@ -21,6 +22,15 @@ import 'package:go_router/go_router.dart';
 class AppRouter {
   final GoRouter router = GoRouter(
     routes: [
+      GoRoute(
+        name: RouterConstants.splashScreenName,
+        path: RouterConstants.splashScreenPath,
+        pageBuilder: (context, state) {
+          return const MaterialPage(
+            child: SplashScreen(),
+          );
+        },
+      ),
       GoRoute(
         name: RouterConstants.homeScreenName,
         path: RouterConstants.homeScreenPath,

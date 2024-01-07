@@ -27,6 +27,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   @override
   void initState() {
     user = ref.read(authControllerProvider)!;
+    print(user);
     super.initState();
   }
 

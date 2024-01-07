@@ -1,6 +1,10 @@
 class RouterConstants {
+  // splash screen
+  static const splashScreenPath = "/";
+  static const splashScreenName = "splashScreen";
+
   // home screen
-  static const homeScreenPath = "/";
+  static const homeScreenPath = "/homeScreen";
   static const homeScreenName = "homeScreen";
 
   // settings screen
