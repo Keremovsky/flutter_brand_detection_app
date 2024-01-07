@@ -52,3 +52,12 @@ bool emailValidator(String email) {
 
   return !regex.hasMatch(email);
 }
+
+String formatDate(DateTime dateTime) {
+  return dateTime.second.toString() +
+      dateTime.minute.toString() +
+      dateTime.hour.toString() +
+      dateTime.day.toString() +
+      dateTime.month.toString() +
+      dateTime.year.toString();
+}

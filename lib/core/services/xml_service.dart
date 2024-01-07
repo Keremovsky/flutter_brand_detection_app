@@ -73,12 +73,3 @@ class XmlService {
     }
   }
 }
-
-String formatDate(DateTime dateTime) {
-  return dateTime.second.toString() +
-      dateTime.minute.toString() +
-      dateTime.hour.toString() +
-      dateTime.day.toString() +
-      dateTime.month.toString() +
-      dateTime.year.toString();
-}

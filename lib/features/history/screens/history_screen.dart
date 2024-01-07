@@ -4,6 +4,7 @@ import 'package:flutter_brand_detection_app/core/constants/router_constants.dart
 import 'package:flutter_brand_detection_app/core/constants/secret_constants.dart';
 import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart';
 import 'package:flutter_brand_detection_app/core/services/api_service.dart';
+import 'package:flutter_brand_detection_app/core/services/excel_service.dart';
 import 'package:flutter_brand_detection_app/core/services/xml_service.dart';
 import 'package:flutter_brand_detection_app/core/utils/custom_button.dart';
 import 'package:flutter_brand_detection_app/core/utils/custom_circular_progress_indicator.dart';
@@ -27,6 +28,7 @@ class HistoryScreen extends ConsumerStatefulWidget {
 class _HistoryScreenState extends ConsumerState<HistoryScreen> {
   late bool isThemeLight;
   final XmlService xmlService = XmlService();
+  final ExcelService excelService = ExcelService();
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +37,10 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
       appBar: AppBar(
         actions: [
           CustomButton(
-            onTap: () {},
+            onTap: () {
+              final history = ref.read(historyControllerProvider);
+              excelService.downloadExcelFile(context, history);
+            },
             backgroundColor: Colors.transparent,
             elevation: 0,
             borderRadius: BorderRadius.circular(100),
