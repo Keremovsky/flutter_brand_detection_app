@@ -60,7 +60,7 @@ class _SendFeedbackScreenState extends ConsumerState<SendFeedbackScreen> {
               const SizedBox(height: 10),
               TextField(
                 maxLines: 7,
-                maxLength: 250,
+                maxLength: 150,
                 controller: textController,
                 style: Theme.of(context).textTheme.labelSmall,
                 decoration: const InputDecoration(

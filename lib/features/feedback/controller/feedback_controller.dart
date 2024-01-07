@@ -1,8 +1,8 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_brand_detection_app/core/utils_functions.dart';
 import 'package:flutter_brand_detection_app/features/feedback/repository/feedback_repository.dart';
-import 'package:flutter_brand_detection_app/models/feedback_model.dart';
 import 'package:flutter_brand_detection_app/models/request_model.dart';
+import 'package:flutter_brand_detection_app/models/result_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
@@ -130,7 +130,7 @@ class FeedbackController extends StateNotifier<bool> {
     }
   }
 
-  Future<List<FeedbackModel>?> getAllFeedback(
+  Future<List<List<ResultModel>>?> getAllFeedback(
     BuildContext context,
     int id,
   ) async {
@@ -163,12 +163,17 @@ class FeedbackController extends StateNotifier<bool> {
       (right) async {
         final responseFeedbacks = right["feedbacks"];
 
-        final List<FeedbackModel> feedbacks = [];
+        final List<List<ResultModel>> historyState = [];
         for (final feedback in responseFeedbacks) {
-          feedbacks.add(FeedbackModel.fromMap(feedback));
+          final List<ResultModel> results = [];
+          for (final result in feedback) {
+            results.add(ResultModel.fromMap(result));
+          }
+
+          historyState.add(results);
         }
 
-        return feedbacks.reversed.toList();
+        return historyState.reversed.toList();
       },
     );
   }

@@ -5,6 +5,7 @@ import 'package:flutter_brand_detection_app/features/auth/screens/login_screen.d
 import 'package:flutter_brand_detection_app/features/auth/screens/register_screen.dart';
 import 'package:flutter_brand_detection_app/features/auth/screens/reset_password_screen.dart';
 import 'package:flutter_brand_detection_app/features/feedback/screens/feedback_list_screen.dart';
+import 'package:flutter_brand_detection_app/features/feedback/screens/feedback_screen.dart';
 import 'package:flutter_brand_detection_app/features/feedback/screens/request_list_screen.dart';
 import 'package:flutter_brand_detection_app/features/feedback/screens/send_feedback_screen.dart';
 import 'package:flutter_brand_detection_app/features/feedback/screens/send_request_screen.dart';
@@ -74,8 +75,22 @@ class AppRouter {
         name: RouterConstants.feedbackListScreenName,
         path: RouterConstants.feedbackListScreenPath,
         pageBuilder: (context, state) {
-          return const MaterialPage(
-            child: FeedbackListScreen(),
+          final id = state.extra as int;
+          return MaterialPage(
+            child: FeedbackListScreen(id: id),
+          );
+        },
+      ),
+      GoRoute(
+        name: RouterConstants.feedbackScreenName,
+        path: RouterConstants.feedbackScreenPath,
+        pageBuilder: (context, state) {
+          final data = state.extra as List<dynamic>;
+          return MaterialPage(
+            child: FeedbackScreen(
+              resultModels: data[0],
+              imageBytes: data[1],
+            ),
           );
         },
       ),
@@ -83,9 +98,9 @@ class AppRouter {
         name: RouterConstants.requestListScreenName,
         path: RouterConstants.requestListScreenPath,
         pageBuilder: (context, state) {
-          final userId = state.extra as int;
+          final id = state.extra as int;
           return MaterialPage(
-            child: RequestListScreen(userId: userId),
+            child: RequestListScreen(id: id),
           );
         },
       ),

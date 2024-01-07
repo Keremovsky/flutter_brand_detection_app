@@ -30,6 +30,7 @@ class AuthRepository {
           final GoogleSignInAccount? googleAccount =
               await _googleSignIn.signIn();
           final googleAuth = await googleAccount!.authentication;
+
           final Map<String, String> headers = {
             "password": googleAuth.idToken!,
             "registrationType": "google",

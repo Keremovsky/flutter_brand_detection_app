@@ -13,6 +13,7 @@ class ResultModel {
   final String image;
   final bool? isSaved;
   final double similarity;
+  final String? feedbackDescription;
 
   ResultModel({
     required this.id,
@@ -26,6 +27,7 @@ class ResultModel {
     required this.image,
     this.isSaved,
     required this.similarity,
+    this.feedbackDescription,
   });
 
   ResultModel copyWith({
@@ -40,6 +42,7 @@ class ResultModel {
     String? image,
     bool? isSaved,
     double? similarity,
+    String? feedbackDescription,
   }) {
     return ResultModel(
       id: id ?? this.id,
@@ -53,6 +56,7 @@ class ResultModel {
       image: image ?? this.image,
       isSaved: isSaved ?? this.isSaved,
       similarity: similarity ?? this.similarity,
+      feedbackDescription: feedbackDescription ?? this.feedbackDescription,
     );
   }
 
@@ -69,6 +73,7 @@ class ResultModel {
       'image': image,
       'isSaved': isSaved,
       'similarity': similarity,
+      'feedbackDescription': feedbackDescription,
     };
   }
 
@@ -86,6 +91,9 @@ class ResultModel {
       image: map['image'] as String,
       isSaved: map['isSaved'] != null ? map['isSaved'] as bool : null,
       similarity: map['similarity'] as double,
+      feedbackDescription: map['feedbackDescription'] != null
+          ? map['feedbackDescription'] as String
+          : null,
     );
   }
 
@@ -96,7 +104,7 @@ class ResultModel {
 
   @override
   String toString() {
-    return 'ResultModel(id: $id, date: $date, searchedImage: $searchedImage, name: $name, location: $location, description: $description, web: $web, twitter: $twitter, image: $image, isSaved: $isSaved, similarity: $similarity)';
+    return 'ResultModel(id: $id, date: $date, searchedImage: $searchedImage, name: $name, location: $location, description: $description, web: $web, twitter: $twitter, image: $image, isSaved: $isSaved, similarity: $similarity, feedbackDescription: $feedbackDescription)';
   }
 
   @override
@@ -113,7 +121,8 @@ class ResultModel {
         other.twitter == twitter &&
         other.image == image &&
         other.isSaved == isSaved &&
-        other.similarity == similarity;
+        other.similarity == similarity &&
+        other.feedbackDescription == feedbackDescription;
   }
 
   @override
@@ -128,6 +137,7 @@ class ResultModel {
         twitter.hashCode ^
         image.hashCode ^
         isSaved.hashCode ^
-        similarity.hashCode;
+        similarity.hashCode ^
+        feedbackDescription.hashCode;
   }
 }

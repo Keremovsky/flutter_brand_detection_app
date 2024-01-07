@@ -11,9 +11,9 @@ import 'package:go_router/go_router.dart';
 import '../../../core/constants/secret_constants.dart';
 
 class RequestListScreen extends ConsumerStatefulWidget {
-  final int userId;
+  final int id;
 
-  const RequestListScreen({super.key, required this.userId});
+  const RequestListScreen({super.key, required this.id});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -29,7 +29,7 @@ class _RequestListScreenState extends ConsumerState<RequestListScreen> {
     requestsFuture =
         ref.read(feedbackControllerProvider.notifier).getAllRequest(
               context,
-              widget.userId,
+              widget.id,
             );
   }
 
@@ -54,9 +54,7 @@ class _RequestListScreenState extends ConsumerState<RequestListScreen> {
       ),
       body: SafeArea(
         child: FutureBuilder(
-          future: ref
-              .read(feedbackControllerProvider.notifier)
-              .getAllRequest(context, 5),
+          future: requestsFuture,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const CustomCircularProgressIndicator(

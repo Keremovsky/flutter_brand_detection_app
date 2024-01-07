@@ -27,7 +27,6 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   @override
   void initState() {
     user = ref.read(authControllerProvider)!;
-    print(user);
     super.initState();
   }
 
@@ -169,7 +168,10 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   text: "Geçmiş Geri Bildirimlerim",
                   textStyle: Theme.of(context).textTheme.displayLarge,
                   onTap: () {
-                    context.pushNamed(RouterConstants.feedbackListScreenName);
+                    context.pushNamed(
+                      RouterConstants.feedbackListScreenName,
+                      extra: user.id,
+                    );
                   },
                 ),
               ],
