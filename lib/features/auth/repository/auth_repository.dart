@@ -1,6 +1,7 @@
 import 'package:either_dart/either.dart';
 import 'package:flutter_brand_detection_app/core/constants/secret_constants.dart';
 import 'package:flutter_brand_detection_app/core/services/api_service.dart';
+import 'package:flutter_brand_detection_app/core/services/stroage_service.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -8,22 +9,26 @@ import 'package:shared_preferences/shared_preferences.dart';
 final authRepositoryProvider = Provider((ref) => AuthRepository(
       apiService: ApiService(),
       googleSignIn: GoogleSignIn(),
+      storageService: StorageService(),
     ));
 
 class AuthRepository {
   final ApiService _apiService;
   final GoogleSignIn _googleSignIn;
+  final StorageService _storageService;
 
-  AuthRepository({
-    required ApiService apiService,
-    required GoogleSignIn googleSignIn,
-  })  : _apiService = apiService,
-        _googleSignIn = googleSignIn;
+  AuthRepository(
+      {required ApiService apiService,
+      required GoogleSignIn googleSignIn,
+      required StorageService storageService})
+      : _apiService = apiService,
+        _googleSignIn = googleSignIn,
+        _storageService = storageService;
 
   Future<Either<String, Map<String, dynamic>>> autoLogin() async {
     try {
-      final SharedPreferences prefs = await SharedPreferences.getInstance();
-      final registrationType = prefs.getString(SecretConstants.regisTypeKey);
+      final registrationType =
+          _storageService.getData(SecretConstants.regisTypeKey) as String?;
 
       if (registrationType != null) {
         if (registrationType == "google") {
@@ -46,8 +51,10 @@ class AuthRepository {
 
           return Right(response);
         } else {
-          final email = prefs.getString(SecretConstants.emailKey);
-          final password = prefs.getString(SecretConstants.passwordKey);
+          final email =
+              _storageService.getData(SecretConstants.emailKey) as String?;
+          final password =
+              _storageService.getData(SecretConstants.passwordKey) as String?;
 
           final Map<String, String> headers = {
             "email": email!,
@@ -77,7 +84,6 @@ class AuthRepository {
     String password,
   ) async {
     try {
-      final SharedPreferences prefs = await SharedPreferences.getInstance();
       final Map<String, String> headers = {
         "email": email,
         "password": password,
@@ -89,9 +95,9 @@ class AuthRepository {
         return Left(response["response"]);
       }
 
-      await prefs.setString(SecretConstants.regisTypeKey, "email");
-      await prefs.setString(SecretConstants.emailKey, email);
-      await prefs.setString(SecretConstants.passwordKey, password);
+      await _storageService.setString(SecretConstants.regisTypeKey, "email");
+      await _storageService.setString(SecretConstants.emailKey, email);
+      await _storageService.setString(SecretConstants.passwordKey, password);
       return Right(response);
     } catch (e) {
       return const Left("server");
@@ -100,7 +106,6 @@ class AuthRepository {
 
   Future<Either<String, Map<String, dynamic>>> signInWithGoogle() async {
     try {
-      final SharedPreferences prefs = await SharedPreferences.getInstance();
       // get google account
       final GoogleSignInAccount? googleAccount = await _googleSignIn.signIn();
 
@@ -130,7 +135,7 @@ class AuthRepository {
         return Left(response["response"]);
       }
 
-      await prefs.setString(SecretConstants.regisTypeKey, "google");
+      await _storageService.setString(SecretConstants.regisTypeKey, "google");
       return Right(response);
     } catch (e) {
       return const Left("server");

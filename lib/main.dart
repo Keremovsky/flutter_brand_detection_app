@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_brand_detection_app/core/services/stroage_service.dart';
 import 'package:flutter_brand_detection_app/core/services/theme_service.dart';
 import 'package:flutter_brand_detection_app/router.dart';
 import 'package:flutter_brand_detection_app/themes/theme_mode.dart';
@@ -6,6 +7,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  StorageService();
+
   runApp(ProviderScope(child: MyApp()));
 }
 

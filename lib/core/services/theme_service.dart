@@ -1,31 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_brand_detection_app/core/services/stroage_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 final themeServiceProvider =
     StateNotifierProvider<ThemeService, ThemeMode>((ref) => ThemeService());
 
 class ThemeService extends StateNotifier<ThemeMode> {
-  late final SharedPreferences _prefs;
+  final StorageService _storageService;
 
-  ThemeService() : super(ThemeMode.light) {
-    _init();
+  ThemeService()
+      : _storageService = StorageService(),
+        super(ThemeMode.light) {
+    final themeMode = _storageService.getData("THEME") as int? ?? state.index;
+    state = ThemeMode.values[themeMode];
   }
 
   // return true if theme mode is light
   bool get themeMode => state.index == 1;
 
-  // initialize shared preference and get the theme mode
-  void _init() async {
-    _prefs = await SharedPreferences.getInstance();
-    final themeMode = _prefs.getInt("THEME") ?? state.index;
-
-    state = ThemeMode.values[themeMode];
-  }
-
   // change theme
   void setTheme(ThemeMode themeMode) {
     state = themeMode;
-    _prefs.setInt("THEME", state.index);
+    _storageService.setInt("THEME", state.index);
   }
 }
