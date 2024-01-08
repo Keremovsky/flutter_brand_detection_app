@@ -4,6 +4,7 @@ import 'dart:convert';
 class RequestModel {
   final int id;
   final String? image;
+  final String? date;
   final String companyName;
   final String description;
   final String country;
@@ -13,6 +14,7 @@ class RequestModel {
   RequestModel({
     required this.id,
     required this.image,
+    required this.date,
     required this.companyName,
     required this.description,
     required this.country,
@@ -23,6 +25,7 @@ class RequestModel {
   RequestModel copyWith({
     int? id,
     String? image,
+    String? date,
     String? companyName,
     String? description,
     String? country,
@@ -32,6 +35,7 @@ class RequestModel {
     return RequestModel(
       id: id ?? this.id,
       image: image ?? this.image,
+      date: date ?? this.date,
       companyName: companyName ?? this.companyName,
       description: description ?? this.description,
       country: country ?? this.country,
@@ -44,6 +48,7 @@ class RequestModel {
     return <String, dynamic>{
       'id': id,
       'image': image,
+      'date': date,
       'companyName': companyName,
       'description': description,
       'country': country,
@@ -56,6 +61,7 @@ class RequestModel {
     return RequestModel(
       id: map['id'] as int,
       image: map['image'] != null ? map['image'] as String : null,
+      date: map['date'] != null ? map['date'] as String : null,
       companyName: map['companyName'] as String,
       description: map['description'] as String,
       country: map['country'] as String,
@@ -71,7 +77,7 @@ class RequestModel {
 
   @override
   String toString() {
-    return 'RequestModel(id: $id, image: $image, companyName: $companyName, description: $description, country: $country, website: $website, twitter: $twitter)';
+    return 'RequestModel(id: $id, image: $image, date: $date, companyName: $companyName, description: $description, country: $country, website: $website, twitter: $twitter)';
   }
 
   @override
@@ -80,6 +86,7 @@ class RequestModel {
 
     return other.id == id &&
         other.image == image &&
+        other.date == date &&
         other.companyName == companyName &&
         other.description == description &&
         other.country == country &&
@@ -91,6 +98,7 @@ class RequestModel {
   int get hashCode {
     return id.hashCode ^
         image.hashCode ^
+        date.hashCode ^
         companyName.hashCode ^
         description.hashCode ^
         country.hashCode ^

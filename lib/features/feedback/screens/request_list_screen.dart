@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_brand_detection_app/core/constants/router_constants.dart';
 import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart';
 import 'package:flutter_brand_detection_app/core/utils/custom_circular_progress_indicator.dart';
 import 'package:flutter_brand_detection_app/core/utils/list_item.dart';
@@ -73,7 +74,13 @@ class _RequestListScreenState extends ConsumerState<RequestListScreen> {
                 itemBuilder: (context, index) {
                   return ModelListItem(
                     title: data[index].companyName,
-                    onTap: () {},
+                    content: data[index].date,
+                    onTap: () {
+                      context.pushNamed(
+                        RouterConstants.requestScreenName,
+                        extra: data[index],
+                      );
+                    },
                     image: NetworkImage(
                       "${SecretConstants.mainUrl}${data[index].image}",
                     ),

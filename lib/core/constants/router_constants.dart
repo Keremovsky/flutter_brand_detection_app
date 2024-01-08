@@ -11,63 +11,45 @@ class RouterConstants {
   static const settingsScreenPath = "/settingsScreen";
   static const settingsScreenName = "settingsScreen";
 
-  // send feedback screen
+  // about feedback and request
   static const sendFeedbackScreenPath = "/sendFeedbackScreen";
   static const sendFeedbackScreenName = "sendFeedbackScreen";
-
-  // send request screen
   static const sendRequestScreenPath = "/sendRequestScreen";
   static const sendRequestScreenName = "sendRequestScreen";
-
-  // feedback list screen
-  static const feedbackListScreenPath = "/feedbackListScreen";
-  static const feedbackListScreenName = "feedbackListScreen";
-
-  // feedback  screen
   static const feedbackScreenPath = "/feedbackScreen";
   static const feedbackScreenName = "feedbackScreen";
-
-  // request screen
+  static const requestScreenPath = "/requestScreen";
+  static const requestScreenName = "requestScreen";
+  static const feedbackListScreenPath = "/feedbackListScreen";
+  static const feedbackListScreenName = "feedbackListScreen";
   static const requestListScreenPath = "/requestListScreen";
   static const requestListScreenName = "requestListScreen";
 
-  // history screen
+  // about history
   static const historyScreenPath = "/historyScreen";
   static const historyScreenName = "historyScreen";
-
-  // saved history screen
   static const savedHistoryScreenPath = "/savedHistoryScreen";
   static const savedHistoryScreenName = "savedHistoryScreen";
 
-  // result screen
+  // about result
   static const resultScreenPath = "/resultScreen";
   static const resultScreenName = "resultScreen";
-
-  // single result screen
   static const singleResultScreenPath = "/singleResultScreen";
   static const singleResultScreenName = "singleResultScreen";
 
-  // login screen
+  // about authentication
   static const loginScreenPath = "/loginScreen";
   static const loginScreenName = "loginScreen";
-
-  // register screen
   static const registerScreenPath = "/registerScreen";
   static const registerScreenName = "registerScreen";
-
-  // forget password screen
   static const forgetPasswordScreenPath = "/forgetPasswordScreen";
   static const forgetPasswordScreenName = "forgetPasswordScreen";
-
-  // reset password screen
   static const resetPasswordScreenPath = "/resetPasswordScreen";
   static const resetPasswordScreenName = "resetPasswordScreen";
+  static const profileScreenPath = "/profileScreen";
+  static const profileScreenName = "profileScreen";
 
   // image cropper screen
   static const imageCropperScreenPath = "/imageCropperScreen";
   static const imageCropperScreenName = "imageCropperScreen";
-
-  // profile screen
-  static const profileScreenPath = "/profileScreen";
-  static const profileScreenName = "profileScreen";
 }

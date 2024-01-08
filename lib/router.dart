@@ -7,6 +7,7 @@ import 'package:flutter_brand_detection_app/features/auth/screens/reset_password
 import 'package:flutter_brand_detection_app/features/feedback/screens/feedback_list_screen.dart';
 import 'package:flutter_brand_detection_app/features/feedback/screens/feedback_screen.dart';
 import 'package:flutter_brand_detection_app/features/feedback/screens/request_list_screen.dart';
+import 'package:flutter_brand_detection_app/features/feedback/screens/request_screen.dart';
 import 'package:flutter_brand_detection_app/features/feedback/screens/send_feedback_screen.dart';
 import 'package:flutter_brand_detection_app/features/feedback/screens/send_request_screen.dart';
 import 'package:flutter_brand_detection_app/features/history/screens/history_screen.dart';
@@ -18,6 +19,7 @@ import 'package:flutter_brand_detection_app/features/image_picker/screens/image_
 import 'package:flutter_brand_detection_app/features/search/screens/result_screen.dart';
 import 'package:flutter_brand_detection_app/features/search/screens/single_result_screen.dart';
 import 'package:flutter_brand_detection_app/features/auth/screens/profile_screen.dart';
+import 'package:flutter_brand_detection_app/models/request_model.dart';
 import 'package:flutter_brand_detection_app/models/result_model.dart';
 import 'package:go_router/go_router.dart';
 
@@ -72,16 +74,6 @@ class AppRouter {
         },
       ),
       GoRoute(
-        name: RouterConstants.feedbackListScreenName,
-        path: RouterConstants.feedbackListScreenPath,
-        pageBuilder: (context, state) {
-          final id = state.extra as int;
-          return MaterialPage(
-            child: FeedbackListScreen(id: id),
-          );
-        },
-      ),
-      GoRoute(
         name: RouterConstants.feedbackScreenName,
         path: RouterConstants.feedbackScreenPath,
         pageBuilder: (context, state) {
@@ -91,6 +83,26 @@ class AppRouter {
               resultModels: data[0],
               imageBytes: data[1],
             ),
+          );
+        },
+      ),
+      GoRoute(
+        name: RouterConstants.requestScreenName,
+        path: RouterConstants.requestScreenPath,
+        pageBuilder: (context, state) {
+          final requestModel = state.extra as RequestModel;
+          return MaterialPage(
+            child: RequestScreen(requestModel: requestModel),
+          );
+        },
+      ),
+      GoRoute(
+        name: RouterConstants.feedbackListScreenName,
+        path: RouterConstants.feedbackListScreenPath,
+        pageBuilder: (context, state) {
+          final id = state.extra as int;
+          return MaterialPage(
+            child: FeedbackListScreen(id: id),
           );
         },
       ),

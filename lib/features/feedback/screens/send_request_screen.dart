@@ -41,7 +41,6 @@ class _SendRequestScreenState extends ConsumerState<SendRequestScreen> {
     isThemeLight = isThemeLightFunc(context);
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
@@ -125,7 +124,7 @@ class _SendRequestScreenState extends ConsumerState<SendRequestScreen> {
                 const _CustomSizedBox(),
                 TextFormField(
                   maxLines: 3,
-                  maxLength: 1000,
+                  maxLength: 250,
                   onSaved: (value) {
                     inputValues["description"] = value;
                   },
