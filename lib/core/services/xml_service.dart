@@ -30,8 +30,9 @@ class XmlService {
                     _xmlBuilder.element("isim", nest: result.name);
                     _xmlBuilder.element("konum", nest: result.location);
                     _xmlBuilder.element("açıklama", nest: result.description);
-                    _xmlBuilder.element("internet_sitesi", nest: result.web);
-                    _xmlBuilder.element("twitter", nest: result.twitter);
+                    _xmlBuilder.element("internet_sitesi",
+                        nest: result.web ?? "");
+                    _xmlBuilder.element("twitter", nest: result.twitter ?? "");
                     _xmlBuilder.element(
                       "benzerlik_yüzdesi",
                       nest: result.similarity,

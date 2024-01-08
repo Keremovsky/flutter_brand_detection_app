@@ -173,9 +173,6 @@ class _ImageCropperScreenState extends ConsumerState<ImageCropperScreen> {
                             final resultModels = await ref
                                 .read(searchControllerProvider.notifier)
                                 .search(context, bytes, id);
-                            setState(() {
-                              isLoading = false;
-                            });
 
                             if (resultModels != null) {
                               if (mounted) {

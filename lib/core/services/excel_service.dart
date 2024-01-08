@@ -60,13 +60,13 @@ void _saveToExcel(List<List<ResultModel>> resultModels, Sheet sheetObject) {
             columnIndex: 3,
             rowIndex: row,
           ))
-          .value = TextCellValue(result.web);
+          .value = TextCellValue(result.web ?? "");
       sheetObject
           .cell(CellIndex.indexByColumnRow(
             columnIndex: 4,
             rowIndex: row,
           ))
-          .value = TextCellValue(result.twitter);
+          .value = TextCellValue(result.twitter ?? "");
       sheetObject
           .cell(CellIndex.indexByColumnRow(
             columnIndex: 5,

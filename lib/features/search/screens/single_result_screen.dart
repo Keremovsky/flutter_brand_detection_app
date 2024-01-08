@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_brand_detection_app/core/constants/secret_constants.dart';
 import 'package:flutter_brand_detection_app/core/constants/theme_constants.dart';
-import 'package:flutter_brand_detection_app/core/services/excel_service.dart';
-import 'package:flutter_brand_detection_app/core/services/xml_service.dart';
 import 'package:flutter_brand_detection_app/core/utils/custom_button.dart';
 import 'package:flutter_brand_detection_app/core/utils/image_demonstrator.dart';
 import 'package:flutter_brand_detection_app/core/utils_functions.dart';
@@ -20,8 +18,6 @@ class SingleResultScreen extends StatefulWidget {
 }
 
 class _SingleResultScreenState extends State<SingleResultScreen> {
-  late final XmlService xmlService;
-  late final ExcelService excelService;
   late bool isThemeLight;
 
   Color _getColor() {
@@ -44,13 +40,6 @@ class _SingleResultScreenState extends State<SingleResultScreen> {
         end: Palette.yellow,
       ).lerp((per / 50));
     }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    xmlService = XmlService();
-    excelService = ExcelService();
   }
 
   @override
@@ -141,7 +130,14 @@ class _SingleResultScreenState extends State<SingleResultScreen> {
                 children: [
                   CustomButton(
                     onTap: () {
-                      launchURL(widget.resultModel.twitter);
+                      if (widget.resultModel.twitter == null) {
+                        giveFeedback(
+                          context,
+                          "Şirketin twitter sayfası bulunmamakta.",
+                        );
+                        return;
+                      }
+                      launchURL(widget.resultModel.twitter!);
                     },
                     height: 50,
                     width: 80,
@@ -155,7 +151,14 @@ class _SingleResultScreenState extends State<SingleResultScreen> {
                   ),
                   CustomButton(
                     onTap: () {
-                      launchURL(widget.resultModel.web);
+                      if (widget.resultModel.web == null) {
+                        giveFeedback(
+                          context,
+                          "Şirketin internet sitesi bulunmamakta.",
+                        );
+                        return;
+                      }
+                      launchURL(widget.resultModel.web!);
                     },
                     height: 50,
                     width: 80,

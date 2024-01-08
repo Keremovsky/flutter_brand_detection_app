@@ -53,7 +53,7 @@ class RequestScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 15),
+              const SizedBox(height: 25),
               Text(
                 "Şirket ismi: ${requestModel.companyName}",
                 style: Theme.of(context).textTheme.displayLarge,
@@ -93,6 +93,6 @@ class _CustomSizedBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(height: 5);
+    return const SizedBox(height: 15);
   }
 }

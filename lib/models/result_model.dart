@@ -8,8 +8,8 @@ class ResultModel {
   final String name;
   final String location;
   final String description;
-  final String web;
-  final String twitter;
+  final String? web;
+  final String? twitter;
   final String image;
   final bool? isSaved;
   final double similarity;
@@ -86,8 +86,8 @@ class ResultModel {
       name: map['name'] as String,
       location: map['location'] as String,
       description: map['description'] as String,
-      web: map['web'] as String,
-      twitter: map['twitter'] as String,
+      web: map['web'] != null ? map['web'] as String : null,
+      twitter: map['twitter'] != null ? map['twitter'] as String : null,
       image: map['image'] as String,
       isSaved: map['isSaved'] != null ? map['isSaved'] as bool : null,
       similarity: map['similarity'] as double,
