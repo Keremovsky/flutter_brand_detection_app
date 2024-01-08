@@ -39,7 +39,7 @@ class HistoryController extends StateNotifier<List<List<ResultModel>>> {
         historyState.add(results);
       }
 
-      state = historyState;
+      state = historyState.reversed.toList();
     }
   }
 
